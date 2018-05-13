@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/Layout.xhtml"> 
+
+    <ui:define name="content">
+
+        <p:fieldset legend="#{employeeBean.editing ? 'Alterar dados' : 'Novo cadastro'}" >
+
+            <h:form id="formCadastreEmployee">
+
+                <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
+
+                    <p:outputLabel for="role" value="Cargo: "/>
+                    <p:selectOneButton id="role" value="#{employeeBean.employee.role}">
+                        <f:selectItem itemLabel="Técnico" itemValue="tecnico" />
+                        <f:selectItem itemLabel="Professor" itemValue="professor" />
+                        <f:ajax execute="role" render="@form" event="change"/>
+                    </p:selectOneButton>
+
+                </h:panelGrid>
+
+                <h:panelGroup id="panelGroupEmployee" rendered="#{employeeBean.employee.role eq 'tecnico'}">
+                    <ui:include src="cadastro-tecnico.xhtml" />
+                </h:panelGroup>
+
+                <h:panelGroup id="panelGroupTeacher" rendered="#{employeeBean.employee.role eq 'professor'}">
+                    <ui:include src="cadastro-professor.xhtml" />
+                </h:panelGroup>
+
+                <p:toolbar id="panelButtonsTeacher" style="margin-top: 10px;" rendered="#{employeeBean.employee.role eq 'professor'}">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{teacherBean.editing ? msg.change :msg.save}" action="#{teacherBean.save}"  
+                                         id="saveTeacher" update="@form" icon="ui-icon ui-icon-disk"/>
+
+                        <p:button style="font-size: 13px;" value="#{msg.cancel}" outcome="/servidor/listar-servidores"
+                                  id="deleteTeacher" icon="ui-icon ui-icon-cancel">
+                        </p:button>
+                    </f:facet>    
+                </p:toolbar> 
+
+                <p:toolbar id="panelButtonsEmployee" style="margin-top: 10px;" rendered="#{employeeBean.employee.role eq 'tecnico'}">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{employeeBean.editing ? msg.change :msg.save}" action="#{employeeBean.save}"  
+                                         id="saveEmployee" update="@form" icon="ui-icon ui-icon-disk"/>
+
+                        <p:button style="font-size: 13px;" value="#{msg.cancel}" outcome="/servidor/listar-servidores"
+                                  id="deleteEmployee" icon="ui-icon ui-icon-cancel">
+                        </p:button>
+                    </f:facet>    
+                </p:toolbar> 
+
+            </h:form>
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>

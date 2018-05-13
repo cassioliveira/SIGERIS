@@ -1,0 +1,37 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:servidor="http://xmlns.jcp.org/jsf/composite/components/cadastro-pessoa"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <f:metadata>
+        <f:viewParam name="employee" value="#{employeeBean.employee}" />
+    </f:metadata>
+
+    <h:form id="formCadastreEmployee">
+
+    <servidor:form-cadastro-pessoa name="#{employeeBean.employee.name}"
+                                   registration="#{employeeBean.employee.registration}"
+                                   gender="#{employeeBean.employee.gender}"
+                                   birthDate="#{employeeBean.employee.birthDate}"
+                                   phone1="#{employeeBean.employee.phone1}"
+                                   phone2="#{employeeBean.employee.phone2}"
+                                   email="#{employeeBean.employee.email}"
+                                   email2="#{employeeBean.employee.email2}"
+                                   uf="#{employeeBean.employee.uf}"
+                                   city="#{employeeBean.employee.city}"
+                                   street="#{employeeBean.employee.street}"
+                                   number="#{employeeBean.employee.number}"
+                                   neighborhood="#{employeeBean.employee.neighborhood}"
+                                   postalCode="#{employeeBean.employee.postalCode}"
+                                   rg="#{employeeBean.employee.rg}"
+                                   cpf="#{employeeBean.employee.cpf}"/>
+
+    </h:form>
+
+    <p:blockUI id="blockEmployeeForm" block="formCadastreEmployee" trigger="saveEmployee">
+        <p:graphicImage library="images" name="loading.gif"/>
+    </p:blockUI>
+
+</html>-->

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/Layout.xhtml"> 
+
+    <ui:define name="content">
+
+        <h:form id="searchEmployee">
+
+            <p:growl id="messages" autoUpdate="true"/>
+
+            <p:fieldset legend="Tecnicos cadastrados" >
+                <p:toolbar>
+                    <f:facet name="right">
+                        <p:button outcome="/servidor/cadastro-professor" value="Novo técnico" style="text-align: right"
+                                  icon="ui-icon ui-icon-plus" styleClass="botao-novo-cadastro"/>
+                    </f:facet>
+                </p:toolbar>    
+
+                <p:dataTable id="datatableEmployee" var="tecnico" value="#{tecnicoBean.tecnicos}" widgetVar="tecnicoSearch" reflow="true"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " paginator="true" scrollRows="20" scrollHeight="250"
+                             rows="10" paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado"  scrollable="true" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100" >
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <p:inputText id="globalFilter" onkeyup="PF('tecnicoSearch').filter()" style="width:300px" placeholder="Pesquisa..."/>
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column headerText="Matricula" width="8%" filterStyle="display:none" priority="1"
+                              filterBy="#{tecnico.matricula}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{tecnico.matricula}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" width="32%" filterStyle="display:none" priority="1"
+                              filterBy="#{tecnico.name}" filterMatchMode="contains">
+                        <h:outputText value="#{tecnico.name}" style="font-size: 15px; font-weight: bold"/>
+                    </p:column>
+                    
+                    <p:column headerText="Celular" width="10%" filterStyle="display:none" priority="2"
+                              filterBy="#{tecnico.celular}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{tecnico.celular}" />
+                    </p:column>
+                    
+                    <p:column headerText="E-mail" width="30%" filterStyle="display:none" priority="2"
+                              filterBy="#{tecnico.email}" filterMatchMode="contains">
+                        <h:outputText value="#{tecnico.email}"/>
+                    </p:column>
+
+                    <p:column headerText="Ações" style="text-align: center" width="10%" priority="1">
+
+                        <p:button id="editButton" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" outcome="/servidor/cadastro-professor">
+                            <f:param  name="tecnico" value="#{tecnico.id}"/>
+                            <p:tooltip for="editButton" value="Editar este cadastro"/>
+                        </p:button>
+
+                        <p:commandButton id="deleteButton" title="Remover" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
+                                         action="#{tecnicoBean.remove}" process="@this">
+                            <f:setPropertyActionListener target="#{tecnicoBean.selectedTeacher}" value="#{tecnico}"/>
+                            <p:tooltip for="deleteButton" value="Excluir este cadastro"/>
+                            <p:confirm icon="ui-icon-alert" header="Exclusão de cadastro de servidor" message="Deseja realmente excluir este cadastro?"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:composition>
