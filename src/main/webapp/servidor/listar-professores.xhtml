@@ -32,7 +32,7 @@
                             <p:inputText id="globalFilter" onkeyup="PF('professorSearch').filter()" style="width:300px" placeholder="Pesquisa..."/>
                         </p:outputPanel>
                     </f:facet>
-                    
+
                     <p:column headerText="Matricula" width="8%" filterStyle="display:none" priority="1"
                               filterBy="#{professor.matricula}" filterMatchMode="contains" style="text-align: center">
                         <h:outputText value="#{professor.matricula}"/>
@@ -42,12 +42,12 @@
                               filterBy="#{professor.nome}" filterMatchMode="contains">
                         <h:outputText value="#{professor.nome}" style="font-size: 15px; font-weight: bold"/>
                     </p:column>
-                    
+
                     <p:column headerText="Celular" width="10%" filterStyle="display:none" priority="2"
                               filterBy="#{professor.celular}" filterMatchMode="contains" style="text-align: center">
                         <h:outputText value="#{professor.celular}" />
                     </p:column>
-                    
+
                     <p:column headerText="E-mail" width="30%" filterStyle="display:none" priority="2"
                               filterBy="#{professor.email}" filterMatchMode="contains">
                         <h:outputText value="#{professor.email}"/>
@@ -61,7 +61,7 @@
                         </p:button>
 
                         <p:commandButton id="deleteButton" title="Remover" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
-                                         action="#{professorBean.remove}" process="@this">
+                                         action="#{professorBean.excluir}" process="@this" update="datatableProfessor">
                             <f:setPropertyActionListener target="#{professorBean.professorSelecionado}" value="#{professor}"/>
                             <p:tooltip for="deleteButton" value="Excluir este cadastro"/>
                             <p:confirm icon="ui-icon-alert" header="Exclusão de cadastro de servidor" message="Deseja realmente excluir este cadastro?"/>
