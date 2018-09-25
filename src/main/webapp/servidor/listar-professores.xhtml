@@ -11,7 +11,9 @@
 
         <h:form id="searchProfessor">
 
-            <p:growl id="messages" autoUpdate="true"/>
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/>
+            </p:messages>
 
             <p:fieldset legend="Professores cadastrados" >
                 <p:toolbar>

@@ -8,43 +8,36 @@
                 template="/WEB-INF/templates/Layout.xhtml"> 
 
     <f:metadata>
-        <f:viewParam name="professor" value="#{professorBean.professor}" />
+        <f:viewParam name="professor" value="#{professorBean.professor}"/>
     </f:metadata>
 
     <ui:define name="content">
+        <p:fieldset id="fieldsetProfessor" legend="Cadastro de professor">
 
-        <p:fieldset legend="#{professorBean.editando ? 'Alterar cadastro' : 'Novo cadastro'}" >
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/>
+            </p:messages>
 
-            <p:growl id="messages" autoUpdate="true"/>
+            <h:form id="formPesquisaProfessor" enctype="multipart/form-data">
+                <p:tabView id="tabContainer">
 
-            <h:form id="formCadastroProfessor">
-
-                <!--                <h:panelGrid columns="4" style="margin-left: 20px; margin-bottom: 5px">
-                
-                                    <div style="border: 0px solid red; width: 115px; position: relative">
-                                        <h:panelGroup>
-                
-                                            <p:fileUpload id="photoUpload" cancelLabel="Cancelar" dragDropSupport="true" fileLimit="1" label="Selecione..." 
-                                                          mode="simple" uploadLabel="Enviar..." skinSimple="true"/>
-                                        </h:panelGroup>
-                                    </div>
-                
-                                </h:panelGrid>-->
-
-                <p:tabView>
-
-                    <p:tab title="Dados pessoais">
+                    <p:tab id="pessoais" title="Dados pessoais">
                         <h:panelGrid columns="2">
 
                             <h:panelGroup>
                                 <div style="border: 0px solid red; width: 100px; position: relative">
-                                    <p:graphicImage library="sigeris" name="imagens/avatar.png" style="height: 95px; margin-bottom: 5px; text-align: center"/>
+                                    <h:panelGroup id="fotoProfessor">
+                                        <p:graphicImage library="sigeris" name="imagens/avatar.png" cache="false"
+                                                        style="height: 97px; margin-bottom: 2px; text-align: center"/>
+                                    </h:panelGroup>
 
-                                    <p:fileUpload id="photoUpload" cancelLabel="Cancelar" dragDropSupport="true" fileLimit="1" label="Selecione" 
-                                                  mode="simple" uploadLabel="Enviar..." skinSimple="true" style="width: 100px; font-size: 12px"/>
+                                    <p:fileUpload id="photoUpload" cancelLabel="Cancelar" dragDropSupport="true" 
+                                                  fileLimit="1" label="Alterar foto" update="fotoProfessor"
+                                                  mode="simple" uploadLabel="Enviar..." skinSimple="true" 
+                                                  style="width: 100px; font-size: 11px; font-weight: bold"
+                                                  auto="true" disabled="true"/>
                                 </div>
                             </h:panelGroup>
-
 
                             <h:panelGroup>
 
@@ -54,10 +47,11 @@
                                     <p:inputText id="name" value="#{professorBean.professor.nome}" size="35" maxlength="200"/>
 
                                     <p:outputLabel for="registration" value="Matrícula: "/>
-                                    <p:inputMask id="registration" value="#{professorBean.professor.matricula}" size="13" maxlength="20" mask="9.99999-9"/>
+                                    <p:inputMask id="registration" value="#{professorBean.professor.matricula}" size="13" 
+                                                 maxlength="10" mask="9.99999-9"/>
 
                                     <p:outputLabel for="sexo" value="Sexo: " style="margin-right: 42px;"/>
-                                    <p:selectOneMenu id="sexo" value="#{professorBean.professor.sexo}" style="width: 140px">
+                                    <p:selectOneMenu id="sexo" value="#{professorBean.professor.sexo}" style="width: 100px">
                                         <f:selectItem noSelectionOption="true"/>
                                         <f:selectItem itemLabel="Masculino" itemValue="M"/>
                                         <f:selectItem itemLabel="Feminino" itemValue="F"/>
@@ -77,89 +71,55 @@
                         </h:panelGrid>
                     </p:tab>
 
-                    <p:tab title="Contato">
-                        <h:panelGrid columns="3">
-                            <p:outputLabel for="phone1" value="Telefone: "/>
-                            <h:panelGroup>
-                                <p:inputText id="phone1" value="#{professorBean.professor.celular}" size="9" maxlength="15" class="phone"/>
-                                <p:outputLabel for="phone2" value="Celular: " style="margin-left: 5px"/>
-                                <p:inputText id="phone2" value="#{professorBean.professor.telefone}" size="9" maxlength="20" class="phone"/>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                    <p:tab id="contato" title="Contato">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="phone1" value="Celular: "/>
+                            <p:inputText id="phone1" value="#{professorBean.professor.celular}" size="15" maxlength="15" class="telefone"/>
+
+                            <p:outputLabel for="phone2" value="Telefone: "/>
+                            <p:inputText id="phone2" value="#{professorBean.professor.telefone}" size="15" maxlength="15" class="telefone"/>
 
                             <p:outputLabel for="email" value="E-mail: "/>
-                            <p:inputText id="email" value="#{professorBean.professor.email}" size="33" maxlength="100"/>
-                            <p:outputLabel/>
+                            <p:inputText id="email" value="#{professorBean.professor.email}" size="35" maxlength="100"/>
 
                             <p:outputLabel for="email2" value="E-mail 2: "/>
-                            <p:inputText id="email2" value="#{professorBean.professor.email2}" size="33" maxlength="100"/>
-                            <p:outputLabel/>
+                            <p:inputText id="email2" value="#{professorBean.professor.email2}" size="35" maxlength="100"/>
                         </h:panelGrid>
                     </p:tab>
 
-                    <p:tab title="Endereço">
-                        <!--                        <h:panelGrid columns="2">
-                                                    <p:outputLabel for="estado" value="Estado: "/>
-                                                    <p:selectOneMenu id="estado" value="#{professorBean.professor.estado}" style="width: 310px">
-                                                        <p:ajax process="@this" event="change" update="cidade" listener="#{professorBean.returnCities}"/>
-                                                        <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-                                                        <f:selectItems value="#{professorBean.states}" var="state" itemLabel="#{state.description}" itemValue="#{state}" />
-                                                    </p:selectOneMenu>
-                        
-                                                    <p:outputLabel for="cidade" value="Cidade: " />
-                                                    <p:selectOneMenu id="cidade" value="#{professorBean.professor.cidade}" style="width: 310px" filter="true"
-                                                                     disabled="#{professorBean.professor.estado eq null}">
-                                                        <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-                                                        <f:selectItems value="#{professorBean.cities}" var="cidade" itemLabel="#{cidade}" itemValue="#{cidade}"/>
-                                                    </p:selectOneMenu>
-                                                </h:panelGrid>-->
+                    <p:tab id="endereco" title="Endereço">
 
                         <h:panelGrid columns="2">
 
-                            <h:panelGroup>
-                                <p:outputLabel for="estado" value="Estado: "/>
-                                <p:selectOneMenu id="estado" value="#{professorBean.professor.endereco.estado}" style="width: 310px; margin-left: 2px">
-                                    <f:selectItem noSelectionOption="true"/>
-                                    <!--<f:selectItems value="#{professorBean.states}" var="state" itemLabel="#{state.description}" itemValue="#{state}" />-->
-                                </p:selectOneMenu>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                            <p:outputLabel for="uf" value="Estado: "/>
+                            <p:selectOneMenu id="uf" value="#{professorBean.professor.estado}" style="width: 261px">
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems var="estado" value="#{professorBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                            </p:selectOneMenu>
 
-                            <h:panelGroup>
-                                <p:outputLabel for="cidade" value="Cidade: " style="margin-right: 2px"/>
-                                <p:inputText id="cidade" value="#{professorBean.professor.endereco.cidade}" size="32" maxlength="200"/>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                            <p:outputLabel for="cidade" value="Cidade: "/>
+                            <p:inputText id="cidade" value="#{professorBean.professor.cidade}" size="33" maxlength="200"/>
 
-                            <h:panelGroup>
-                                <p:outputLabel for="rua" value="Rua: " style="margin-right: 22px"/>
-                                <p:inputText id="rua" value="#{professorBean.professor.endereco.rua}" size="24" maxlength="200"/>
+                            <p:outputLabel for="rua" value="Rua: "/>
+                            <p:inputText id="rua" value="#{professorBean.professor.rua}" size="33" maxlength="200"/>
 
-                                <p:inputText id="numero" value="#{professorBean.professor.endereco.numero}" size="2" maxlength="5" placeholder="Nº" style="margin-left: 1px"/>
-                                <p:outputLabel/>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                            <p:outputLabel for="numero" value="Número: "/>
+                            <p:inputText id="numero" value="#{professorBean.professor.numero}" size="20" maxlength="5"/>
 
-                            <h:panelGroup>
-                                <p:outputLabel for="bairro" value="Bairro: " style="margin-right: 7px"/>
-                                <p:inputText id="bairro" value="#{professorBean.professor.endereco.bairro}" size="17" maxlength="50"/>
+                            <p:outputLabel for="bairro" value="Bairro: "/>
+                            <p:inputText id="bairro" value="#{professorBean.professor.bairro}" size="20" maxlength="50"/>
 
-                                <p:outputLabel for="cep" value="CEP: "  style="margin-left: 5px"/>
-                                <p:inputMask id="cep" mask="99999-999" value="#{professorBean.professor.endereco.cep}" size="5" maxlength="9"/>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                            <p:outputLabel for="cep" value="CEP: "/>
+                            <p:inputMask id="cep" mask="99999-999" value="#{professorBean.professor.cep}" size="20" maxlength="9"/>
 
-                            <h:panelGroup>
-                                <p:outputLabel for="complemento" value="Complemento: " style="margin-right: 10px"/>
-                                <p:inputText id="complemento" value="#{professorBean.professor.endereco.complemento}" size="26" maxlength="200"/>
-                            </h:panelGroup>
-                            <p:outputLabel/>
+                            <p:outputLabel for="complemento" value="Complemento: "/>
+                            <p:inputText id="complemento" value="#{professorBean.professor.complemento}" size="20" maxlength="200"/>
 
                         </h:panelGrid>
 
                     </p:tab>
 
-                    <p:tab title="Documentação">
+                    <p:tab id="documentacao" title="Documentação">
                         <h:panelGrid columns="2">
                             <p:outputLabel for="rg" value="RG: "/>
                             <p:inputText id="rg" value="#{professorBean.professor.rg}" size="13" maxlength="20"/>
@@ -169,83 +129,47 @@
                         </h:panelGrid>
                     </p:tab>
 
-                    <p:tab id="dados-academicos" title="Dados acadêmicos">
+                    <p:tab id="academico" title="Dados acadêmicos">
 
                         <h:panelGrid columns="2" cellpadding="0" cellspacing="2">
-
-                            <p:outputLabel for="regimeTrabalho" value="Carga horária: "/>
-                            <h:panelGroup>
-                                <h:panelGrid columns="2">
-                                    <p:selectOneRadio id="regimeTrabalho" value="#{professorBean.professor.regimeTrabalho}">
-                                        <f:selectItem itemLabel="T20" itemValue="T20"/>
-                                        <f:selectItem itemLabel="T40" itemValue="T40"/>
-                                    </p:selectOneRadio>
-                                    <p:selectBooleanCheckbox id="dedicacao-exclusiva" itemLabel="DE"/>
-                                </h:panelGrid>
-                                <p:tooltip for="dedicacao-exclusiva" value="Dedicação Exclusiva"/>
-                            </h:panelGroup>
 
                             <p:outputLabel for="categoria" value="Categoria: "/>
                             <p:selectOneRadio id="categoria" value="#{professorBean.professor.categoria}">
                                 <f:selectItems var="categoria" itemLabel="#{categoria.description}" itemValue="#{categoria}" value="#{professorBean.categorias}"/>
                             </p:selectOneRadio>
 
-                            <p:outputLabel for="temFuncao" value="Função"/>
-                            <h:panelGroup>
-                                <h:panelGrid columns="2">
-                                    <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
-                                        <f:selectItem id="function-yes" itemLabel="Sim" itemValue="SIM"/>
-                                        <f:selectItem id="function-no" itemLabel="Não" itemValue="NAO"/>
-                                        <f:ajax execute="temFuncao" render="function-description" event="change"/>
-                                    </p:selectOneRadio>
-                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
-                                        <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" size="10"/>
-                                    </h:panelGroup>
-                                </h:panelGrid>
-                            </h:panelGroup>
+                            <p:outputLabel for="regimeTrabalho" value="Carga horária: "/>
+                            <p:selectOneRadio id="regimeTrabalho" value="#{professorBean.professor.regimeTrabalho}">
+                                <f:selectItem itemLabel="T20" itemValue="T20"/>
+                                <f:selectItem itemLabel="T40" itemValue="T40"/>
+                            </p:selectOneRadio>
 
-                            <!--                            <p:outputLabel for="area" value="Área: ">
-                                                            <p:tooltip for="area" value="Selecione uma categia ou informe uma se não estiver na lista"/>
-                                                        </p:outputLabel>
-                                                        <p:selectOneMenu id="area" value="#{professorBean.professor.area}" editable="true" filter="true" 
-                                                                         filterMatchMode="contains" style="width: 265px; margin-bottom: 4px" label="Digite ou selecione">
-                                                            <f:selectItems id="areas" value="#{professorBean.professorAreas}" var="area" itemLabel="#{area}" 
-                                                                           itemValue="#{area}"/>
-                                                        </p:selectOneMenu>-->
-                                                            <!--<f:selectItems id="areas" value="#{professorBean.professorAreas ne null}" var="area" itemLabel="#{area}"--> 
+                            <p:outputLabel for="dedicacaoExclusiva" value="Dedicação exclusiva: "/>
+                            <p:selectOneRadio id="dedicacaoExclusiva" value="#{professorBean.professor.dedicacaoExclusiva}">
+                                <f:selectItem  itemLabel="Sim" itemValue="true"/>
+                                <f:selectItem  itemLabel="Não" itemValue="false"/>
+                            </p:selectOneRadio>
 
-                            <!--                            <p:outputLabel for="discipline" value="Disciplina(s): "/>
-                                                        <p:selectCheckboxMenu id="discipline" label="Selecione..." 
-                                                                              filter="true" filterMatchMode="contains"
-                                                                              updateLabel="true" style="width: 294px; margin-bottom: 4px">
-                                                            <f:selectItems id="disciplines" value="#{professorBean.disciplines}" var="discipline" 
-                                                                           itemLabel="#{discipline.name}" itemValue="#{discipline}"/>
-                                                        </p:selectCheckboxMenu>-->
+                            <p:outputLabel for="temFuncao" value="Tem função?"/>
+                            <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
+                                <f:selectItem  itemLabel="Sim" itemValue="true"/>
+                                <f:selectItem  itemLabel="Não" itemValue="false"/>
+                                <!--<f:ajax execute="temFuncao" render="function-description" event="change"/>-->
+                            </p:selectOneRadio>
 
-                            <!-- ****************   PROVIDENCIAR TELA PARA INFORMAR AFASTAMENTO OU LICENÇA DE PROFESSOR **********************-->
+                            <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
+                            <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
+<!--                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
+                        </h:panelGroup>-->
 
-                            <!--                            <p:outputLabel for="situation" value="Situação: ">
-                                                            <p:tooltip for="situation" value="EX.: Ativo, Inativo, Afastado, Licença, etc"/>
-                                                        </p:outputLabel>
-                            
-                                                        <p:selectOneMenu id="situation" value="#{professorBean.professor.situation}" style="width: 265px" label="Digite ou selecione">
-                                                            <f:selectItems id="situations" value="#{professorBean.employeeSituations}" var="situation" itemLabel="#{situation.description}"  
-                                                                           itemValue="#{situation}"/>
-                                                            <f:ajax execute="situation" render="panelOtherSituation" event="change"/>
-                                                        </p:selectOneMenu>-->
+                            <p:outputLabel for="classe" value="Classe:"/>
+                            <p:inputText id="classe" value="#{professorBean.professor.classe}" style="width: 273px"/>
 
-                            <!--                            <p:outputLabel/>
-                                                        <h:panelGroup id="panelOtherSituation" >
-                                                            <p:inputText id="otherSituation" value="#{professorBean.professor.otherSituation}" size="27" placeholder="Informe o motivo"
-                                                                         rendered="#{professorBean.professor.situation eq 'OTHER'}"/>
-                                                            <p:inputText id="otherSituationAfastamento" value="#{professorBean.professor.otherSituation}" size="27" placeholder="Motivo do afastamento"
-                                                                         rendered="#{professorBean.professor.situation eq 'AFASTAMENTO'}"/>
-                                                            <p:inputText id="otherSituationLicenca" value="#{professorBean.professor.otherSituation}" size="27" placeholder="Tipo de licença"
-                                                                         rendered="#{professorBean.professor.situation eq 'LICENCA'}"/>
-                                                        </h:panelGroup>-->
+                            <p:outputLabel for="nivel" value="Nível:"/>
+                            <p:spinner id="nivel" value="#{professorBean.professor.nivel}" size="30" min="0" decimalPlaces="0" style="text-align: left"/>
 
                             <p:outputLabel for="observations" value="Observações: " style="margin-right: 17px;"/>
-                            <p:inputTextarea id="observations" rows="3" cols="30" maxlength="255" value="#{professorBean.professor.observacoes}"
+                            <p:inputTextarea id="observations" rows="3" cols="33" maxlength="255" value="#{professorBean.professor.observacoes}"
                                              autoResize="false" counter="counterDescription" counterTemplate="{0} caracteres restantes"/>
                             <p:outputLabel/>
                             <p:outputLabel id="counterDescription" style="font-size: 12px;"/>
@@ -255,21 +179,26 @@
 
                 </p:tabView>
 
-                <p:toolbar id="panelButtonsProfessor" style="margin-top: 10px;" >
-                    <f:facet name="left">
-                        <p:commandButton style="font-size: 13px;" value="#{professorBean.editando ? 'Alterar' : 'Salvar'}" action="#{professorBean.salvar}"  
-                                         id="salvarProfessor" update="@form" icon="ui-icon ui-icon-disk"/>
-
-                        <p:button style="font-size: 13px;" value="Cancelar" outcome="/servidor/listar-professores"
-                                  id="deleteProfessor" icon="ui-icon ui-icon-cancel">
-                        </p:button>
-                    </f:facet>    
-                </p:toolbar> 
-
-                <p:blockUI id="blockProfessorForm" block="formCadastroProfessor" trigger="salvarProfessor">
-                    <p:graphicImage library="images" name="loading.gif"/>
-                </p:blockUI>
             </h:form>
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px" value="Salvar" action="#{professorBean.salvar}" 
+                                     icon="fa fa-save" id="botaoSalvar">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/servidor/listar-servidores" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+
+                <f:facet name="right">
+                    <p:commandButton value="Limpar campos" icon="fa fa-times-circle" update="formPesquisaProfessor" process="@this">
+                        <p:resetInput target="formPesquisaProfessor"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:toolbar>
 
         </p:fieldset>
 

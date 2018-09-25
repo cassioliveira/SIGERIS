@@ -1,5 +1,6 @@
 package br.edu.uepb.sigeris.services;
 
+import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Professor;
 import br.edu.uepb.sigeris.repository.Professores;
 import java.io.Serializable;
@@ -26,6 +27,10 @@ public class ProfessorService implements Serializable {
     public void salvar(Professor professor) {
         if (novoCadastro(professor)) {
             professor.setCadastro(new Date());
+            professor.setMatricula("0.00000-0");
+            professor.setEstado(Estados.PB);
+            professor.setCidade("Monteiro");
+            professor.setCep("58500-000");
         }
         this.professores.save(professor);
     }

@@ -1,11 +1,10 @@
 package br.edu.uepb.sigeris.model;
 
 import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.Estados;
 import java.io.Serializable;
 import java.util.Date;
-import javax.annotation.PostConstruct;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -43,11 +42,11 @@ public class Pessoa implements Serializable {
     @Column(name = "cadastro")
     private Date cadastro;
 
-    @Column(name = "nome", nullable = false, length = 150)
-    @NotNull(message = "O nome deve ser informado")
+    @NotNull(message = "Um nome deve ser informado")
+    @Column(name = "nome", nullable = false, length = 200)
     private String nome;
 
-    @Column(name = "matricula", length = 20)
+    @Column(name = "matricula", length = 15)
     private String matricula;
 
     @Column(name = "nome_social", length = 100)
@@ -88,10 +87,27 @@ public class Pessoa implements Serializable {
     @Column(name = "observacoes")
     private String observacoes;
 
-    @Embedded
-    private Endereco endereco;
+    private byte[] foto;
 
-    public Pessoa() {
-        this.endereco = new Endereco();
-    }
+    @Column(name = "endereco_rua", length = 200)
+    private String rua;
+
+    @Column(name = "endereco_numero", length = 10)
+    private String numero;
+
+    @Column(name = "endereco_complemento", length = 200)
+    private String complemento;
+
+    @Column(name = "endereco_bairro", length = 50)
+    private String bairro;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "endereco_estado")
+    private Estados estado;
+
+    @Column(name = "endereco_cidade", length = 70)
+    private String cidade;
+
+    @Column(name = "endereco_cep", length = 10)
+    private String cep;
 }

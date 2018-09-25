@@ -16,7 +16,9 @@
     </h:head>
 
     <h:body >
-        <p:growl id="messages" showDetail="true" showSummary="true" />
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/>
+        </p:messages>
         <center>
             <p:graphicImage library="sigeris" name="imagens/logo-cche.png" style="margin-top: 60px"/>
             <p:panel id="panelLogin" style="margin-top: 30px">

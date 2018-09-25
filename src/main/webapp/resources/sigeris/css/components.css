@@ -148,7 +148,7 @@
 }
 
 #panelLogin{
-    width: 350px; 
+    width: 400px; 
     height: 190px; 
     text-align : center; 
     background: #f3f3f3;
@@ -294,4 +294,19 @@
 .negrito-centralizado{
     font-weight: bold;
     text-align: center; 
+}
+
+.ui-messages-info {
+    background-color: #28A745 !important;
+    color: white !important
+}
+
+.ui-messages-warn {
+    background-color: #FFC107 !important;
+    color: black !important
+}
+
+.ui-messages-error {
+    background-color: #DC3545 !important;
+    color: white !important
 }

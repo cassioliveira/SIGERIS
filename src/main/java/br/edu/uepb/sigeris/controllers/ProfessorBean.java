@@ -1,15 +1,18 @@
 package br.edu.uepb.sigeris.controllers;
 
 import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Professor;
 import br.edu.uepb.sigeris.services.ProfessorService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +23,8 @@ import lombok.Setter;
  *
  * @author Cássio Oliveira <cassio@cassioliveira.com.br>
  */
-@Model
+@Named
+@ViewScoped
 public class ProfessorBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,9 +44,12 @@ public class ProfessorBean implements Serializable {
 
     @Getter
     private List<Professor> professores;
-
+    
     @Getter
     private List<CategoriasServidor> categorias;
+    
+    @Getter
+    private List<Estados> estados;
 
     public ProfessorBean() {
         professor = new Professor();
@@ -53,6 +60,8 @@ public class ProfessorBean implements Serializable {
     public void init() {
         this.professores = professorService.findAll();
         this.categorias = Arrays.asList(CategoriasServidor.values());
+        this.estados = Arrays.asList(Estados.values());
+        
     }
 
     /**
@@ -67,8 +76,8 @@ public class ProfessorBean implements Serializable {
         } else {
             FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
         }
-        FacesUtil.redirecionaPara("listar-professores.xhtml");
-        professor = new Professor();
+        FacesUtil.redirecionaPara("listar-servidores.xhtml");
+        this.professor = new Professor();
     }
 
     /**
