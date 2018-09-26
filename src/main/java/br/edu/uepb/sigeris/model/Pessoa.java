@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +31,7 @@ import lombok.Data;
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = "Servidores.todos", query = "FROM Pessoa p WHERE p.tipo='TECNICO' OR p.tipo='PROFESSOR'")
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +39,9 @@ public class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "tipo", length = 15)
+    private String tipo;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "cadastro")
@@ -110,4 +115,12 @@ public class Pessoa implements Serializable {
 
     @Column(name = "endereco_cep", length = 10)
     private String cep;
+
+    public Pessoa() {
+        if (id == null) {
+            setEstado(Estados.PB);
+            setCidade("Monteiro");
+            setCep("58.500-000");
+        }
+    }
 }

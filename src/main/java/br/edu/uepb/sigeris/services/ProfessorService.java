@@ -26,6 +26,7 @@ public class ProfessorService implements Serializable {
     @Transactional
     public void salvar(Professor professor) {
         if (novoCadastro(professor)) {
+            professor.setTipo("PROFESSOR");
             professor.setCadastro(new Date());
             professor.setMatricula("0.00000-0");
             professor.setEstado(Estados.PB);
@@ -49,7 +50,7 @@ public class ProfessorService implements Serializable {
     }
 
     /**
-     * Verifica se o ID do aluno já existe, indicando se é um novo cadastro.
+     * Verifica se o ID do servidor já existe, indicando se é um novo cadastro.
      *
      * @param professor
      * @return

@@ -1,37 +1,152 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?> 
+<?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:servidor="http://xmlns.jcp.org/jsf/composite/components/cadastro-pessoa"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/Layout.xhtml"> 
 
     <f:metadata>
-        <f:viewParam name="employee" value="#{employeeBean.employee}" />
+        <f:viewParam name="servidor" value="#{tecnicoBean.tecnico}"/>
     </f:metadata>
 
-    <h:form id="formCadastreEmployee">
+    <ui:define name="content">
+        <p:fieldset id="fieldsetTecnico" legend="#{tecnicoBean.editando ? 'Alteração de cadastro de técnico' : 'Cadastro de tecnico'}">
 
-    <servidor:form-cadastro-pessoa name="#{employeeBean.employee.name}"
-                                   registration="#{employeeBean.employee.registration}"
-                                   gender="#{employeeBean.employee.gender}"
-                                   birthDate="#{employeeBean.employee.birthDate}"
-                                   phone1="#{employeeBean.employee.phone1}"
-                                   phone2="#{employeeBean.employee.phone2}"
-                                   email="#{employeeBean.employee.email}"
-                                   email2="#{employeeBean.employee.email2}"
-                                   uf="#{employeeBean.employee.uf}"
-                                   city="#{employeeBean.employee.city}"
-                                   street="#{employeeBean.employee.street}"
-                                   number="#{employeeBean.employee.number}"
-                                   neighborhood="#{employeeBean.employee.neighborhood}"
-                                   postalCode="#{employeeBean.employee.postalCode}"
-                                   rg="#{employeeBean.employee.rg}"
-                                   cpf="#{employeeBean.employee.cpf}"/>
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/>
+            </p:messages>
 
-    </h:form>
+            <h:form id="formPesquisaTecnico" enctype="multipart/form-data">
+                <p:tabView id="tabContainer">
 
-    <p:blockUI id="blockEmployeeForm" block="formCadastreEmployee" trigger="saveEmployee">
-        <p:graphicImage library="images" name="loading.gif"/>
-    </p:blockUI>
+                    <p:tab id="pessoais" title="Dados pessoais">
+                        <h:panelGrid columns="2">
 
-</html>-->
+                            <h:panelGroup>
+                                <div style="border: 0px solid red; width: 100px; position: relative">
+                                    <h:panelGroup id="fotoTecnico">
+                                        <p:graphicImage library="sigeris" name="imagens/avatar.png" cache="false"
+                                                        style="height: 97px; margin-bottom: 2px; text-align: center"/>
+                                    </h:panelGroup>
+
+                                    <p:fileUpload id="photoUpload" cancelLabel="Cancelar" dragDropSupport="true" 
+                                                  fileLimit="1" label="Alterar foto" update="fotoTecnico"
+                                                  mode="simple" uploadLabel="Enviar..." skinSimple="true" 
+                                                  style="width: 100px; font-size: 11px; font-weight: bold"
+                                                  auto="true" disabled="true"/>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+
+                                <h:panelGrid columns="2">
+
+                                    <p:outputLabel for="name" value="Nome: "/>
+                                    <p:inputText id="name" value="#{tecnicoBean.tecnico.nome}" size="35" maxlength="200"/>
+
+                                    <p:outputLabel for="registration" value="Matrícula: "/>
+                                    <p:inputMask id="registration" value="#{tecnicoBean.tecnico.matricula}" size="13" 
+                                                 maxlength="10" mask="9.99999-9"/>
+
+                                    <p:outputLabel for="sexo" value="Sexo: " style="margin-right: 42px;"/>
+                                    <p:selectOneMenu id="sexo" value="#{tecnicoBean.tecnico.sexo}" style="width: 100px">
+                                        <f:selectItem noSelectionOption="true"/>
+                                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                        <f:selectItem itemLabel="Feminino" itemValue="F"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="birthDate" value="Data de nascimento: " style="margin-right: 1px"/>
+                                    <p:calendar id="birthDate" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
+                                                size="13" locale="pt" value="#{tecnicoBean.tecnico.dataNascimento}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+                                    </p:calendar>
+
+                                </h:panelGrid>
+
+                            </h:panelGroup>
+
+                        </h:panelGrid>
+                    </p:tab>
+
+                    <p:tab id="contato" title="Contato">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="phone1" value="Celular: "/>
+                            <p:inputText id="phone1" value="#{tecnicoBean.tecnico.celular}" size="15" maxlength="15" class="telefone"/>
+
+                            <p:outputLabel for="phone2" value="Telefone: "/>
+                            <p:inputText id="phone2" value="#{tecnicoBean.tecnico.telefone}" size="15" maxlength="15" class="telefone"/>
+
+                            <p:outputLabel for="email" value="E-mail: "/>
+                            <p:inputText id="email" value="#{tecnicoBean.tecnico.email}" size="35" maxlength="100"/>
+
+                            <p:outputLabel for="email2" value="E-mail 2: "/>
+                            <p:inputText id="email2" value="#{tecnicoBean.tecnico.email2}" size="35" maxlength="100"/>
+                        </h:panelGrid>
+                    </p:tab>
+
+                    <p:tab id="endereco" title="Endereço">
+
+                        <h:panelGrid columns="2">
+
+                            <p:outputLabel for="uf" value="Estado: "/>
+                            <p:selectOneMenu id="uf" value="#{tecnicoBean.tecnico.estado}" style="width: 261px">
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="cidade" value="Cidade: "/>
+                            <p:inputText id="cidade" value="#{tecnicoBean.tecnico.cidade}" size="33" maxlength="200"/>
+
+                            <p:outputLabel for="rua" value="Rua: "/>
+                            <p:inputText id="rua" value="#{tecnicoBean.tecnico.rua}" size="33" maxlength="200"/>
+
+                            <p:outputLabel for="numero" value="Número: "/>
+                            <p:inputText id="numero" value="#{tecnicoBean.tecnico.numero}" size="20" maxlength="5"/>
+
+                            <p:outputLabel for="bairro" value="Bairro: "/>
+                            <p:inputText id="bairro" value="#{tecnicoBean.tecnico.bairro}" size="20" maxlength="50"/>
+
+                            <p:outputLabel for="cep" value="CEP: "/>
+                            <p:inputMask id="cep" mask="99.999-999" value="#{tecnicoBean.tecnico.cep}" size="20" maxlength="9"/>
+
+                            <p:outputLabel for="complemento" value="Complemento: "/>
+                            <p:inputText id="complemento" value="#{tecnicoBean.tecnico.complemento}" size="20" maxlength="200"/>
+
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <p:tab id="documentacao" title="Documentação">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="rg" value="RG: "/>
+                            <p:inputText id="rg" value="#{tecnicoBean.tecnico.rg}" size="13" maxlength="20"/>
+
+                            <p:outputLabel for="cpf" value="CPF: "/>
+                            <p:inputMask id="cpf" mask="999.999.999-99" value="#{tecnicoBean.tecnico.cpf}" size="13" maxlength="14"/>
+                        </h:panelGrid>
+                    </p:tab>
+
+                </p:tabView>
+
+            </h:form>
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px" value="Salvar" action="#{tecnicoBean.salvar}" 
+                                     icon="fa fa-save" id="botaoSalvar">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/servidor/listar-servidores" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>

@@ -8,11 +8,11 @@
                 template="/WEB-INF/templates/Layout.xhtml"> 
 
     <f:metadata>
-        <f:viewParam name="professor" value="#{professorBean.professor}"/>
+        <f:viewParam name="servidor" value="#{professorBean.professor}"/>
     </f:metadata>
 
     <ui:define name="content">
-        <p:fieldset id="fieldsetProfessor" legend="Cadastro de professor">
+        <p:fieldset id="fieldsetProfessor" legend="#{professorBean.editando ? 'Alteração de cadastro de profesor' : 'Cadastro de professor'}">
 
             <p:messages closable="true" severity="info,warn,error">
                 <p:autoUpdate/>
@@ -55,7 +55,6 @@
                                         <f:selectItem noSelectionOption="true"/>
                                         <f:selectItem itemLabel="Masculino" itemValue="M"/>
                                         <f:selectItem itemLabel="Feminino" itemValue="F"/>
-                                        <f:selectItem itemLabel="Não Informado" itemValue="O"/>
                                     </p:selectOneMenu>
 
                                     <p:outputLabel for="birthDate" value="Data de nascimento: " style="margin-right: 1px"/>
@@ -110,7 +109,7 @@
                             <p:inputText id="bairro" value="#{professorBean.professor.bairro}" size="20" maxlength="50"/>
 
                             <p:outputLabel for="cep" value="CEP: "/>
-                            <p:inputMask id="cep" mask="99999-999" value="#{professorBean.professor.cep}" size="20" maxlength="9"/>
+                            <p:inputMask id="cep" mask="99.999-999" value="#{professorBean.professor.cep}" size="20" maxlength="9"/>
 
                             <p:outputLabel for="complemento" value="Complemento: "/>
                             <p:inputText id="complemento" value="#{professorBean.professor.complemento}" size="20" maxlength="200"/>
@@ -191,12 +190,6 @@
                     <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
                               outcome="/servidor/listar-servidores" icon="fa fa-times">
                     </p:button>
-                </f:facet>
-
-                <f:facet name="right">
-                    <p:commandButton value="Limpar campos" icon="fa fa-times-circle" update="formPesquisaProfessor" process="@this">
-                        <p:resetInput target="formPesquisaProfessor"/>
-                    </p:commandButton>
                 </f:facet>
             </p:toolbar>
 
