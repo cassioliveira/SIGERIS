@@ -80,9 +80,9 @@
                         </p:button>
 
                         <p:commandButton id="botaoExcluir" title="Excluir" icon="ui-icon ui-icon-trash" style="font-size: 10px"
-                                         action="#{servidorBean.excluir}" process="datatablePesquisaServidor" 
+                                         action="#{pessoaBean.excluir}" process="datatablePesquisaServidor" 
                                          update="datatablePesquisaServidor">
-                            <f:setPropertyActionListener value="#{servidor}" target="#{servidorBean.servidorSelecionado}"/>
+                            <f:setPropertyActionListener value="#{servidor}" target="#{pessoaBean.pessoaSelecionada}"/>
                             <p:tooltip for="botaoExcluir" value="Exclui a linha selecionada"/>
 
                             <p:confirm icon="ui-icon-alert" header="Excluir servidor" message="Deseja realmente excluir o cadastro?"/>

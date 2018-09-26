@@ -2,11 +2,14 @@ package br.edu.uepb.sigeris.controllers;
 
 import br.edu.uepb.sigeris.model.Pessoa;
 import br.edu.uepb.sigeris.services.PessoaService;
+import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Managed bean usado pela página de cadastro de consulta. É responsável por
@@ -21,8 +24,21 @@ public class PessoaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+    @Getter
+    @Setter
+    private Pessoa pessoa;
+    
+    @Getter
+    @Setter
+    private Pessoa pessoaSelecionada;
+    
     @Inject
     private PessoaService pessoaService;
+    
+    public PessoaBean(){
+        this.pessoa = new Pessoa();
+        this.pessoaSelecionada = new Pessoa();
+    }
     
     public List<Pessoa> getServidores(){
         return pessoaService.servidores();
@@ -39,4 +55,10 @@ public class PessoaBean implements Serializable {
         return pessoaService.direcionaParaEdicao(pessoa);
     }
 
+    
+    public void excluir(){
+        pessoaService.excluir(pessoaSelecionada);
+        getServidores();
+        FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
+    }
 }

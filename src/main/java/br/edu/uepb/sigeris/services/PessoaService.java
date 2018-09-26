@@ -1,12 +1,11 @@
 package br.edu.uepb.sigeris.services;
 
 import br.edu.uepb.sigeris.model.Pessoa;
-import br.edu.uepb.sigeris.model.Professor;
-import br.edu.uepb.sigeris.model.Tecnico;
-import br.edu.uepb.sigeris.repository.GlobalQueries;
+import br.edu.uepb.sigeris.repository.Pessoas;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  * Possui metodos comuns a todas as entidades que herdam de <b>Pessoa</b>
@@ -19,13 +18,13 @@ public class PessoaService implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private GlobalQueries queries;
+    private Pessoas pessoas;
 
-    @Inject
-    private ProfessorService professorService;
-
-    @Inject
-    private TecnicoService tecnicoService;
+//    @Inject
+//    private ProfessorService professorService;
+//
+//    @Inject
+//    private TecnicoService tecnicoService;
 
     /**
      * Verifica se o ID da pessoa já existe, indicando se é um novo cadastro.
@@ -38,7 +37,7 @@ public class PessoaService implements Serializable {
     }
 
     public List<Pessoa> servidores() {
-        return queries.servidores();
+        return pessoas.servidores();
     }
 
     public String direcionaParaEdicao(Pessoa pessoa) {
@@ -57,11 +56,24 @@ public class PessoaService implements Serializable {
         return pagina;
     }
 
-    public void botaoExclusaoServidor(Pessoa pessoa, Professor professor, Tecnico tecnico) {
-        if("PROFESSOR".equals(pessoa.getTipo())){
-            professorService.deletar(professor);
-        }else if("TECNICO".equals(pessoa.getTipo())){
-            tecnicoService.deletar(tecnico);
-        }
+//    public void botaoExclusaoServidor(Pessoa pessoa, Professor professor, Tecnico tecnico) {
+//        if("PROFESSOR".equals(pessoa.getTipo())){
+//            professorService.deletar(professor);
+//        }else if("TECNICO".equals(pessoa.getTipo())){
+//            tecnicoService.deletar(tecnico);
+//        }
+//    }
+
+    @Transactional
+    public void excluir(Pessoa pessoa) {
+        pessoas.delete(findById(pessoa.getId()));
+    }
+
+    public Pessoa findById(Long id) {
+        return pessoas.findById(id);
+    }
+
+    public List<Pessoa> findAll() {
+        return pessoas.findAll();
     }
 }
