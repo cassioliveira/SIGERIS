@@ -57,22 +57,22 @@
                         <h:outputText value="#{servidor.matricula}"/>
                     </p:column>
 
-                    <p:column headerText="Nome" width="38%" filterStyle="display:none" priority="1"
+                    <p:column headerText="Nome" width="35%" filterStyle="display:none" priority="1"
                               filterBy="#{servidor.nome}" filterMatchMode="contains">
                         <h:outputText value="#{servidor.nome}" style="font-size: 15px; font-weight: bold"/>
                     </p:column>
 
-                    <p:column headerText="Celular" width="10%" filterStyle="display:none" priority="2"
-                              filterBy="#{servidor.celular}" filterMatchMode="contains" style="text-align: center">
-                        <h:outputText value="#{servidor.celular}" />
+                    <p:column headerText="Tipo" width="13%" filterStyle="display:none" priority="2"
+                              filterBy="#{servidor.tipo}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{servidor.tipo}"  style="font-size: 12px; font-weight: bold"/>
                     </p:column>
 
-                    <p:column headerText="E-mail" width="30%" filterStyle="display:none" priority="2"
+                    <p:column headerText="E-mail" width="25%" filterStyle="display:none" priority="2"
                               filterBy="#{servidor.email}" filterMatchMode="contains">
                         <h:outputText value="#{servidor.email}"/>
                     </p:column>
 
-                    <p:column id="acoes" style="text-align: center" width="10%">
+                    <p:column id="acoes" style="text-align: center" width="15%">
                         <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" 
                                   outcome="#{pessoaBean.telaEdicaoServidor(servidor)}">
                             <f:param  name="servidor" value="#{servidor.id}"/>

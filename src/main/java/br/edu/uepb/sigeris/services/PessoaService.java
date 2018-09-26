@@ -20,12 +20,6 @@ public class PessoaService implements Serializable {
     @Inject
     private Pessoas pessoas;
 
-//    @Inject
-//    private ProfessorService professorService;
-//
-//    @Inject
-//    private TecnicoService tecnicoService;
-
     /**
      * Verifica se o ID da pessoa já existe, indicando se é um novo cadastro.
      *
@@ -40,6 +34,13 @@ public class PessoaService implements Serializable {
         return pessoas.servidores();
     }
 
+    /**
+     * Responsável por retornar o caminho da tela de edição de acordo com o tipo
+     * de servidor selecionado, dentre PROFESSOR e TECNICO.
+     *
+     * @param pessoa
+     * @return
+     */
     public String direcionaParaEdicao(Pessoa pessoa) {
         String pagina;
         switch (pessoa.getTipo()) {
@@ -55,14 +56,6 @@ public class PessoaService implements Serializable {
         }
         return pagina;
     }
-
-//    public void botaoExclusaoServidor(Pessoa pessoa, Professor professor, Tecnico tecnico) {
-//        if("PROFESSOR".equals(pessoa.getTipo())){
-//            professorService.deletar(professor);
-//        }else if("TECNICO".equals(pessoa.getTipo())){
-//            tecnicoService.deletar(tecnico);
-//        }
-//    }
 
     @Transactional
     public void excluir(Pessoa pessoa) {
