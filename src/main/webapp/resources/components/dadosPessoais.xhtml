@@ -7,13 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"> 
 
     <composite:interface>
-        <composite:attribute name="id"/>
-        <composite:attribute name="value"/>
+        <composite:attribute name="nome"/>
+        <composite:attribute name="matricula"/>
+        <composite:attribute name="sexo"/>
+        <composite:attribute name="dataNascimento"/>
     </composite:interface>
 
     <composite:implementation>
 
-        <p:tab id="pessoais" title="Dados pessoais">
+        
             <h:panelGrid columns="2">
 
                 <h:panelGroup>
@@ -36,14 +38,14 @@
                     <h:panelGrid columns="2">
 
                         <p:outputLabel for="name" value="Nome: "/>
-                        <p:inputText id="name" value="#{professorBean.professor.nome}" size="35" maxlength="200"/>
+                        <p:inputText id="name" value="#{cc.attrs.nome}" size="35" maxlength="200"/>
 
                         <p:outputLabel for="registration" value="Matrícula: "/>
-                        <p:inputMask id="registration" value="#{professorBean.professor.matricula}" size="13" 
+                        <p:inputMask id="registration" value="#{cc.attrs.matricula}" size="13" 
                                      maxlength="10" mask="9.99999-9"/>
 
                         <p:outputLabel for="sexo" value="Sexo: " style="margin-right: 42px;"/>
-                        <p:selectOneMenu id="sexo" value="#{professorBean.professor.sexo}" style="width: 100px">
+                        <p:selectOneMenu id="sexo" value="#{cc.attrs.sexo}" style="width: 100px">
                             <f:selectItem noSelectionOption="true"/>
                             <f:selectItem itemLabel="Masculino" itemValue="M"/>
                             <f:selectItem itemLabel="Feminino" itemValue="F"/>
@@ -51,7 +53,7 @@
 
                         <p:outputLabel for="birthDate" value="Data de nascimento: " style="margin-right: 1px"/>
                         <p:calendar id="birthDate" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
-                                    size="13" locale="pt" value="#{professorBean.professor.dataNascimento}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                                    size="13" locale="pt" value="#{cc.attrs.dataNascimento}" maxdate="#{dateTimeUtilBean.dateToday}" >
                             <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
                         </p:calendar>
 
@@ -60,15 +62,6 @@
                 </h:panelGroup>
 
             </h:panelGrid>
-        </p:tab>
-
-        <p:selectOneMenu id="#{cc.attrs.id}" style="vertical-align: middle; width: 20px" value="#{cc.attrs.value}">
-            <f:selectItem noSelectionOption="true" />
-            <f:selectItem itemLabel="S" itemValue="s" />
-            <f:selectItem itemLabel="I" itemValue="i"/>
-            <f:selectItem itemLabel="R" itemValue="r"/>
-            <f:selectItem itemLabel="N" itemValue="n"/> 
-        </p:selectOneMenu>
-
+        
     </composite:implementation>
 </html>

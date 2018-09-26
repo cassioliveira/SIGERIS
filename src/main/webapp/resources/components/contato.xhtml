@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"> 
+
+    <composite:interface>
+        <composite:attribute name="celular"/>
+        <composite:attribute name="telefone"/>
+        <composite:attribute name="email"/>
+        <composite:attribute name="email2"/>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:panelGrid columns="2">
+            <p:outputLabel for="phone1" value="Celular: "/>
+            <p:inputText id="phone1" value="#{cc.attrs.celular}" size="15" maxlength="15" class="telefone"/>
+
+            <p:outputLabel for="phone2" value="Telefone: "/>
+            <p:inputText id="phone2" value="#{cc.attrs.telefone}" size="15" maxlength="15" class="telefone"/>
+
+            <p:outputLabel for="email" value="E-mail: "/>
+            <p:inputText id="email" value="#{cc.attrs.email}" size="35" maxlength="100"/>
+
+            <p:outputLabel for="email2" value="E-mail 2: "/>
+            <p:inputText id="email2" value="#{cc.attrs.email2}" size="35" maxlength="100"/>
+        </h:panelGrid>
+
+    </composite:implementation>
+</html>

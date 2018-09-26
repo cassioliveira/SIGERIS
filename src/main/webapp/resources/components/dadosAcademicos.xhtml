@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <composite:interface>
+        <composite:attribute name="categoria"/>
+        <composite:attribute name="regimeTrabalho"/>
+        <composite:attribute name="dedicacaoExclusiva"/>
+        <composite:attribute name="temFuncao"/>
+        <composite:attribute name="descricaoFuncao"/>
+        <composite:attribute name="classe"/>
+        <composite:attribute name="nivel"/>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:panelGrid columns="2" cellpadding="0" cellspacing="2">
+
+            <p:outputLabel for="categoria" value="Categoria: "/>
+            <p:selectOneRadio id="categoria" value="#{professorBean.professor.categoria}">
+                <f:selectItems var="categoria" itemLabel="#{categoria.description}" itemValue="#{categoria}" value="#{professorBean.categorias}"/>
+            </p:selectOneRadio>
+
+            <p:outputLabel for="regimeTrabalho" value="Carga horária: "/>
+            <p:selectOneRadio id="regimeTrabalho" value="#{professorBean.professor.regimeTrabalho}">
+                <f:selectItem itemLabel="T20" itemValue="T20"/>
+                <f:selectItem itemLabel="T40" itemValue="T40"/>
+            </p:selectOneRadio>
+
+            <p:outputLabel for="dedicacaoExclusiva" value="Dedicação exclusiva: "/>
+            <p:selectOneRadio id="dedicacaoExclusiva" value="#{professorBean.professor.dedicacaoExclusiva}">
+                <f:selectItem  itemLabel="Sim" itemValue="true"/>
+                <f:selectItem  itemLabel="Não" itemValue="false"/>
+            </p:selectOneRadio>
+
+            <p:outputLabel for="temFuncao" value="Tem função?"/>
+            <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
+                <f:selectItem  itemLabel="Sim" itemValue="true"/>
+                <f:selectItem  itemLabel="Não" itemValue="false"/>
+                <!--<f:ajax execute="temFuncao" render="function-description" event="change"/>-->
+            </p:selectOneRadio>
+
+            <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
+            <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
+<!--                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
+        </h:panelGroup>-->
+
+            <p:outputLabel for="classe" value="Classe:"/>
+            <p:inputText id="classe" value="#{professorBean.professor.classe}" style="width: 273px"/>
+
+            <p:outputLabel for="nivel" value="Nível:"/>
+            <p:spinner id="nivel" value="#{professorBean.professor.nivel}" size="30" min="0" decimalPlaces="0" style="text-align: left"/>
+
+        </h:panelGrid>
+
+    </composite:implementation>
+</html>

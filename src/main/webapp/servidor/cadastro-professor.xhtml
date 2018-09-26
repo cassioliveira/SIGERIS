@@ -23,175 +23,65 @@
                 <p:tabView id="tabContainer">
 
                     <p:tab id="pessoais" title="Dados pessoais">
-                        <h:panelGrid columns="2">
-
-                            <h:panelGroup>
-                                <div style="border: 0px solid red; width: 100px; position: relative">
-                                    <h:panelGroup id="fotoProfessor">
-                                        <p:graphicImage library="sigeris" name="imagens/avatar.png" cache="false"
-                                                        style="height: 97px; margin-bottom: 2px; text-align: center"/>
-                                    </h:panelGroup>
-
-                                    <p:fileUpload id="photoUpload" cancelLabel="Cancelar" dragDropSupport="true" 
-                                                  fileLimit="1" label="Alterar foto" update="fotoProfessor"
-                                                  mode="simple" uploadLabel="Enviar..." skinSimple="true" 
-                                                  style="width: 100px; font-size: 11px; font-weight: bold"
-                                                  auto="true" disabled="true"/>
-                                </div>
-                            </h:panelGroup>
-
-                            <h:panelGroup>
-
-                                <h:panelGrid columns="2">
-
-                                    <p:outputLabel for="name" value="Nome: "/>
-                                    <p:inputText id="name" value="#{professorBean.professor.nome}" size="35" maxlength="200"/>
-
-                                    <p:outputLabel for="registration" value="Matrícula: "/>
-                                    <p:inputMask id="registration" value="#{professorBean.professor.matricula}" size="13" 
-                                                 maxlength="10" mask="9.99999-9"/>
-
-                                    <p:outputLabel for="sexo" value="Sexo: " style="margin-right: 42px;"/>
-                                    <p:selectOneMenu id="sexo" value="#{professorBean.professor.sexo}" style="width: 100px">
-                                        <f:selectItem noSelectionOption="true"/>
-                                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
-                                        <f:selectItem itemLabel="Feminino" itemValue="F"/>
-                                    </p:selectOneMenu>
-
-                                    <p:outputLabel for="birthDate" value="Data de nascimento: " style="margin-right: 1px"/>
-                                    <p:calendar id="birthDate" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
-                                                size="13" locale="pt" value="#{professorBean.professor.dataNascimento}" maxdate="#{dateTimeUtilBean.dateToday}" >
-                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
-                                    </p:calendar>
-
-                                </h:panelGrid>
-
-                            </h:panelGroup>
-
-                        </h:panelGrid>
+                        <component:dadosPessoais nome="#{professorBean.professor.nome}"
+                                                 matricula="#{professorBean.professor.matricula}"
+                                                 sexo="#{professorBean.professor.sexo}"
+                                                 dataNascimento="#{professorBean.professor.dataNascimento}"/>
                     </p:tab>
 
                     <p:tab id="contato" title="Contato">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel for="phone1" value="Celular: "/>
-                            <p:inputText id="phone1" value="#{professorBean.professor.celular}" size="15" maxlength="15" class="telefone"/>
-
-                            <p:outputLabel for="phone2" value="Telefone: "/>
-                            <p:inputText id="phone2" value="#{professorBean.professor.telefone}" size="15" maxlength="15" class="telefone"/>
-
-                            <p:outputLabel for="email" value="E-mail: "/>
-                            <p:inputText id="email" value="#{professorBean.professor.email}" size="35" maxlength="100"/>
-
-                            <p:outputLabel for="email2" value="E-mail 2: "/>
-                            <p:inputText id="email2" value="#{professorBean.professor.email2}" size="35" maxlength="100"/>
-                        </h:panelGrid>
+                        <component:contato celular="#{professorBean.professor.celular}"
+                                           telefone="#{professorBean.professor.telefone}"
+                                           email="#{professorBean.professor.email}"
+                                           email2="#{professorBean.professor.email2}"/>
                     </p:tab>
 
                     <p:tab id="endereco" title="Endereço">
-
-                        <h:panelGrid columns="2">
-
-                            <p:outputLabel for="uf" value="Estado: "/>
-                            <p:selectOneMenu id="uf" value="#{professorBean.professor.estado}" style="width: 261px">
-                                <f:selectItem noSelectionOption="true"/>
-                                <f:selectItems var="estado" value="#{professorBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
-                            </p:selectOneMenu>
-
-                            <p:outputLabel for="cidade" value="Cidade: "/>
-                            <p:inputText id="cidade" value="#{professorBean.professor.cidade}" size="33" maxlength="200"/>
-
-                            <p:outputLabel for="rua" value="Rua: "/>
-                            <p:inputText id="rua" value="#{professorBean.professor.rua}" size="33" maxlength="200"/>
-
-                            <p:outputLabel for="numero" value="Número: "/>
-                            <p:inputText id="numero" value="#{professorBean.professor.numero}" size="20" maxlength="5"/>
-
-                            <p:outputLabel for="bairro" value="Bairro: "/>
-                            <p:inputText id="bairro" value="#{professorBean.professor.bairro}" size="20" maxlength="50"/>
-
-                            <p:outputLabel for="cep" value="CEP: "/>
-                            <p:inputMask id="cep" mask="99.999-999" value="#{professorBean.professor.cep}" size="20" maxlength="9"/>
-
-                            <p:outputLabel for="complemento" value="Complemento: "/>
-                            <p:inputText id="complemento" value="#{professorBean.professor.complemento}" size="20" maxlength="200"/>
-
-                        </h:panelGrid>
-
+                        <component:endereco estado="#{professorBean.professor.estado}"
+                                            cidade="#{professorBean.professor.cidade}"
+                                            rua="#{professorBean.professor.rua}"
+                                            numero="#{professorBean.professor.numero}"
+                                            bairro="#{professorBean.professor.bairro}"
+                                            cep="#{professorBean.professor.cep}"
+                                            complemento="#{professorBean.professor.complemento}"/>
                     </p:tab>
 
                     <p:tab id="documentacao" title="Documentação">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel for="rg" value="RG: "/>
-                            <p:inputText id="rg" value="#{professorBean.professor.rg}" size="13" maxlength="20"/>
-
-                            <p:outputLabel for="cpf" value="CPF: "/>
-                            <p:inputMask id="cpf" mask="999.999.999-99" value="#{professorBean.professor.cpf}" size="13" maxlength="14"/>
-                        </h:panelGrid>
+                        <component:documentacao rg="#{professorBean.professor.rg}"
+                                                cpf="#{professorBean.professor.cpf}"/>
                     </p:tab>
 
                     <p:tab id="academico" title="Dados acadêmicos">
+                        <component:dadosAcademicos categoria="#{professorBean.professor.categoria}"
+                                                   regimeTrabalho="#{professorBean.professor.regimeTrabalho}"
+                                                   dedicacaoExclusiva="#{professorBean.professor.dedicacaoExclusiva}"
+                                                   temFuncao="#{professorBean.professor.temFuncao}"
+                                                   descricaoFuncao="#{professorBean.professor.descricaoFuncao}"
+                                                   classe="#{professorBean.professor.classe}"
+                                                   nivel="#{professorBean.professor.nivel}"/>
+                </p:tab>
 
-                        <h:panelGrid columns="2" cellpadding="0" cellspacing="2">
+            </p:tabView>
 
-                            <p:outputLabel for="categoria" value="Categoria: "/>
-                            <p:selectOneRadio id="categoria" value="#{professorBean.professor.categoria}">
-                                <f:selectItems var="categoria" itemLabel="#{categoria.description}" itemValue="#{categoria}" value="#{professorBean.categorias}"/>
-                            </p:selectOneRadio>
+            <component:observacoes estilo="margin-left:24px; margin-right:15px" altura="130" largura="560" value="#{professorBean.professor.observacoes}"/>
 
-                            <p:outputLabel for="regimeTrabalho" value="Carga horária: "/>
-                            <p:selectOneRadio id="regimeTrabalho" value="#{professorBean.professor.regimeTrabalho}">
-                                <f:selectItem itemLabel="T20" itemValue="T20"/>
-                                <f:selectItem itemLabel="T40" itemValue="T40"/>
-                            </p:selectOneRadio>
+        </h:form>
 
-                            <p:outputLabel for="dedicacaoExclusiva" value="Dedicação exclusiva: "/>
-                            <p:selectOneRadio id="dedicacaoExclusiva" value="#{professorBean.professor.dedicacaoExclusiva}">
-                                <f:selectItem  itemLabel="Sim" itemValue="true"/>
-                                <f:selectItem  itemLabel="Não" itemValue="false"/>
-                            </p:selectOneRadio>
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton style="font-size: 13px" value="Salvar" action="#{professorBean.salvar}" 
+                                 icon="fa fa-save" id="botaoSalvar">
+                    <f:ajax execute="@form" render="@form"/>
+                </p:commandButton>
 
-                            <p:outputLabel for="temFuncao" value="Tem função?"/>
-                            <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
-                                <f:selectItem  itemLabel="Sim" itemValue="true"/>
-                                <f:selectItem  itemLabel="Não" itemValue="false"/>
-                                <!--<f:ajax execute="temFuncao" render="function-description" event="change"/>-->
-                            </p:selectOneRadio>
+                <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                          outcome="/servidor/listar-servidores" icon="fa fa-times">
+                </p:button>
+            </f:facet>
+        </p:toolbar>
 
-                            <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
-                            <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
-<!--                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
-                        </h:panelGroup>-->
+    </p:fieldset>
 
-                            <p:outputLabel for="classe" value="Classe:"/>
-                            <p:inputText id="classe" value="#{professorBean.professor.classe}" style="width: 273px"/>
-
-                            <p:outputLabel for="nivel" value="Nível:"/>
-                            <p:spinner id="nivel" value="#{professorBean.professor.nivel}" size="30" min="0" decimalPlaces="0" style="text-align: left"/>
-
-                        </h:panelGrid>
-                    </p:tab>
-
-                </p:tabView>
-
-                <component:observacoes estilo="margin-left:24px; margin-right:15px" altura="130" largura="560" value="#{professorBean.professor.observacoes}"/>
-                
-            </h:form>
-
-            <p:toolbar>
-                <f:facet name="left">
-                    <p:commandButton style="font-size: 13px" value="Salvar" action="#{professorBean.salvar}" 
-                                     icon="fa fa-save" id="botaoSalvar">
-                        <f:ajax execute="@form" render="@form"/>
-                    </p:commandButton>
-
-                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
-                              outcome="/servidor/listar-servidores" icon="fa fa-times">
-                    </p:button>
-                </f:facet>
-            </p:toolbar>
-
-        </p:fieldset>
-
-    </ui:define>
+</ui:define>
 
 </ui:composition>
