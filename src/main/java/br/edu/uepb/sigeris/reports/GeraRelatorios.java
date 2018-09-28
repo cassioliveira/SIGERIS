@@ -39,12 +39,11 @@ public class GeraRelatorios {
      * @param pdfFileName
      * @param dados
      * @param titulo
-     * @param localizacao
      * @throws JRException
      * @throws IOException
      */
     public void gerarPdf(String jasperFileName, String pdfFileName, List<?> dados,
-            String titulo, String localizacao) throws JRException, IOException {
+            String titulo) throws JRException, IOException {
 
         Map<String, Object> parametros = new HashMap<>();
         String uepb = FacesUtil.caminhoContexto("/resources/sigeris/imagens/relatorio-uepb.png");
@@ -53,7 +52,6 @@ public class GeraRelatorios {
         parametros.put("cche", cche);
         String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
         parametros.put("titulo", titulo);
-        parametros.put("localizacao", localizacao);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoArquivoJasper, parametros, new JRBeanCollectionDataSource(dados));
         HttpServletResponse response = (HttpServletResponse) FacesUtil.responseHTTP();

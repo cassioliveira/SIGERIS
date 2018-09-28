@@ -31,15 +31,6 @@ public class ExecutaRelatorios implements Serializable {
 
     private final GeraRelatorios geradorRelatorios = new GeraRelatorios();
 
-//    @Inject
-//    @Getter
-//    @Setter
-//    private TecnicoService tecnicoService;
-//
-//    @Inject
-//    @Getter
-//    @Setter
-//    private ProfessorService professorService;
     @Inject
     @Getter
     @Setter
@@ -54,34 +45,32 @@ public class ExecutaRelatorios implements Serializable {
      * @throws net.sf.jasperreports.engine.JRException
      * @throws java.io.IOException
      */
-    public void servidores() throws SQLException, JRException, IOException {
-        geradorRelatorios.gerarPdf("/servidores.jasper", "Servidores Cadastrados.pdf", pessoaService.servidores(), "SERVIDORES CADASTRADOS", "CCHE");
-//        String jasperFileName = "/servidores.jasper";
-//        String pdfFileName = null;
-//        List<?> dados = null;
-//        String titulo = null;
-//        String localizacao = "CCHE";
-//        if (null != tipo) {
-//            switch (tipo) {
-//                case "SERVIDORES":
-//                    pdfFileName = "Servidores Cadastrados.pdf";
-//                    dados = pessoaService.servidores();
-//                    titulo = "SERVIDORES CADASTRADOS";
-//                    break;
-//                case "PROFESSORES":
-//                    pdfFileName = "Professores Cadastrados.pdf";
-//                    dados = pessoaService.professores();
-//                    titulo = "PROFESSORES CADASTRADOS";
-//                    break;
-//                case "TECNICOS":
-//                    pdfFileName = "Técnicos Cadastrados.pdf";
-//                    dados = pessoaService.tecnicos();
-//                    titulo = "TECNICOS CADASTRADOS";
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo, localizacao);
+    public void servidores(String tipo) throws SQLException, JRException, IOException {
+        String jasperFileName = "/servidores.jasper";
+        String pdfFileName = null;
+        List<?> dados = null;
+        String titulo = null;
+        if (null != tipo) {
+            switch (tipo) {
+                case "SERVIDORES":
+                    titulo = "Servidores cadastrados";
+                    pdfFileName = titulo + ".pdf";
+                    dados = pessoaService.servidores();
+                    break;
+                case "PROFESSORES":
+                    titulo = "Professores cadastrados";
+                    pdfFileName = titulo + ".pdf";
+                    dados = pessoaService.professores();
+                    break;
+                case "TECNICOS":
+                    titulo = "Técnicos cadastrados";
+                    pdfFileName = titulo + ".pdf";
+                    dados = pessoaService.tecnicos();
+                    break;
+                default:
+                    break;
+            }
+        }
+        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo);
     }
 }
