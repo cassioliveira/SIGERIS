@@ -27,15 +27,15 @@
                     </f:facet>
 
                     <f:facet name="right">
-                        <p:commandButton id="pdfServidores" action="#{executaRelatorios.servidoresCadastrados}" immediate="true"
+                        <p:commandButton id="pdfServidores" action="#{executaRelatorios.servidores}" immediate="true"
                                          ajax="false" icon="fa fa-file-pdf-o" value="Servidores" onclick="this.form.target = '_blank'"
                                          disabled="#{pessoaBean.servidores.size() == 0}"/>
-                        <p:commandButton id="pdfTecnicos" action="#{executaRelatorios.servidoresCadastrados}" immediate="true"
+<!--                        <p:commandButton id="pdfTecnicos" action="#{executaRelatorios.servidores('TECNICOS')}" immediate="true"
                                          ajax="false" icon="fa fa-file-pdf-o" value="Técnicos" onclick="this.form.target = '_blank'"
                                          disabled="#{pessoaBean.servidores.size() == 0}"/>
-                        <p:commandButton id="pdfProfessores" action="#{executaRelatorios.servidoresCadastrados}" immediate="true"
+                        <p:commandButton id="pdfProfessores" action="#{executaRelatorios.servidores('PROFESSORES')}" immediate="true"
                                          ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
-                                         disabled="#{pessoaBean.servidores.size() == 0}"/>
+                                         disabled="#{pessoaBean.servidores.size() == 0}"/>-->
                     </f:facet>
                 </p:toolbar>   
 

@@ -21,7 +21,47 @@
         </p:messages>
         <center>
             <p:graphicImage library="sigeris" name="imagens/logo-cche.png" style="margin-top: 60px"/>
-            <p:panel id="panelLogin" style="margin-top: 30px">
+<!--            <p:dialog closable="false" visible="true" resizable="false" styleClass="transparent-dialog-login" 
+                  draggable="false" id="loginDialog" position="center" style="margin-left: 20px" responsive="true">
+
+            <f:facet name="header">
+                <div style="margin-left: 35% !important">
+                    <h:graphicImage library="images" name="logo-cdsa.png" style="float: top"/>
+                </div>
+            </f:facet>
+
+            <h:form id="loginForm">
+                <p:growl id="loginMessages" autoUpdate="true"/>
+
+
+                <h:panelGrid id="loginPanelGrid" columns="2" cellpadding="4">
+
+
+                    <p:outputLabel for="username" value="Matrícula: "/>
+                    <p:inputText id="username" required="true" requiredMessage="Informe sua matrícula" 
+                                 size="20" >
+                        <p:tooltip for="username" value="Matrícula"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="password" value="Senha: "/>
+                    <h:panelGroup>
+                        <p:password id="password" required="true" requiredMessage="Informe sua senha"
+                                    size="20" >
+                            <p:tooltip for="password" value="Senha"/>
+                        </p:password>
+
+                        <p:button id="loginEnterButton" icon="fa fa-sign-in" style="font-size: 20px; color: whitesmoke" outcome="inicio.xhtml">
+                            <p:tooltip for="loginEnterButton" value="Clique para entrar ou pressione ENTER"/>
+                        </p:button>
+
+                    </h:panelGroup>
+
+                </h:panelGrid>
+
+            </h:form>
+        </p:dialog>-->
+            
+            <p:panel id="panelLogin" style="margin-top: 20px">
                 <center>
                     <h:form id="login" prependId="false">
                         <h:panelGrid id="loginPanelGrid" cellpadding="10" style="margin-top: 15px">
@@ -35,7 +75,7 @@
                     </h:form>
                 </center>
             </p:panel>
-            <p class="copy-right">&copy; 2018. Todos os direitos reservados <br/> Sistema de Gerenciamento de Laboratório de Análises Clínicas</p>
+            <p class="copy-right">&copy; 2018. Todos os direitos reservados <br/>SIGERIS - Sistema de Gerenciamento e Integração de Setores</p>
         </center>
     </h:body>
 </html>

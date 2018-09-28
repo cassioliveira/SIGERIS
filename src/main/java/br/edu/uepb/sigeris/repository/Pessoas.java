@@ -26,4 +26,26 @@ public class Pessoas extends Generic<Pessoa> implements Serializable {
     public List<Pessoa> servidores() {
         return getEntityManager().createNamedQuery("Servidores.todos").getResultList();
     }
+    
+    /**
+     * Retorna todos os Técnicos cadastrados através do atributo 'tipo' de
+     * Pessoa.
+     *
+     * @see Pessoa
+     * @return
+     */
+    public List<Pessoa> tecnicos() {
+        return getEntityManager().createNamedQuery("Tecnicos.todos").getResultList();
+    }
+    
+    /**
+     * Retorna todos os Professores cadastrados através do atributo 'tipo' de
+     * Pessoa.
+     *
+     * @see Pessoa
+     * @return
+     */
+    public List<Pessoa> professores() {
+        return getEntityManager().createNamedQuery("Professores.todos").getResultList();
+    }
 }

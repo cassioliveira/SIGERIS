@@ -33,6 +33,14 @@ public class PessoaService implements Serializable {
     public List<Pessoa> servidores() {
         return pessoas.servidores();
     }
+    
+    public List<Pessoa> tecnicos() {
+        return pessoas.tecnicos();
+    }
+    
+    public List<Pessoa> professores() {
+        return pessoas.professores();
+    }
 
     /**
      * Responsável por retornar o caminho da tela de edição de acordo com o tipo
