@@ -28,6 +28,7 @@
 
     background-color: #f6f6f6;
     border-right: 1px solid #eaeaea;
+    z-index: 9999;
 }
 
 .aw-sidebar.is-toggled {

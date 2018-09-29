@@ -25,18 +25,6 @@
                         <p:button outcome="/servidor/cadastro-professor" value="Novo professor" style="text-align: right"
                                   icon="ui-icon ui-icon-plus" styleClass="botao-novo-professor"/>
                     </f:facet>
-
-                    <f:facet name="right">
-                        <p:commandButton id="pdfServidores" action="#{executaRelatorios.servidores('SERVIDORES')}" immediate="true"
-                                         ajax="false" icon="fa fa-file-pdf-o" value="Servidores" onclick="this.form.target = '_blank'"
-                                         disabled="#{pessoaBean.servidores.size() == 0}"/>
-                        <p:commandButton id="pdfTecnicos" action="#{executaRelatorios.servidores('TECNICOS')}" immediate="true"
-                                         ajax="false" icon="fa fa-file-pdf-o" value="Técnicos" onclick="this.form.target = '_blank'"
-                                         disabled="#{pessoaBean.servidores.size() == 0}"/>
-                        <p:commandButton id="pdfProfessores" action="#{executaRelatorios.servidores('PROFESSORES')}" immediate="true"
-                                         ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
-                                         disabled="#{pessoaBean.servidores.size() == 0}"/>
-                    </f:facet>
                 </p:toolbar>   
 
                 <p:dataTable id="datatablePesquisaServidor" var="servidor" value="#{pessoaBean.servidores}"

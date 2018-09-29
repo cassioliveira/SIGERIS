@@ -1,7 +1,6 @@
 package br.edu.uepb.sigeris.reports;
 
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
-import java.awt.Image;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
