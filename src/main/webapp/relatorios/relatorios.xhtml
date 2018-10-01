@@ -37,6 +37,14 @@
                                      disabled="#{pessoaBean.servidores.size() == 0}"/>
                 </p:panel>
             </div>
+            
+            <div class="ui-g-6">
+                <p:panel id="listaFrequencia" header="Reunião">
+                    <p:commandButton id="pdfListaFrequancia" action="#{executaRelatorios.listaReunioes()}" immediate="true"
+                                     ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
+                                     disabled="#{pessoaBean.servidores.size() == 0}"/>
+                </p:panel>
+            </div>
         </div>
 
 

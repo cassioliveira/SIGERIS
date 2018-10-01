@@ -50,6 +50,7 @@ public class ExecutaRelatorios implements Serializable {
         String pdfFileName = null;
         List<?> dados = null;
         String titulo = null;
+        String setor = null;
         if (null != tipo) {
             switch (tipo) {
                 case "SERVIDORES":
@@ -71,6 +72,10 @@ public class ExecutaRelatorios implements Serializable {
                     break;
             }
         }
-        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo);
+        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo, setor);
+    }
+    
+    public void listaReunioes() throws JRException, IOException{
+        geradorRelatorios.gerarPdf("/frequencia-reuniao.jasper", "Lista de presença.pdf", pessoaService.servidores(), "Lista de presença", "Coordenação de extensão");
     }
 }
