@@ -56,16 +56,19 @@ public class ExecutaRelatorios implements Serializable {
                 case "SERVIDORES":
                     titulo = "Servidores cadastrados";
                     pdfFileName = titulo + ".pdf";
+                    setor = "Direção";
                     dados = pessoaService.servidores();
                     break;
                 case "PROFESSORES":
                     titulo = "Professores cadastrados";
                     pdfFileName = titulo + ".pdf";
+                    setor = "Coordençaõ de matemática";
                     dados = pessoaService.professores();
                     break;
                 case "TECNICOS":
                     titulo = "Técnicos cadastrados";
                     pdfFileName = titulo + ".pdf";
+                    setor = "Coordençaõ de letras";
                     dados = pessoaService.tecnicos();
                     break;
                 default:
