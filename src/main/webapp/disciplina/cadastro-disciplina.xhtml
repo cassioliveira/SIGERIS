@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <f:metadata>
+        <f:viewParam name="disciplina" value="#{disciplinaBean.disciplina}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <p:fieldset id="fieldsetDisciplina" legend="Cadastro de disciplinas">
+
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h:form id="formPesquisaDisciplina">
+
+                <h:panelGrid columns="2">
+
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo" value="#{disciplinaBean.disciplina.codigo}" size="10" maxlength="20">
+                        <p:tooltip for="codigo" value="Informe o código da disciplina"/>
+                    </p:inputText>
+                    
+                    <p:outputLabel for="chs" value="C.H.S.: "/>
+                    <p:spinner id="chs" value="#{disciplinaBean.disciplina.cargaHorariaSemanal}" size="8" maxlength="10" suffix=" h">
+                        <p:tooltip for="chs" value="Carga Horária Semanal"/>
+                    </p:spinner>
+                    
+                    <p:outputLabel for="nome" value="Nome: "/>
+                    <p:inputText id="nome" value="#{disciplinaBean.disciplina.nome}" size="35" maxlength="200">
+                        <p:tooltip for="nome" value="Informe o nome da disciplina"/>
+                    </p:inputText>
+
+                </h:panelGrid>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px; margin-left: 5px; vertical-align: middle" value="Salvar" action="#{disciplinaBean.salvar}" 
+                                         update="datatablePesquisaDisciplina" icon="fa fa-save" id="botaoSalvar">
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>
+
+                <p:dataTable id="datatablePesquisaDisciplina" var="disciplina" value="#{disciplinaBean.disciplinas}"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10" reflow="true" sortOrder="ascending" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaDisciplina"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="10" scrollHeight="290" sortBy="#{disciplina.nome}">
+
+                    <f:facet name="header">
+                        <p:outputPanel id="panelFiltroDisciplina">
+                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaDisciplina').filter()" style="width:300px" placeholder="Pesquise na tabela..."/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="Código" width="10%" filterStyle="display:none" priority="2"
+                              filterBy="#{disciplina.codigo}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{disciplina.codigo}" />
+                    </p:column>
+
+                    <p:column headerText="Nome" width="40%" filterStyle="display:none" priority="1"
+                              filterBy="#{disciplina.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{disciplina.nome}" style="font-size: 15px; font-weight: bold"/>
+                    </p:column>
+
+                    <p:column headerText="Carga Horária Semanal" width="30%" filterStyle="display:none" priority="2"
+                              filterBy="#{disciplina.cargaHorariaSemanal}" filterMatchMode="contains">
+                        <h:outputText value="#{disciplina.cargaHorariaSemanal}"/>
+                    </p:column>
+
+                    <p:column id="acoes" style="text-align: center" width="10%">
+                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
+                            <f:param  name="disciplina" value="#{disciplina.id}"/>
+                            <p:tooltip for="botaoEditar" value="Editar"/>
+                        </p:button>
+
+                        <p:commandButton id="botaoExcluir" title="Excluir" icon="ui-icon ui-icon-trash" style="font-size: 10px"
+                                         action="#{disciplinaBean.excluir}" process="datatablePesquisaDisciplina" update="datatablePesquisaDisciplina">
+                            <f:setPropertyActionListener value="#{disciplina}" target="#{disciplinaBean.disciplinaSelecionada}"/>
+                            <p:tooltip for="botaoExcluir" value="Excluir"/>
+
+                            <p:confirm icon="ui-icon-alert" header="Excluir disciplina" message="Deseja realmente excluir o cadastro?"/>
+
+                        </p:commandButton>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        Há #{fn:length(disciplinaBean.disciplinas)} #{fn:length(disciplinaBean.disciplinas) > 1 ? ' disciplinas cadastradas' : ' disciplina cadastrada'}.
+                    </f:facet>
+
+                </p:dataTable>
+
+            </h:form>
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>

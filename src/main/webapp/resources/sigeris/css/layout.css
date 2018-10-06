@@ -5,7 +5,7 @@
     right: 0;
     left: 0;
     min-height: 50px;
-    z-index: 999;
+    z-index: 99;
 
     background-color: #1e94d2;
 }
@@ -28,7 +28,7 @@
 
     background-color: #f6f6f6;
     border-right: 1px solid #eaeaea;
-    z-index: 9999;
+    z-index: 99;
 }
 
 .aw-sidebar.is-toggled {

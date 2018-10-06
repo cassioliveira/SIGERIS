@@ -33,20 +33,20 @@ public class ProfessorService implements Serializable {
             professor.setCidade("Monteiro");
             professor.setCep("58500-000");
         }
-        this.professores.save(professor);
+        this.professores.salvar(professor);
     }
 
     @Transactional
     public void deletar(Professor professor) {
-        professores.delete(findById(professor.getId()));
+        professores.excluir(findById(professor.getId()));
     }
 
     public Professor findById(Long id) {
-        return professores.findById(id);
+        return professores.porId(id);
     }
 
     public List<Professor> findAll() {
-        return professores.findAll();
+        return professores.todas();
     }
 
     /**

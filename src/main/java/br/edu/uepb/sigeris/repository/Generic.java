@@ -45,12 +45,12 @@ public abstract class Generic<T> implements Serializable {
     }
 
     /**
-     * Metodo utilizado para save um novo cadastro no banco de dados ou editar
-     * um cadastro existente.
+     * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
+ um cadastro existente.
      *
      * @param entity
      */
-    public void save(T entity) {
+    public void salvar(T entity) {
         entityManager.merge(entity);
     }
 
@@ -59,7 +59,7 @@ public abstract class Generic<T> implements Serializable {
      *
      * @param entity
      */
-    public void delete(T entity) {
+    public void excluir(T entity) {
         entityManager.remove(entity);
     }
 
@@ -70,7 +70,7 @@ public abstract class Generic<T> implements Serializable {
      *
      * @return
      */
-    public List<T> findAll() {
+    public List<T> todas() {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entity));
         return getEntityManager().createQuery(cq).getResultList();
@@ -83,7 +83,7 @@ public abstract class Generic<T> implements Serializable {
      * @param id
      * @return
      */
-    public T findById(Long id) {
+    public T porId(Long id) {
         return entityManager.find(entity, id);
     }
 

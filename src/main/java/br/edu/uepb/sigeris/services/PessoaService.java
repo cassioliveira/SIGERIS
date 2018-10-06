@@ -67,14 +67,14 @@ public class PessoaService implements Serializable {
 
     @Transactional
     public void excluir(Pessoa pessoa) {
-        pessoas.delete(findById(pessoa.getId()));
+        pessoas.excluir(findById(pessoa.getId()));
     }
 
     public Pessoa findById(Long id) {
-        return pessoas.findById(id);
+        return pessoas.porId(id);
     }
 
     public List<Pessoa> findAll() {
-        return pessoas.findAll();
+        return pessoas.todas();
     }
 }

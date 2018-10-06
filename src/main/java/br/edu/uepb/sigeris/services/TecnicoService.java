@@ -34,20 +34,20 @@ public class TecnicoService implements Serializable {
             tecnico.setCidade("Monteiro");
             tecnico.setCep("58500-000");
         }
-        this.tecnicos.save(tecnico);
+        this.tecnicos.salvar(tecnico);
     }
 
     @Transactional
     public void deletar(Tecnico tecnico) {
-        tecnicos.delete(findById(tecnico.getId()));
+        tecnicos.excluir(findById(tecnico.getId()));
     }
 
     public Tecnico findById(Long id) {
-        return tecnicos.findById(id);
+        return tecnicos.porId(id);
     }
 
     public List<Tecnico> findAll() {
-        return tecnicos.findAll();
+        return tecnicos.todas();
     }
 
     /**
