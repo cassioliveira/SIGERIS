@@ -2,8 +2,8 @@ package br.edu.uepb.sigeris.controllers;
 
 import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
-import br.edu.uepb.sigeris.model.Disciplina;
-import br.edu.uepb.sigeris.services.DisciplinaService;
+import br.edu.uepb.sigeris.model.Curso;
+import br.edu.uepb.sigeris.services.CursoService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -24,59 +24,59 @@ import lombok.Setter;
  */
 @Named
 @ViewScoped
-public class DisciplinaBean implements Serializable {
+public class CursoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter
-    private Disciplina disciplina;
+    private Curso curso;
 
     @Getter
     @Setter
-    private Disciplina disciplinaSelecionada;
+    private Curso cursoSelecionado;
 
     @Getter
     @Setter
     @Inject
-    private DisciplinaService disciplinaService;
+    private CursoService cursoService;
 
     @Getter
-    private List<Disciplina> disciplinas;
+    private List<Curso> cursos;
 
     @Getter
     private List<Estados> estados;
 
-    public DisciplinaBean() {
-        disciplina = new Disciplina();
-        disciplinaSelecionada = new Disciplina();
+    public CursoBean() {
+        curso = new Curso();
+        cursoSelecionado = new Curso();
     }
 
     @PostConstruct
     public void init() {
-        this.disciplinas = disciplinaService.todas();
+        this.cursos = cursoService.todas();
     }
 
     /**
      * Método responsável por iniciar uma transação, instanciar um objeto do
-     * tipo Disciplina e salvar.
+     * tipo Curso e salvar.
      *
      */
     public void salvar() {
-        disciplinaService.salvar(disciplina);
-        disciplina = new Disciplina();
-        FacesUtil.mensagemSucesso("Salva com sucesso!");
-        disciplinas = disciplinaService.todas();
+        cursoService.salvar(curso);
+        this.curso = new Curso();
+        FacesUtil.mensagemSucesso("Salvo com sucesso!");
+        cursos = cursoService.todas();
     }
 
     /**
-     * Método responsável por excluir um objeto do tipo Disciplina e exibir ao
+     * Método responsável por excluir um objeto do tipo Curso e exibir ao
      * final do processo uma mensagem informativa.
      *
      */
     public void excluir() {
-        this.disciplinaService.excluir(disciplinaSelecionada);
-        this.disciplinas = disciplinaService.todas();
+        this.cursoService.excluir(cursoSelecionado);
+        this.cursos = cursoService.todas();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
@@ -87,7 +87,7 @@ public class DisciplinaBean implements Serializable {
      * @return
      */
     public boolean getEditando() {
-        return this.disciplina.getId() != null;
+        return this.curso.getId() != null;
     }
 
 }

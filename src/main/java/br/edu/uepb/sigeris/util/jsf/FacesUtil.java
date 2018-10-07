@@ -86,12 +86,12 @@ public class FacesUtil {
             LOGGER.error(FacesUtil.class.getName() + ex);
         }
     }
-    
-    public static String caminhoContexto(String caminho){
+
+    public static String caminhoContexto(String caminho) {
         return FacesContext.getCurrentInstance().getExternalContext().getRealPath(caminho);
     }
-    
-    public static HttpServletResponse responseHTTP(){
+
+    public static HttpServletResponse responseHTTP() {
         return (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
     }
 }
