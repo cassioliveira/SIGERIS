@@ -19,9 +19,9 @@
                 <p:autoUpdate/>
             </p:messages>
 
-            <h:form id="formCadastroDisciplina">
+            <h:form id="formPesquisaDisciplina">
 
-                <h:panelGrid id="panelCadastroDisciplina" columns="2">
+                <h:panelGrid columns="2">
 
                     <p:outputLabel for="codigo" value="Código: "/>
                     <p:inputText id="codigo" value="#{disciplinaBean.disciplina.codigo}" size="10" maxlength="20">
@@ -43,7 +43,7 @@
                 <p:toolbar>
                     <f:facet name="left">
                         <p:commandButton style="font-size: 13px; margin-left: 5px; vertical-align: middle" value="Salvar" action="#{disciplinaBean.salvar}" 
-                                         update="datatablePesquisaDisciplina panelCadastroDisciplina" icon="fa fa-save" id="botaoSalvar">
+                                         update="datatablePesquisaDisciplina" icon="fa fa-save" id="botaoSalvar">
                         </p:commandButton>
                     </f:facet>
                 </p:toolbar>
@@ -87,7 +87,7 @@
                             <f:setPropertyActionListener value="#{disciplina}" target="#{disciplinaBean.disciplinaSelecionada}"/>
                             <p:tooltip for="botaoExcluir" value="Excluir"/>
 
-                            <p:confirm icon="ui-icon-alert" header="Excluir disciplina" message="Deseja realmente excluir a disciplina #{disciplina.nome}?" />
+                            <p:confirm icon="ui-icon-alert" header="Excluir disciplina" message="Deseja realmente excluir o cadastro?"/>
 
                         </p:commandButton>
                     </p:column>
