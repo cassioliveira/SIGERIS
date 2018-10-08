@@ -21,12 +21,7 @@
 
             <h:form id="formCadastroSetor">
 
-                <h:panelGrid id="panelCadastroSetor" columns="2">
-
-                    <p:outputLabel for="codigo" value="Código: "/>
-                    <p:inputText id="codigo" value="#{setorBean.setor.codigo}" size="10" maxlength="20">
-                        <p:tooltip for="codigo" value="Informe o código do setor"/>
-                    </p:inputText>
+                <h:panelGrid id="panelCadastroSetor" columns="2" style="margin-bottom: 10px">
 
                     <p:outputLabel for="nome" value="Nome: "/>
                     <p:inputText id="nome" value="#{setorBean.setor.nome}" size="35" maxlength="200">
