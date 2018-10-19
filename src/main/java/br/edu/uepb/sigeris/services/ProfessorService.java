@@ -46,7 +46,7 @@ public class ProfessorService implements Serializable {
     }
 
     public List<Professor> findAll() {
-        return professores.todas();
+        return professores.todos();
     }
 
     /**

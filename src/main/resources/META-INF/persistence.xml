@@ -20,6 +20,7 @@
             
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.JBossAppServerJtaPlatform" />
             <property name="jboss.entity.manager.jndi.name" value="java:app/EntityManager"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

@@ -44,6 +44,15 @@
                 <!--<f:ajax execute="temFuncao" render="function-description" event="change"/>-->
             </p:selectOneRadio>
 
+            <p:outputLabel for="cursos" value="Cursos: "/>
+            <p:selectCheckboxMenu id="cursos" value="#{professorBean.professor.cursos}" converter="professorCursosConverter"  
+                                  style="width: 280px" updateLabel="true">
+                <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                <f:selectItems var="curso" itemLabel="#{curso.description}" itemValue="#{curso}" 
+                               value="#{professorBean.todosCursos}"/>
+            </p:selectCheckboxMenu>
+
+
             <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
             <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
 <!--                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">

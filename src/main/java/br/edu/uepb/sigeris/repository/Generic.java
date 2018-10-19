@@ -45,8 +45,7 @@ public abstract class Generic<T> implements Serializable {
     }
 
     /**
-     * Metodo utilizado para salvar um novo cadastro no banco de dados ou editar
- um cadastro existente.
+     * Metodo utilizado para salvar um novo cadastro no banco de dados.
      *
      * @param entity
      */
@@ -70,7 +69,7 @@ public abstract class Generic<T> implements Serializable {
      *
      * @return
      */
-    public List<T> todas() {
+    public List<T> todos() {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entity));
         return getEntityManager().createQuery(cq).getResultList();

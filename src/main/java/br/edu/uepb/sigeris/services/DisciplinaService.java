@@ -32,7 +32,7 @@ public class DisciplinaService implements Serializable {
         return disciplinas.porId(id);
     }
 
-    public List<Disciplina> todas() {
-        return disciplinas.todas();
+    public List<Disciplina> todos() {
+        return disciplinas.todos();
     }
 }

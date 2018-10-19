@@ -51,7 +51,7 @@ public class SetorBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.setores = setorService.todas();
+        this.setores = setorService.todos();
     }
 
     /**
@@ -63,7 +63,7 @@ public class SetorBean implements Serializable {
         setorService.salvar(setor);
         this.setor = new Setor();
         FacesUtil.mensagemSucesso("Salvo com sucesso!");
-        setores = setorService.todas();
+        setores = setorService.todos();
     }
 
     /**
@@ -73,7 +73,7 @@ public class SetorBean implements Serializable {
      */
     public void excluir() {
         this.setorService.excluir(setorSelecionado);
-        this.setores = setorService.todas();
+        this.setores = setorService.todos();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 

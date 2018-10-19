@@ -1,12 +1,12 @@
 package br.edu.uepb.sigeris.controllers;
 
 import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.Cursos;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Professor;
 import br.edu.uepb.sigeris.services.ProfessorService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -42,12 +42,19 @@ public class ProfessorBean implements Serializable {
     @Inject
     private ProfessorService professorService;
 
+//    @Getter
+//    @Setter
+//    @Inject
+//    private CursoService cursoService;
     @Getter
     private List<Professor> professores;
+
+    @Getter
+    private List<Cursos> todosCursos;
     
     @Getter
     private List<CategoriasServidor> categorias;
-    
+
     @Getter
     private List<Estados> estados;
 
@@ -59,9 +66,9 @@ public class ProfessorBean implements Serializable {
     @PostConstruct
     public void init() {
         this.professores = professorService.findAll();
+        this.todosCursos = Arrays.asList(Cursos.values());
         this.categorias = Arrays.asList(CategoriasServidor.values());
         this.estados = Arrays.asList(Estados.values());
-        
     }
 
     /**

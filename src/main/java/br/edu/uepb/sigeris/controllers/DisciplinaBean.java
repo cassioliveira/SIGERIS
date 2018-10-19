@@ -54,7 +54,7 @@ public class DisciplinaBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.disciplinas = disciplinaService.todas();
+        this.disciplinas = disciplinaService.todos();
     }
 
     /**
@@ -66,7 +66,7 @@ public class DisciplinaBean implements Serializable {
         disciplinaService.salvar(disciplina);
         disciplina = new Disciplina();
         FacesUtil.mensagemSucesso("Salva com sucesso!");
-        disciplinas = disciplinaService.todas();
+        disciplinas = disciplinaService.todos();
     }
 
     /**
@@ -76,7 +76,7 @@ public class DisciplinaBean implements Serializable {
      */
     public void excluir() {
         this.disciplinaService.excluir(disciplinaSelecionada);
-        this.disciplinas = disciplinaService.todas();
+        this.disciplinas = disciplinaService.todos();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 

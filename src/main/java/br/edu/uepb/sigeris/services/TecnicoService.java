@@ -47,7 +47,7 @@ public class TecnicoService implements Serializable {
     }
 
     public List<Tecnico> findAll() {
-        return tecnicos.todas();
+        return tecnicos.todos();
     }
 
     /**

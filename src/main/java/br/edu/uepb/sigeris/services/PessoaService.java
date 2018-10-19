@@ -75,6 +75,6 @@ public class PessoaService implements Serializable {
     }
 
     public List<Pessoa> findAll() {
-        return pessoas.todas();
+        return pessoas.todos();
     }
 }

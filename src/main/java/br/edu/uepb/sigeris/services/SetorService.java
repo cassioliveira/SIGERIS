@@ -32,7 +32,7 @@ public class SetorService implements Serializable {
         return setores.porId(id);
     }
 
-    public List<Setor> todas() {
-        return setores.todas();
+    public List<Setor> todos() {
+        return setores.todos();
     }
 }
