@@ -75,10 +75,10 @@ public class ExecutaRelatorios implements Serializable {
                     break;
             }
         }
-        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo, setor);
+        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo, setor,null, null, null, null, null);
     }
-    
-    public void listaReunioes() throws JRException, IOException{
-        geradorRelatorios.gerarPdf("/frequencia-reuniao.jasper", "Lista de presença.pdf", pessoaService.servidores(), "Lista de presença", "Coordenação de extensão");
-    }
+
+//    public void listaReunioes() throws JRException, IOException{
+//        geradorRelatorios.gerarPdf("/frequencia-reuniao.jasper", "Lista de presença.pdf", pessoaService.servidores(), "Lista de presença", "Coordenação de extensão");
+//    }
 }

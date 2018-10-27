@@ -39,7 +39,10 @@ public class Tecnico extends Pessoa implements Serializable {
     
     @Column(name = "nivel", length = 50)
     private String nivel;
-
+    
+    @Column(name = "setor", length = 100)
+    private String setor;
+    
     @CPF
     @Column(name = "cpf", unique = true)
     private String cpf;

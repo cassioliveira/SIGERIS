@@ -121,11 +121,4 @@ public class Pessoa implements Serializable {
     @Column(name = "endereco_cep", length = 10)
     private String cep;
 
-    public Pessoa() {
-        if (id == null) {
-            setEstado(Estados.PB);
-            setCidade("Monteiro");
-            setCep("58.500-000");
-        }
-    }
 }

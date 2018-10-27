@@ -99,5 +99,10 @@ public class TecnicoBean implements Serializable {
     public boolean getEditando() {
         return this.tecnico.getId() != null;
     }
+    
+    
+    public List<String> getSetores(){
+        return tecnicoService.setores();
+    }
 
 }

@@ -310,3 +310,14 @@
     background-color: #DC3545 !important;
     color: white !important
 }
+
+.box-resumo-inicio{
+    width: 200px; 
+    height: 70px; 
+    /*background-color: #00B25F;*/ 
+    border: 0px;color: white;
+    font-weight: bold; 
+    font-size: 50px; 
+    text-align: center; 
+    margin-right: 10px
+}

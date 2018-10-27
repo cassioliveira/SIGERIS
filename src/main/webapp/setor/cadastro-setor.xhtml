@@ -50,12 +50,7 @@
                             <p:inputText id="globalFilter" onkeyup="PF('pesquisaSetor').filter()" style="width:300px" placeholder="Pesquise na tabela..."/>
                         </p:outputPanel>
                     </f:facet>
-
-                    <p:column headerText="Código" width="10%" filterStyle="display:none" priority="2"
-                              filterBy="#{setor.codigo}" filterMatchMode="contains" style="text-align: center">
-                        <h:outputText value="#{setor.codigo}" />
-                    </p:column>
-
+                    
                     <p:column headerText="Nome" width="40%" filterStyle="display:none" priority="1"
                               filterBy="#{setor.nome}" filterMatchMode="contains">
                         <h:outputText value="#{setor.nome}" style="font-size: 15px; font-weight: bold"/>

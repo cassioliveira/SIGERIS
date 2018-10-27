@@ -1,10 +1,10 @@
 package br.edu.uepb.sigeris.services;
 
-import br.edu.uepb.sigeris.enumerations.Estados;
-import br.edu.uepb.sigeris.model.Pessoa;
+import br.edu.uepb.sigeris.model.Setor;
 import br.edu.uepb.sigeris.model.Tecnico;
 import br.edu.uepb.sigeris.repository.Tecnicos;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -24,15 +24,17 @@ public class TecnicoService implements Serializable {
     @Inject
     private PessoaService pessoaService;
 
+    @Inject
+    private SetorService setorService;
+
     @Transactional
     public void salvar(Tecnico tecnico) {
         if (novoCadastro(tecnico)) {
             tecnico.setTipo("TECNICO");
             tecnico.setCadastro(new Date());
-            tecnico.setMatricula("0.00000-0");
-            tecnico.setEstado(Estados.PB);
-            tecnico.setCidade("Monteiro");
-            tecnico.setCep("58500-000");
+            if (tecnico.getMatricula() == null) {
+                tecnico.setMatricula("0.00000-0");
+            }
         }
         this.tecnicos.salvar(tecnico);
     }
@@ -58,6 +60,16 @@ public class TecnicoService implements Serializable {
      */
     public boolean novoCadastro(Tecnico tecnico) {
         return pessoaService.novoCadastro(tecnico);
+    }
+
+    public List<String> setores() {
+        List<String> setoresString = new ArrayList<>();
+
+        for (Setor item : setorService.todos()) {
+            setoresString.add(item.getNome());
+        }
+
+        return setoresString;
     }
 
 }

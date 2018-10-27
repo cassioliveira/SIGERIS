@@ -2,6 +2,7 @@ package br.edu.uepb.sigeris.reports;
 
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +38,18 @@ public class GeraRelatorios {
      * @param pdfFileName
      * @param dados
      * @param titulo
+     * @param setor
+     * @param atividade
+     * @param data
+     * @param hora
+     * @param local
+     * @param pauta
      * @throws JRException
      * @throws IOException
      */
     public void gerarPdf(String jasperFileName, String pdfFileName, List<?> dados,
-            String titulo, String setor) throws JRException, IOException {
+            String titulo, String setor, String atividade, Date data, Date hora, 
+            String local, String pauta) throws JRException, IOException {
 
         Map<String, Object> parametros = new HashMap<>();
         String uepb = FacesUtil.caminhoContexto("/resources/sigeris/imagens/relatorio-uepb.png");
@@ -51,6 +59,11 @@ public class GeraRelatorios {
         String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
         parametros.put("titulo", titulo);
         parametros.put("setor", setor);
+        parametros.put("atividade", atividade);
+        parametros.put("data", data);
+        parametros.put("hora", hora);
+        parametros.put("local", local);
+        parametros.put("pauta", pauta);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoArquivoJasper, parametros, new JRBeanCollectionDataSource(dados));
         HttpServletResponse response = (HttpServletResponse) FacesUtil.responseHTTP();

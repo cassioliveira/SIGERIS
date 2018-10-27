@@ -5,139 +5,112 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:component="http://xmlns.jcp.org/jsf/composite/components"
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 template="/WEB-INF/templates/Layout.xhtml"> 
+
+    <f:metadata>
+        <f:viewParam name="reuniao" value="#{reuniaoBean.reuniao}"/>
+    </f:metadata>
 
     <ui:define name="content">
 
-        <p:fieldset id="fieldsetCurso" legend="Emissão de relatórios diversos">
+        <p:fieldset id="fieldsetRelatorio" legend="Emissão de relatórios" >
 
-            <p:messages closable="true" severity="info,warn,error">
+            <p:messages id="msgs" closable="true" severity="info,warn,error">
                 <p:autoUpdate/>
             </p:messages>
 
-            <h:form id="formCadastroCurso">
+            <h:form id="formCadastroRelatorio">
 
-                <h:panelGrid id="panelCadastroCurso" columns="2">
+                <p:panel id="listaFrequencia" header="Lista de presença">
 
-<!--                    <p:outputLabel for="setor" value="Estado: "/>
-                    <p:selectOneMenu id="setor" value="#{cc.attrs.estado}" style="width: 261px">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
-                    </p:selectOneMenu>
+                    <h:panelGrid id="panelCadastroRelatorio" columns="2">
 
-                    <p:outputLabel for="codigo" value="Código: "/>
-                    <p:inputText id="codigo" value="#{cursoBean.curso.codigo}" size="10" maxlength="20">
-                        <p:tooltip for="codigo" value="Informe o código do curso"/>
-                    </p:inputText>
+                        <p:outputLabel for="data" value="Data: "/>
+                        <p:calendar id="data" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
+                                    maxlength="10" mask="true" size="21" locale="pt" value="#{reuniaoBean.reuniao.data}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />
+                            <p:tooltip for="data" value="Informe a data em que ocorrerá a atividade"/>
+                        </p:calendar>
 
-                    <p:outputLabel for="nome" value="Nome: "/>
-                    <p:inputText id="nome" value="#{cursoBean.curso.nome}" size="35" maxlength="200">
-                        <p:tooltip for="nome" value="Informe o nome do curso"/>
-                    </p:inputText>-->
+                        <p:outputLabel for="hora" value="Hora: "/>
+                        <p:calendar id="hora" navigator="false" pattern="HH:mm" timeOnly="true"
+                                    maxlength="10" mask="true" size="26" locale="pt" value="#{reuniaoBean.reuniao.hora}">
+                            <f:convertDateTime type="time" pattern="HH:mm" locale="pt_BR" />
+                            <p:tooltip for="hora" value="Informe a hora em que ocorrerá a atividade"/>
+                        </p:calendar>
 
-                </h:panelGrid>
+                        <p:outputLabel for="setor" value="Setor: "/>
+                        <p:selectOneMenu id="setor" value="#{reuniaoBean.reuniao.setor}" style="width: 373px">
+                            <f:selectItem noSelectionOption="true"/>
+                            <f:selectItems var="setor" value="#{setorBean.setores}" itemLabel="#{setor.nome}" itemValue="#{setor}"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="listaServidores" value="Servidores: "/>
+                        <p:selectCheckboxMenu id="listaServidores" value="#{reuniaoBean.reuniao.servidores}" style="width: 402px" filter="true" filterMatchMode="contains">
+                            <f:selectItems var="servidor" value="#{reuniaoBean.servidores}" itemLabel="#{servidor.nome}" itemValue="#{servidor}"/>
+                        </p:selectCheckboxMenu>
 
-                <p:toolbar>
-                    <f:facet name="left">
-                        <p:commandButton style="font-size: 13px; margin-left: 5px; vertical-align: middle" value="Salvar" action="#{cursoBean.salvar}" 
-                                         update="datatablePesquisaCurso panelCadastroCurso" icon="fa fa-save" id="botaoSalvar">
-                        </p:commandButton>
-                    </f:facet>
-                </p:toolbar>
+                        <p:outputLabel for="atividade" value="Atividade: "/>
+                        <p:inputText id="atividade" value="#{reuniaoBean.reuniao.atividade}" size="47" maxlength="20">
+                            <p:tooltip for="atividade" value="Informe a atividade a ser realizada"/>
+                        </p:inputText>
 
-                <p:dataTable id="datatablePesquisaCurso" var="curso" value="#{cursoBean.cursos}"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10" reflow="true" sortOrder="ascending" 
-                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaCurso"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-                             scrollable="true" scrollRows="10" scrollHeight="290" sortBy="#{curso.nome}">
+                        <p:outputLabel for="local" value="Local: "/>
+                        <p:inputText id="local" value="#{reuniaoBean.reuniao.local}" size="47" maxlength="200">
+                            <p:tooltip for="local" value="Informe o local onde ocorrerá a atividade"/>
+                        </p:inputText>
 
-                    <f:facet name="header">
-                        <p:outputPanel id="panelFiltroCurso">
-                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaCurso').filter()" style="width:300px" placeholder="Pesquise na tabela..."/>
-                        </p:outputPanel>
-                    </f:facet>
+                        <p:outputLabel for="pauta" value="Pauta: "/>
+                        <p:editor controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" 
+                                  id="pauta" width="400" height="150" value="#{reuniaoBean.reuniao.pauta}"/>
 
-                    <p:column headerText="Código" width="10%" filterStyle="display:none" priority="2"
-                              filterBy="#{curso.codigo}" filterMatchMode="contains" style="text-align: center">
-                        <h:outputText value="#{curso.codigo}" />
-                    </p:column>
+                    </h:panelGrid>
 
-                    <p:column headerText="Nome" width="40%" filterStyle="display:none" priority="1"
-                              filterBy="#{curso.nome}" filterMatchMode="contains">
-                        <h:outputText value="#{curso.nome}" style="font-size: 15px; font-weight: bold"/>
-                    </p:column>
+                    <p:toolbar style="margin-top: 10px">
+                        <f:facet name="left">
+                            <p:commandButton id="pdfListaFrequencia" action="#{reuniaoBean.listaReunioes}" immediate="true"
+                                             ajax="false" icon="fa fa-file-pdf-o" value="Emitir lista" onclick="this.form.target = '_blank'"
+                                             disabled="#{pessoaBean.servidores.size() == 0}"/>
+                            
+                            
+                            <p:commandButton id="teste" action="#{reuniaoBean.dados}" immediate="true"
+                                             ajax="false" icon="fa fa-file-pdf-o" value="Teste"/>
+                        </f:facet>
+                    </p:toolbar>
 
-                    <p:column id="acoes" style="text-align: center" width="10%">
-                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
-                            <f:param  name="curso" value="#{curso.id}"/>
-                            <p:tooltip for="botaoEditar" value="Editar"/>
-                        </p:button>
+                </p:panel>
 
-                        <p:commandButton id="botaoExcluir" title="Excluir" icon="ui-icon ui-icon-trash" style="font-size: 10px"
-                                         action="#{cursoBean.excluir}" process="datatablePesquisaCurso" update="datatablePesquisaCurso">
-                            <f:setPropertyActionListener value="#{curso}" target="#{cursoBean.cursoSelecionado}"/>
-                            <p:tooltip for="botaoExcluir" value="Excluir"/>
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <p:panel id="servidores" header="Servidores">
 
-                            <p:confirm icon="ui-icon-alert" header="Excluir curso" message="Deseja realmente excluir o curso #{curso.nome}?"/>
+                            <p:commandButton id="pdfServidores" action="#{executaRelatorios.servidores('SERVIDORES')}" immediate="true"
+                                             ajax="false" icon="fa fa-file-pdf-o" value="Servidores" onclick="this.form.target = '_blank'"
+                                             disabled="#{pessoaBean.servidores.size() == 0}" />
+                        </p:panel>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:panel id="tecnicos" header="Técnicos">
+                            <p:commandButton id="pdfTecnicos" action="#{executaRelatorios.servidores('TECNICOS')}" immediate="true"
+                                             ajax="false" icon="fa fa-file-pdf-o" value="Técnicos" onclick="this.form.target = '_blank'"
+                                             disabled="#{pessoaBean.servidores.size() == 0}"/>
+                        </p:panel>
+                    </div>
 
-                        </p:commandButton>
-                    </p:column>
+                </div>
 
-                    <f:facet name="footer">
-                        Há #{fn:length(cursoBean.cursos)} #{fn:length(cursoBean.cursos) > 1 ? ' cursos cadastrados' : ' curso cadastrado'}.
-                    </f:facet>
-
-                </p:dataTable>
-
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <p:panel id="professores" header="Professores">
+                            <p:commandButton id="pdfProfessores" action="#{executaRelatorios.servidores('PROFESSORES')}" immediate="true"
+                                             ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
+                                             disabled="#{pessoaBean.servidores.size() == 0}"/>
+                        </p:panel>
+                    </div>
+                </div>
             </h:form>
 
         </p:fieldset>
-
-        <div class="ui-g">
-            <div class="ui-g-6">
-                <p:panel id="servidores" header="Servidores">
-
-                    <p:commandButton id="pdfServidores" action="#{executaRelatorios.servidores('SERVIDORES')}" immediate="true"
-                                     ajax="false" icon="fa fa-file-pdf-o" value="Servidores" onclick="this.form.target = '_blank'"
-                                     disabled="#{pessoaBean.servidores.size() == 0}" />
-                </p:panel>
-            </div>
-            <div class="ui-g-6">
-                <p:panel id="tecnicos" header="Técnicos">
-                    <p:commandButton id="pdfTecnicos" action="#{executaRelatorios.servidores('TECNICOS')}" immediate="true"
-                                     ajax="false" icon="fa fa-file-pdf-o" value="Técnicos" onclick="this.form.target = '_blank'"
-                                     disabled="#{pessoaBean.servidores.size() == 0}"/>
-                </p:panel>
-            </div>
-
-        </div>
-
-        <div class="ui-g">
-            <div class="ui-g-6">
-                <p:panel id="professores" header="Professores">
-                    <p:commandButton id="pdfProfessores" action="#{executaRelatorios.servidores('PROFESSORES')}" immediate="true"
-                                     ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
-                                     disabled="#{pessoaBean.servidores.size() == 0}"/>
-                </p:panel>
-            </div>
-
-            <div class="ui-g-6">
-                <p:panel id="listaFrequencia" header="Reunião">
-                    <p:commandButton id="pdfListaFrequancia" action="#{executaRelatorios.listaReunioes()}" immediate="true"
-                                     ajax="false" icon="fa fa-file-pdf-o" value="Professores" onclick="this.form.target = '_blank'"
-                                     disabled="#{pessoaBean.servidores.size() == 0}"/>
-                </p:panel>
-            </div>
-        </div>
-
-
-
-
-
-
 
     </ui:define>
 
