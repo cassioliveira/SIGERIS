@@ -57,7 +57,7 @@ public class ReuniaoBean implements Serializable {
 //                tituloDocumento+".pdf", pessoaService.servidores(), tituloDocumento, setor);
 //    }
     public void listaReunioes() throws JRException, IOException {
-        geradorRelatorios.gerarPdf("/frequencia-reuniao.jasper",
+        geradorRelatorios.gerarPdf("/reunioes.jasper",
                 reuniao.getTituloDocumento() + ".pdf",
                 pessoaService.servidores(),
                 reuniao.getTituloDocumento(),

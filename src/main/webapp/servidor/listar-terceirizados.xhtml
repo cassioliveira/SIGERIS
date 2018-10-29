@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/Layout.xhtml"> 
+
+    <ui:define id="telaListarTerceirizados" name="content">
+
+        <p:fieldset id="formListarTerceirizados" legend="Terceirizados / Vigilantes" >
+
+            <h:form id="searchEmployee">
+
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/>
+                </p:messages>
+
+                <p:toolbar id="toolbar">
+                    <f:facet name="left">
+                        <p:button outcome="/servidor/cadastro-terceirizado" value="Novo cadastro" style="text-align: right"
+                                  icon="ui-icon ui-icon-plus" styleClass="botao-novo-terceirizado"/>
+                    </f:facet>
+                </p:toolbar>   
+
+                <p:dataTable id="datatablePesquisaTerceirizado" var="terceirizado" value="#{terceirizadoBean.terceirizados}"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10" reflow="true" sortOrder="ascending" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaTerceirizado"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="10" scrollHeight="290" sortBy="#{terceirizado.nome}">
+
+                    <f:facet name="header">
+                        <p:outputPanel id="panelFiltroTerceirizado">
+                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaTerceirizado').filter()" style="width:300px" placeholder="Pesquise na tabela..."/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="Nome" width="40%" filterStyle="display:none" priority="1"
+                              filterBy="#{terceirizado.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{terceirizado.nome}" style="font-size: 15px; font-weight: bold"/>
+                    </p:column>
+
+                    <p:column headerText="Turno" width="15%" filterStyle="display:none" priority="2"
+                              filterBy="#{terceirizado.turno}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{terceirizado.turno.description}"  style="font-size: 12px; font-weight: bold"/>
+                    </p:column>
+                    
+                    <p:column headerText="Setor" width="15%" filterStyle="display:none" priority="1"
+                              filterBy="#{terceirizado.setor}" filterMatchMode="contains" style="text-align: center">
+                        <h:outputText value="#{terceirizado.setor}"/>
+                    </p:column>
+
+                    <p:column headerText="Celular" width="20%" filterStyle="display:none" priority="2"
+                              filterBy="#{terceirizado.celular}" filterMatchMode="contains">
+                        <h:outputText value="#{terceirizado.celular}"/>
+                    </p:column>
+
+                    <p:column id="acoes" style="text-align: center" width="10%">
+                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" 
+                                  outcome="/servidor/cadastro-terceirizado.xhtml">
+                            <f:param  name="terceirizado" value="#{terceirizado.id}"/>
+                            <p:tooltip for="botaoEditar" value="Edita o registro selecionado"/>
+                        </p:button>
+
+                        <p:commandButton id="botaoExcluir" title="Excluir" icon="ui-icon ui-icon-trash" style="font-size: 10px"
+                                         action="#{terceirizadoBean.excluir}" process="datatablePesquisaTerceirizado" 
+                                         update="datatablePesquisaTerceirizado">
+                            <f:setPropertyActionListener value="#{terceirizado}" target="#{terceirizadoBean.terceirizadoSelecionado}"/>
+                            <p:tooltip for="botaoExcluir" value="Exclui a linha selecionada"/>
+
+                            <p:confirm icon="ui-icon-alert" header="Excluir terceirizado" message="Deseja realmente excluir o terceirizado #{terceirizado.nome}?"/>
+
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>

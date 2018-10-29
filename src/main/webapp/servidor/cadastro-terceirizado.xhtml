@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:component="http://xmlns.jcp.org/jsf/composite/components"
+                template="/WEB-INF/templates/Layout.xhtml"> 
+
+    <f:metadata>
+        <f:viewParam name="terceirizado" value="#{terceirizadoBean.terceirizado}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <p:fieldset id="fieldsetTerceirizado" legend="#{terceirizadoBean.editando ? 'Alteração de cadastro' : 'Novo cadastro'}">
+
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h:form id="formPesquisaTerceirizado" enctype="multipart/form-data">
+                <p:tabView id="tabContainer">
+
+                    <p:tab id="pessoais" title="Dados pessoais">
+                        <component:dadosPessoais nome="#{terceirizadoBean.terceirizado.nome}"
+                                                 setor="#{terceirizadoBean.terceirizado.setor}"
+                                                 sexo="#{terceirizadoBean.terceirizado.sexo}"
+                                                 dataNascimento="#{terceirizadoBean.terceirizado.dataNascimento}"/>
+                    </p:tab>
+
+                    <p:tab id="contato" title="Contato">
+                        <component:contato celular="#{terceirizadoBean.terceirizado.celular}"
+                                           telefone="#{terceirizadoBean.terceirizado.telefone}"
+                                           email="#{terceirizadoBean.terceirizado.email}"
+                                           email2="#{terceirizadoBean.terceirizado.email2}"/>
+                    </p:tab>
+
+                    <p:tab id="endereco" title="Endereço">
+                        <component:endereco estado="#{terceirizadoBean.terceirizado.estado}"
+                                            cidade="#{terceirizadoBean.terceirizado.cidade}"
+                                            rua="#{terceirizadoBean.terceirizado.rua}"
+                                            numero="#{terceirizadoBean.terceirizado.numero}"
+                                            bairro="#{terceirizadoBean.terceirizado.bairro}"
+                                            cep="#{terceirizadoBean.terceirizado.cep}"
+                                            complemento="#{terceirizadoBean.terceirizado.complemento}"/>
+                    </p:tab>
+
+                    <p:tab id="documentacao" title="Documentação">
+                        <component:documentacao rg="#{terceirizadoBean.terceirizado.rg}"
+                                                cpf="#{terceirizadoBean.terceirizado.cpf}"/>
+                    </p:tab>
+
+                </p:tabView>
+
+                <component:observacoes estilo="margin-left:24px; margin-right:15px" altura="130" largura="560" 
+                                       value="#{terceirizadoBean.terceirizado.observacoes}"/>
+
+            </h:form>
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px" value="Salvar" action="#{terceirizadoBean.salvar}" 
+                                     icon="fa fa-save" id="botaoSalvar">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/servidor/listar-terceirizados" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>
