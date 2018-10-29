@@ -25,17 +25,9 @@
                     <p:tab id="pessoais" title="Dados pessoais">
                         <component:dadosPessoais nome="#{tecnicoBean.tecnico.nome}"
                                                  matricula="#{tecnicoBean.tecnico.matricula}"
+                                                 setorTecnico="#{tecnicoBean.tecnico.setor}"
                                                  sexo="#{tecnicoBean.tecnico.sexo}"
                                                  dataNascimento="#{tecnicoBean.tecnico.dataNascimento}"/>
-                        
-                        <h:panelGrid columns="3" style="margin-top: -12px">
-                            <p:outputLabel/>
-                            <p:outputLabel for="setor" value="Setor: " style="margin-left: 105px"/>
-                            <p:selectOneMenu id="setor" value="#{tecnicoBean.tecnico.setor}" style="width: 279px;  margin-left: 40px">
-                                <f:selectItem noSelectionOption="true"/>
-                                <f:selectItems var="setor" value="#{tecnicoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
-                            </p:selectOneMenu>
-                        </h:panelGrid>
                     </p:tab>
 
                     <p:tab id="contato" title="Contato">

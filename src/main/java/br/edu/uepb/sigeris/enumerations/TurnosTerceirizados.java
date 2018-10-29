@@ -9,8 +9,9 @@ import lombok.Getter;
  */
 public enum TurnosTerceirizados implements Serializable {
 
-    MATUTINO("Matutino"),
-    VESPERTINO("Vespertino"),
+    DIURNOMATUTINO("Diurno Matutino"),
+    DIURNOVESPERTINO("Diurno Vespertino"),
+    DIURNOINTEGRAL("Diurno Integral"),
     NOTURNO("Noturno");
 
     @Getter

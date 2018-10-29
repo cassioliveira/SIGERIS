@@ -8,7 +8,9 @@
 
     <composite:interface>
         <composite:attribute name="nome"/>
-        <composite:attribute name="setor"/>
+        <composite:attribute name="setorTecnico"/>
+        <composite:attribute name="setorTerceirizado"/>
+        <composite:attribute name="turno"/>
         <composite:attribute name="matricula"/>
         <composite:attribute name="sexo"/>
         <composite:attribute name="dataNascimento"/>
@@ -41,11 +43,25 @@
                     <p:outputLabel for="name" value="Nome: "/>
                     <p:inputText id="name" value="#{cc.attrs.nome}" size="35" maxlength="200"/>
 
-                    <p:outputLabel for="setor" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
-                    <p:selectOneMenu id="setor" value="#{cc.attrs.setor}" style="width: 279px"
+                    <p:outputLabel for="setorTecnico" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}"/>
+                    <p:selectOneMenu id="setorTecnico" value="#{cc.attrs.setorTecnico}" style="width: 279px"
+                                     rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItems var="setor" value="#{tecnicoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="setorTerceirizado" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
+                    <p:selectOneMenu id="setorTerceirizado" value="#{cc.attrs.setorTerceirizado}" style="width: 279px"
                                      rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
                         <f:selectItem noSelectionOption="true"/>
                         <f:selectItems var="setor" value="#{terceirizadoBean.setores}" itemLabel="#{setor.description}" itemValue="#{setor}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="turno" value="Turno: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
+                    <p:selectOneMenu id="turno" value="#{cc.attrs.turno}" style="width: 279px"
+                                     rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItems var="turno" value="#{terceirizadoBean.turnos}" itemLabel="#{turno.description}" itemValue="#{turno}"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="registration" value="Matrícula: "  rendered="#{view.viewId ne '/servidor/cadastro-terceirizado.xhtml'}"/>

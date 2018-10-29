@@ -2,6 +2,7 @@ package br.edu.uepb.sigeris.controllers;
 
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.enumerations.SetoresTerceirizados;
+import br.edu.uepb.sigeris.enumerations.TurnosTerceirizados;
 import br.edu.uepb.sigeris.model.Terceirizado;
 import br.edu.uepb.sigeris.services.TerceirizadoService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
@@ -49,6 +50,9 @@ public class TerceirizadoBean implements Serializable {
 
     @Getter
     private List<SetoresTerceirizados> setores;
+    
+    @Getter
+    private List<TurnosTerceirizados> turnos;
 
     public TerceirizadoBean() {
         terceirizado = new Terceirizado();
@@ -60,6 +64,7 @@ public class TerceirizadoBean implements Serializable {
         this.terceirizados = terceirizadoService.findAll();
         this.estados = Arrays.asList(Estados.values());
         this.setores = Arrays.asList(SetoresTerceirizados.values());
+        this.turnos = Arrays.asList(TurnosTerceirizados.values());
     }
 
     /**
