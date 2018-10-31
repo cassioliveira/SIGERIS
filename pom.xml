@@ -122,9 +122,29 @@
             <artifactId>jasperreports-fonts</artifactId>
             <version>6.0.0</version>
         </dependency>
+        
+        <!-- Spring Security (autenticação e autorização) -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency> 
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency> 
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+        
     </dependencies>
     
-     <repositories>
+    <repositories>
         <repository>
             <id>prime-repo</id>
             <name>PrimeFaces Maven Repository</name>
