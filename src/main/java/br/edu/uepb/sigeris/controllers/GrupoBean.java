@@ -1,11 +1,12 @@
 package br.edu.uepb.sigeris.controllers;
 
+import br.edu.uepb.sigeris.enumerations.GruposUsuarios;
 import br.edu.uepb.sigeris.model.Grupo;
-import br.edu.uepb.sigeris.model.Usuario;
 import br.edu.uepb.sigeris.services.GrupoService;
-import br.edu.uepb.sigeris.services.UsuarioService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -23,22 +24,17 @@ import lombok.Setter;
  */
 @Named
 @ViewScoped
-public class UsuarioBean implements Serializable {
+public class GrupoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter
-    private Usuario usuario;
+    private Grupo grupo;
 
     @Getter
     @Setter
-    private Usuario usuarioSelecionado;
-
-    @Getter
-    @Setter
-    @Inject
-    private UsuarioService usuarioService;
+    private Grupo grupoSelecionado;
 
     @Getter
     @Setter
@@ -46,42 +42,42 @@ public class UsuarioBean implements Serializable {
     private GrupoService grupoService;
 
     @Getter
-    private List<Usuario> usuarios;
-
-    @Getter
     private List<Grupo> gruposCadastrados;
+    
+    @Getter
+    private List<GruposUsuarios> grupos;
 
-    public UsuarioBean() {
-        usuario = new Usuario();
-        usuarioSelecionado = new Usuario();
+    public GrupoBean() {
+        grupo = new Grupo();
+        grupoSelecionado = new Grupo();
     }
 
     @PostConstruct
     public void init() {
         this.gruposCadastrados = grupoService.todos();
-        this.usuarios = usuarioService.todos();
+        this.grupos = Arrays.asList(GruposUsuarios.values());
     }
 
     /**
      * Método responsável por iniciar uma transação, instanciar um objeto do
-     * tipo Usuario e salvar.
+     * tipo Grupo e salvar.
      *
      */
     public void salvar() {
-        usuarioService.salvar(usuario);
-        this.usuario = new Usuario();
+        grupoService.salvar(grupo);
+        this.grupo = new Grupo();
         FacesUtil.mensagemSucesso("Salvo com sucesso!");
-        usuarios = usuarioService.todos();
+        gruposCadastrados = grupoService.todos();
     }
 
     /**
-     * Método responsável por excluir um objeto do tipo Usuario e exibir ao
+     * Método responsável por excluir um objeto do tipo Grupo e exibir ao
      * final do processo uma mensagem informativa.
      *
      */
     public void excluir() {
-        this.usuarioService.excluir(usuarioSelecionado);
-        this.usuarios = usuarioService.todos();
+        this.grupoService.excluir(grupoSelecionado);
+        this.gruposCadastrados = grupoService.todos();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
@@ -92,7 +88,7 @@ public class UsuarioBean implements Serializable {
      * @return
      */
     public boolean getEditando() {
-        return this.usuario.getId() != null;
+        return this.grupo.getId() != null;
     }
-
+    
 }

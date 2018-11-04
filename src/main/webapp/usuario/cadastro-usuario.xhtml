@@ -24,17 +24,23 @@
                 <h:panelGrid id="panelCadastroUsuario" columns="2" style="margin-bottom: 10px">
 
                     <p:outputLabel for="cpf" value="Usuário(CPF): "/>
-                    <p:inputMask id="cpf" value="#{usuarioBean.usuario.usuario}" mask="999.999.999-99" placeholder="somente números"/>
+                    <p:inputMask id="cpf" value="#{usuarioBean.usuario.usuario}" mask="999.999.999-99" placeholder="somente números" size="25"/>
 
                     <p:outputLabel for="nome" value="Nome: "/>
-                    <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" placeholder="Primeiro nome"/>
+                    <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" placeholder="Primeiro nome" size="25"/>
+                    
+                    <p:outputLabel for="grupo" value="Grupo: "/>
+                    <p:selectOneMenu id="grupo" value="#{usuarioBean.usuario.grupo}" style="width: 197px">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItems var="grupo" value="#{usuarioBean.gruposCadastrados}" itemLabel="#{grupo.nome}" itemValue="#{grupo.nome}"/>
+                    </p:selectOneMenu>
 
                     <p:outputLabel for="senha" value="Senha: "/>
-                    <p:password id="senha" value="#{usuarioBean.usuario.senha}" size="35" maxlength="50" feedback="true" match="confirmaSenha"
+                    <p:password id="senha" value="#{usuarioBean.usuario.senha}" size="25" maxlength="50" feedback="true" match="confirmaSenha"
                                 goodLabel="Boa" weakLabel="Fraca" strongLabel="Forte" promptLabel="Por favor informe a senha"/>
                     
                     <p:outputLabel for="confirmaSenha" value="Confirmação: "/>
-                    <p:password id="confirmaSenha" value="#{usuarioBean.usuario.senha}" size="35" maxlength="50" validatorMessage="Senhas não conferem"/>
+                    <p:password id="confirmaSenha" value="#{usuarioBean.usuario.senha}" size="25" maxlength="50" validatorMessage="Senhas não conferem"/>
 
                 </h:panelGrid>
 
