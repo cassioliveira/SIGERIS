@@ -71,6 +71,16 @@
     padding: 2px;
 }
 
+/*Personaliza os textos dos fieldsets INTERNOS*/
+fieldset-interno .ui-fieldset .ui-fieldset-legend {
+    background: none;
+    text-align: left !important;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E94D2;
+    padding: 2px;
+}
+
 /*Dialog loading login*/
 .transparent-loading-login{
     /*    background: rgba(10,10,10,0.4) !important;

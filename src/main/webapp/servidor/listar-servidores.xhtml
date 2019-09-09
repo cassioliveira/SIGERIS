@@ -19,10 +19,10 @@
 
                 <p:toolbar id="toolbar">
                     <f:facet name="left">
-                        <p:button outcome="/servidor/cadastro-tecnico" value="Novo técnico" style="text-align: right"
+                        <p:button outcome="/servidor/cadastro-tecnico" value="Novo servidor" style="text-align: right; font-size: 16px; font-weight: bold;"
                                   icon="fa fa-user-plus" styleClass="botao-novo-tecnico"/>
 
-                        <p:button outcome="/servidor/cadastro-professor" value="Novo professor" style="text-align: right"
+                        <p:button outcome="/servidor/cadastro-professor" value="Novo professor" style="text-align: right; font-size: 16px; font-weight: bold;"
                                   icon="fa fa-user-plus" styleClass="botao-novo-professor"/>
                     </f:facet>
                 </p:toolbar>   
@@ -42,7 +42,9 @@
 
                     <p:column headerText="Matricula" width="12%" filterStyle="display:none" priority="1"
                               filterBy="#{servidor.matricula}" filterMatchMode="contains" style="text-align: center">
-                        <h:outputText value="#{servidor.matricula}"/>
+                        <h:outputText value="#{servidor.matricula == '0.00000-0' ? 'NÃO INFORMADO' : servidor.matricula}" 
+                                      style="#{servidor.matricula == '0.00000-0' ? 'font-size: 12px; font-weight: bold; color:red' : 
+                                               'font-size: 14px; font-weight: bold; color:green'}"/>
                     </p:column>
 
                     <p:column headerText="Nome" width="35%" filterStyle="display:none" priority="1"
@@ -50,7 +52,7 @@
                         <h:outputText value="#{servidor.nome}" style="font-size: 15px; font-weight: bold"/>
                     </p:column>
 
-                    <p:column headerText="Tipo" width="13%" filterStyle="display:none" priority="2" sortBy="#{servidor.tipo}"
+                    <p:column headerText="Categoria" width="13%" filterStyle="display:none" priority="2" sortBy="#{servidor.tipo}"
                               filterBy="#{servidor.tipo}" filterMatchMode="contains" style="text-align: center" sortable="true">
                         <h:outputText value="#{servidor.tipo}"  style="font-size: 12px; font-weight: bold"/>
                     </p:column>
