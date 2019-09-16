@@ -12,39 +12,68 @@
         <composite:attribute name="rua"/>
         <composite:attribute name="numero"/>
         <composite:attribute name="bairro"/>
+        <composite:attribute name="paisOrigem"/>
+        <composite:attribute name="estadoOrigem"/>
+        <composite:attribute name="cidadeOrigem"/>
         <composite:attribute name="cep"/>
         <composite:attribute name="complemento"/>
     </composite:interface>
 
     <composite:implementation>
 
-        <h:panelGrid columns="2">
+        <p:fieldset legend="Dados residenciais atuais" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
 
-            <p:outputLabel for="uf" value="Estado: "/>
-            <p:selectOneMenu id="uf" value="#{cc.attrs.estado}" style="width: 261px">
-                <f:selectItem noSelectionOption="true"/>
-                <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
-            </p:selectOneMenu>
+                <p:outputLabel for="cep" value="CEP: "/>
+                <p:inputMask id="cep" mask="99.999-999" value="#{cc.attrs.cep}" size="20" maxlength="9"/>
 
-            <p:outputLabel for="cidade" value="Cidade: "/>
-            <p:inputText id="cidade" value="#{cc.attrs.cidade}" size="33" maxlength="200"/>
+                <p:outputLabel for="uf" value="Estado: "/>
+                <p:selectOneMenu id="uf" value="#{cc.attrs.estado}" style="width: 210px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                </p:selectOneMenu>
 
-            <p:outputLabel for="rua" value="Rua: "/>
-            <p:inputText id="rua" value="#{cc.attrs.rua}" size="33" maxlength="200"/>
+                <p:outputLabel for="cidade" value="Cidade: "/>
+                <p:inputText id="cidade" value="#{cc.attrs.cidade}" size="33" maxlength="200"/>
 
-            <p:outputLabel for="numero" value="Número: "/>
-            <p:inputText id="numero" value="#{cc.attrs.numero}" size="20" maxlength="5"/>
+                <p:outputLabel for="rua" value="Rua: "/>
+                <p:inputText id="rua" value="#{cc.attrs.rua}" size="33" maxlength="200"/>
 
-            <p:outputLabel for="bairro" value="Bairro: "/>
-            <p:inputText id="bairro" value="#{cc.attrs.bairro}" size="20" maxlength="50"/>
+                <p:outputLabel for="numero" value="Número: "/>
+                <p:inputText id="numero" value="#{cc.attrs.numero}" size="20" maxlength="5"/>
 
-            <p:outputLabel for="cep" value="CEP: "/>
-            <p:inputMask id="cep" mask="99.999-999" value="#{cc.attrs.cep}" size="20" maxlength="9"/>
+                <p:outputLabel for="bairro" value="Bairro: "/>
+                <p:inputText id="bairro" value="#{cc.attrs.bairro}" size="20" maxlength="50"/>
 
-            <p:outputLabel for="complemento" value="Complemento: "/>
-            <p:inputText id="complemento" value="#{cc.attrs.complemento}" size="20" maxlength="200"/>
+                <p:outputLabel for="complemento" value="Complemento: "/>
+                <p:inputText id="complemento" value="#{cc.attrs.complemento}" size="20" maxlength="200"/>
 
-        </h:panelGrid>
+            </h:panelGrid>
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="Dados residenciais de origem" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="pais" value="País: "/>
+                <p:selectOneMenu id="pais" value="#{cc.attrs.paisOrigem}" style="width: 210px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Estados Unidos" itemValue="EU"/>
+                    <f:selectItem itemLabel="China" itemValue="CN"/>
+                    <f:selectItem itemLabel="Japão" itemValue="JP"/>
+                    <f:selectItem itemLabel="Rússia" itemValue="RU"/>
+    <!--                <f:selectItems var="pais" value="#{tecnicoBean.paises}" itemLabel="#{pais.description}" itemValue="#{pais}"/>-->
+                </p:selectOneMenu>
+
+                <p:outputLabel for="estadoOrigem" value="Estado: "/>
+                <p:selectOneMenu id="estadoOrigem" value="#{cc.attrs.estadoOrigem}" style="width: 210px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="cidadeOrigem" value="Cidade: "/>
+                <p:inputText id="cidadeOrigem" value="#{cc.attrs.cidadeOrigem}" size="31" maxlength="200"/>
+            </h:panelGrid>
+        </p:fieldset>
 
     </composite:implementation>
 </html>
