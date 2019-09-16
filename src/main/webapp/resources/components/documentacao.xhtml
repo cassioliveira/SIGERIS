@@ -9,10 +9,19 @@
     <composite:interface>
         <composite:attribute name="rg"/>
         <composite:attribute name="rgOrgaoExpedidor"/>
+        <composite:attribute name="rgEstado"/>
         <composite:attribute name="tituloEleitoral"/>
         <composite:attribute name="tituloSecao"/>
         <composite:attribute name="tituloZona"/>
         <composite:attribute name="tituloMunicipio"/>
+        <composite:attribute name="ctps"/>
+        <composite:attribute name="ctpsSerie"/>
+        <composite:attribute name="ctpsEstado"/>
+        <composite:attribute name="ctpsMunicipio"/>
+        <composite:attribute name="reservista"/>
+        <composite:attribute name="reservistaRM"/>
+        <composite:attribute name="reservistaMunicipio"/>
+        <composite:attribute name="reservistaEstado"/>
         <composite:attribute name="cpf"/>
         <composite:attribute name="sexo"/>
         <composite:attribute name="dataNascimento"/>
@@ -28,20 +37,71 @@
         <p:fieldset legend="RG" styleClass="fieldset-interno">
             <h:panelGrid columns="2">
                 <p:outputLabel for="rg" value="RG: "/>
-                <p:inputText id="rg" value="#{cc.attrs.rg}" size="13" maxlength="20"/>
+                <p:inputText id="rg" value="#{cc.attrs.rg}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="orgao-expedidor" value="Órgão Expedidor: "/>
+                <p:inputText id="orgao-expedidor" value="#{cc.attrs.rgOrgaoExpedidor}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="uf-rg" value="Estado: "/>
+                <p:selectOneMenu id="uf-rg" value="#{cc.attrs.rgEstado}" style="width: 133px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                </p:selectOneMenu>
             </h:panelGrid>
         </p:fieldset>
         <br/>
         <p:fieldset legend="Título Eleitoral" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="titulo" value="Título: "/>
+                <p:inputText id="titulo" value="#{cc.attrs.tituloEleitoral}" size="20" maxlength="20"/>
 
+                <p:outputLabel for="zona" value="Zona: "/>
+                <p:inputText id="zona" value="#{cc.attrs.tituloZona}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="seção" value="Seção:  "/>
+                <p:inputText id="seção" value="#{cc.attrs.tituloSecao}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="município" value="Município: "/>
+                <p:inputText id="município" value="#{cc.attrs.tituloMunicipio}" size="20" maxlength="20"/>
+            </h:panelGrid>
         </p:fieldset>
         <br/>
         <p:fieldset legend="CTPS" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="ctps" value="CTPS: "/>
+                <p:inputText id="ctps" value="#{cc.attrs.ctps}" size="20" maxlength="20"/>
 
+                <p:outputLabel for="ctps-serie" value="Série: "/>
+                <p:inputText id="ctps-serie" value="#{cc.attrs.ctpsSerie}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="municipio-ctps" value="Município  "/>
+                <p:inputText id="municipio-ctps" value="#{cc.attrs.ctpsMunicipio}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="uf-ctps" value="Estado: "/>
+                <p:selectOneMenu id="uf-ctps" value="#{cc.attrs.ctpsEstado}" style="width: 133px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
         </p:fieldset>
         <br/>
         <p:fieldset legend="Reservista" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="reservista" value="Reservista: "/>
+                <p:inputText id="reservista" value="#{cc.attrs.reservista}" size="20" maxlength="20"/>
 
+                <p:outputLabel for="rm-reservista" value="Região Militar: "/>
+                <p:inputText id="rm-reservista" value="#{cc.attrs.reservistaRM}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="municipio-reservista" value="Município  "/>
+                <p:inputText id="municipio-reservista" value="#{cc.attrs.reservistaMunicipio}" size="20" maxlength="20"/>
+
+                <p:outputLabel for="uf-reservista" value="Estado: "/>
+                <p:selectOneMenu id="uf-reservista" value="#{cc.attrs.reservistaEstado}" style="width: 133px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="estado" value="#{tecnicoBean.estados}" itemLabel="#{estado.description}" itemValue="#{estado}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
         </p:fieldset>
 
 
