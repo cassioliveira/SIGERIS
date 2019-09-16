@@ -8,32 +8,42 @@
 
     <composite:interface>
         <composite:attribute name="rg"/>
+        <composite:attribute name="rgOrgaoExpedidor"/>
+        <composite:attribute name="tituloEleitoral"/>
+        <composite:attribute name="tituloSecao"/>
+        <composite:attribute name="tituloZona"/>
+        <composite:attribute name="tituloMunicipio"/>
         <composite:attribute name="cpf"/>
         <composite:attribute name="sexo"/>
         <composite:attribute name="dataNascimento"/>
     </composite:interface>
 
     <composite:implementation>
-        
-        <p:fieldset legend="RG" styleClass="fieldset-interno">
-            
-        </p:fieldset>
-        
-        <p:fieldset legend="Título Eleitoral">
-            
-        </p:fieldset>
 
-        <p:fieldset legend="CTPS">
-            
-        </p:fieldset>
-        
-        <h:panelGrid columns="2">
-            <p:outputLabel for="rg" value="RG: "/>
-            <p:inputText id="rg" value="#{cc.attrs.rg}" size="13" maxlength="20"/>
-
+        <p:fieldset legend="CPF" styleClass="fieldset-interno">
             <p:outputLabel for="cpf" value="CPF: "/>
             <p:inputMask id="cpf" mask="999.999.999-99" value="#{cc.attrs.cpf}" size="13" maxlength="14"/>
-        </h:panelGrid>
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="RG" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="rg" value="RG: "/>
+                <p:inputText id="rg" value="#{cc.attrs.rg}" size="13" maxlength="20"/>
+            </h:panelGrid>
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="Título Eleitoral" styleClass="fieldset-interno">
+
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="CTPS" styleClass="fieldset-interno">
+
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="Reservista" styleClass="fieldset-interno">
+
+        </p:fieldset>
+
 
     </composite:implementation>
 </html>

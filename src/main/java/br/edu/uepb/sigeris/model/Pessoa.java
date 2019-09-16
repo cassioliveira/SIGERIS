@@ -77,11 +77,62 @@ public class Pessoa implements Serializable {
     @Column(name = "rg", length = 15)
     private String rg;
 
+    @Column(name = "orgao_expedidor", length = 20)
+    private String orgaoExpedidor;
+
+    @Column(name = "titulo_eleitoral", length = 20)
+    private String tituloEleitoral;
+
+    @Column(name = "titulo_zona", length = 5)
+    private String tituloZona;
+
+    @Column(name = "titulo_secao", length = 5)
+    private String tituloSecao;
+
+    @Column(name = "titulo_municipio", length = 70)
+    private String tituloMunicipio;
+
+    @Column(name = "titulo_uf", length = 10)
+    private String tituloUF;
+
+    @Column(name = "reservista", length = 20)
+    private String reservista;
+
+    @Column(name = "reservista_regiao_militar", length = 20)
+    private String reservistaRegiaoMilitar;
+
+    @Column(name = "reservista_municipio", length = 70)
+    private String reservistaMunicipio;
+
+    @Column(name = "reservista_uf", length = 10)
+    private String reservistaUF;
+
+    @Column(name = "ctps", length = 20)
+    private String ctps;
+
+    @Column(name = "ctps_municipio", length = 70)
+    private String ctpsMunicipio;
+
+    @Column(name = "ctps_uf", length = 10)
+    private String ctpsUF;
+    
+    @Column(name = "ctps_serie", length = 20)
+    private String ctpsSerie;
+
     @Column(name = "telefone", length = 20)
     private String telefone;
 
     @Column(name = "celular", length = 20)
     private String celular;
+    
+    @Column(name = "contato_emergencia_tipo", length = 30)
+    private String contatoEmergenciaTipo;
+    
+    @Column(name = "contato_emergencia_nome", length = 30)
+    private String contatoEmergenciaNome;
+    
+    @Column(name = "contato_emergencia_telefone", length = 20)
+    private String contatoEmergenciaTelefone;
 
     @Column(name = "sexo", length = 1)
     private String sexo;
@@ -89,6 +140,12 @@ public class Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nascimento")
     private Date dataNascimento;
+
+    @Column(name = "estado_civil", length = 15)
+    private String estadoCivil;
+    
+    @Column(name = "pis_pasep", length = 30)
+    private String pisPasep;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria")
@@ -120,5 +177,46 @@ public class Pessoa implements Serializable {
 
     @Column(name = "endereco_cep", length = 10)
     private String cep;
+    
+    @Column(name = "nacionalidade", length = 40)
+    private String nacionalidade;
+    
+    @Column(name = "naturalidade", length = 70)
+    private String naturalidade;
+    
+    @Column(name = "municipio_residencia", length = 70)
+    private String municipioResidencia;
+    
+    @Column(name = "estado_origem", length = 70)
+    private String estadoOrigem;
 
+    @Column(name = "estado_residencia", length = 70)
+    private String estadoResidencia;
+    
+    @Column(name = "profissional_escolaridade", length = 50)
+    private String profissionalEscolaridade;
+    
+    @Column(name = "profissional_formacao", length = 50)
+    private String profissionalFormacao;
+    
+    @Column(name = "profissional_cargo", length = 50)
+    private String profissionalCargo;
+    
+    @Column(name = "profissional_funcao", length = 50)
+    private String profissionalFuncao;
+    
+    @Column(name = "profissional_campus_lotacao", length = 50)
+    private String profissionalCampusLotacao;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "profissional_data_admissao")
+    private Date profissionalDataAdmissao;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "profissional_data_final_contrato")
+    private Date profissionalDataFinalContrato;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "profissional_data_desligamento")
+    private Date profissionalDataDesligamento;
 }
