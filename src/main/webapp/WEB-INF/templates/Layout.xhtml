@@ -38,7 +38,9 @@
 
         <h:form>
             <header class="aw-topbar">
-                <h:graphicImage library="sigeris" name="imagens/logo-uepb.png" style="margin-left: 20px; margin-top: 2px"/>
+                <a href="/SIGERIS/inicio.xhtml">
+                    <h:graphicImage library="sigeris" name="imagens/logo-uepb.png" style="margin-left: 20px; margin-top: 2px"/>
+                </a>
 
                 <a href="#" class="aw-toggle  js-toggle"><i class="fa fa-bars"></i></a>
 
@@ -75,42 +77,42 @@
         <script type="text/javascript">
             /* Máscaras ER de http://wbruno.com.br/expressao-regular/mascara-campo-de-telefone-em-javascript-com-regex-nono-digito-telefones-sao-paulo/*/
             function mascara(o, f) {
-                v_obj = o;
-                v_fun = f;
-                setTimeout("execmascara()", 1);
+            v_obj = o;
+            v_fun = f;
+            setTimeout("execmascara()", 1);
             }
             function execmascara() {
-                v_obj.value = v_fun(v_obj.value);
+            v_obj.value = v_fun(v_obj.value);
             }
             function telefone(v) {
-                v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
-                v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-                v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
-                return v;
+            v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+            return v;
             }
             function id(el) {
-                return document.getElementById(el);
+            return document.getElementById(el);
             }
             window.onload = function () {
-                id('telefone').onkeyup = function () {
-                    mascara(this, telefone);
-                };
+            id('telefone').onkeyup = function () {
+            mascara(this, telefone);
+            };
             };
         </script>
 
         <!--This script changes the mask of money format-->
         <script>
             function validateMoney() {
-                $('.money').maskMoney({
-                    decimal: ",",
-                    thousands: ".",
-                    allowZero: true,
-                    symbol: "R$"
-                });
+            $('.money').maskMoney({
+            decimal: ",",
+            thousands: ".",
+            allowZero: true,
+            symbol: "R$"
+            });
             }
 
             $(document).ready(function () {
-                validateMoney();
+            validateMoney();
             });
         </script>
 
