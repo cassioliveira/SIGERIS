@@ -23,6 +23,7 @@
         <composite:attribute name="reservistaMunicipio"/>
         <composite:attribute name="reservistaEstado"/>
         <composite:attribute name="cpf"/>
+        <composite:attribute name="pisPasep"/>
         <composite:attribute name="sexo"/>
         <composite:attribute name="dataNascimento"/>
     </composite:interface>
@@ -68,6 +69,9 @@
         <br/>
         <p:fieldset legend="CTPS" styleClass="fieldset-interno">
             <h:panelGrid columns="2">
+                <p:outputLabel for="pis-pasep" value="PIS/PASEP "/>
+                <p:inputText id="pis-pasep" value="#{cc.attrs.pisPasep}" size="20" maxlength="20"/>
+
                 <p:outputLabel for="ctps" value="CTPS: "/>
                 <p:inputText id="ctps" value="#{cc.attrs.ctps}" size="20" maxlength="20"/>
 
