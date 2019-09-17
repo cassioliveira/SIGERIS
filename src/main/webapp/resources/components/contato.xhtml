@@ -3,30 +3,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:composite="http://xmlns.jcp.org/jsf/composite"> 
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
 
     <composite:interface>
         <composite:attribute name="celular"/>
         <composite:attribute name="telefone"/>
         <composite:attribute name="email"/>
         <composite:attribute name="email2"/>
+        <composite:attribute name="contatoEmergenciaTipo"/>
+        <composite:attribute name="contatoEmergenciaNome"/>
+        <composite:attribute name="contatoEmergenciaEmail"/>
+        <composite:attribute name="contatoEmergenciaTelefone"/>
+        <composite:attribute name="contatoEmergenciaCelular"/>
     </composite:interface>
 
     <composite:implementation>
+        <p:fieldset legend="Contato pessoal" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="phone1" value="Celular: "/>
+                <p:inputText id="phone1" value="#{cc.attrs.celular}" size="15" maxlength="15" class="telefone"/>
 
-        <h:panelGrid columns="2">
-            <p:outputLabel for="phone1" value="Celular: "/>
-            <p:inputText id="phone1" value="#{cc.attrs.celular}" size="15" maxlength="15" class="telefone"/>
+                <p:outputLabel for="phone2" value="Telefone: "/>
+                <p:inputText id="phone2" value="#{cc.attrs.telefone}" size="15" maxlength="15" class="telefone"/>
 
-            <p:outputLabel for="phone2" value="Telefone: "/>
-            <p:inputText id="phone2" value="#{cc.attrs.telefone}" size="15" maxlength="15" class="telefone"/>
+                <p:outputLabel for="email" value="E-mail: "/>
+                <p:inputText id="email" value="#{cc.attrs.email}" size="35" maxlength="100"/>
 
-            <p:outputLabel for="email" value="E-mail: "/>
-            <p:inputText id="email" value="#{cc.attrs.email}" size="35" maxlength="100"/>
+                <p:outputLabel for="email2" value="E-mail 2: "/>
+                <p:inputText id="email2" value="#{cc.attrs.email2}" size="35" maxlength="100"/>
+            </h:panelGrid>
+        </p:fieldset>
+        <br/>
+        <p:fieldset legend="Contato para emergências" styleClass="fieldset-interno">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="contato-emergencia-tipo" value="Categoria: "/>
+                <p:selectOneMenu id="contato-emergencia-tipo" value="#{cc.attrs.contatoEmergenciaTipo}" style="width: 93px">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Pai" itemValue="PAI"/>
+                    <f:selectItem itemLabel="Mãe" itemValue="MAE"/>
+                    <f:selectItem itemLabel="Filho(a)" itemValue="FILHOA"/>
+                    <f:selectItem itemLabel="Sogro(a)" itemValue="SOGROA"/>
+                    <f:selectItem itemLabel="Tio(a)" itemValue="TIOA"/>
+                    <f:selectItem itemLabel="Primo(a)" itemValue="PRIMOA"/>
+                    <f:selectItem itemLabel="Avô(ó)" itemValue="AVOA"/>
+                    <f:selectItem itemLabel="Cunhado(a)" itemValue="CUNHADOA"/>
+                    <f:selectItem itemLabel="Amigo(a)" itemValue="AMIGOA"/>
+                    <f:selectItem itemLabel="Vizinho(a)" itemValue="VIZINHOA"/>
+                    <f:selectItem itemLabel="Outro" itemValue="VIUVO"/>
+                </p:selectOneMenu>
 
-            <p:outputLabel for="email2" value="E-mail 2: "/>
-            <p:inputText id="email2" value="#{cc.attrs.email2}" size="35" maxlength="100"/>
-        </h:panelGrid>
+                <p:outputLabel for="contato-emergencia-nome" value="Nome: "/>
+                <p:inputText id="contato-emergencia-nome" value="#{cc.attrs.contatoEmergenciaNome}" size="35" maxlength="200"/>
+
+                <p:outputLabel for="contato-emergencia-email" value="E-mail: "/>
+                <p:inputText id="contato-emergencia-email" value="#{cc.attrs.contatoEmergenciaEmail}" size="35" maxlength="100"/>
+
+                <p:outputLabel for="contato-emergencia-celular" value="Celular: "/>
+                <p:inputText id="contato-emergencia-celular" value="#{cc.attrs.contatoEmergenciaCelular}" size="13" maxlength="15" class="telefone"/>
+
+                <p:outputLabel for="contato-emergencia-telefone" value="Telefone: "/>
+                <p:inputText id="contato-emergencia-telefone" value="#{cc.attrs.contatoEmergenciaTelefone}" size="13" maxlength="15" class="telefone"/>
+            </h:panelGrid>
+        </p:fieldset>
 
     </composite:implementation>
 </html>

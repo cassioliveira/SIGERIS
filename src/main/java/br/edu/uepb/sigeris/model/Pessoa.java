@@ -55,7 +55,7 @@ public class Pessoa implements Serializable {
     @NotNull(message = "Um nome deve ser informado")
     @Column(name = "nome", nullable = false, length = 200)
     private String nome;
-
+    
     @Column(name = "matricula", length = 15)
     private String matricula;
 
@@ -71,6 +71,11 @@ public class Pessoa implements Serializable {
             message = "E-mail com formato incorreto")
     @Column(name = "email2", length = 100)
     private String email2;
+    
+    @Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$",
+            message = "E-mail com formato incorreto")
+    @Column(name = "email_emergencia", length = 100)
+    private String contatoEmergenciaEmail;
 
     @Pattern(regexp = "^$|[a-zA-Z\\d/.-]{1,}",
             message = "Apenas letras números ou os caracteres a seguir são aceitos para o RG: / . -")
@@ -128,7 +133,7 @@ public class Pessoa implements Serializable {
     @Column(name = "contato_emergencia_tipo", length = 30)
     private String contatoEmergenciaTipo;
     
-    @Column(name = "contato_emergencia_nome", length = 30)
+    @Column(name = "contato_emergencia_nome", length = 200)
     private String contatoEmergenciaNome;
     
     @Column(name = "contato_emergencia_telefone", length = 20)
