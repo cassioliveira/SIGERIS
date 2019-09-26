@@ -1,6 +1,6 @@
 package br.edu.uepb.sigeris.controllers;
 
-import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.VincluoServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Disciplina;
 import br.edu.uepb.sigeris.services.DisciplinaService;

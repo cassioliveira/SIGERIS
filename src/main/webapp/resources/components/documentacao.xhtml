@@ -24,18 +24,16 @@
         <composite:attribute name="reservistaEstado"/>
         <composite:attribute name="cpf"/>
         <composite:attribute name="pisPasep"/>
-        <composite:attribute name="sexo"/>
-        <composite:attribute name="dataNascimento"/>
     </composite:interface>
 
     <composite:implementation>
 
-        <p:fieldset legend="CPF" styleClass="fieldset-interno">
-            <p:outputLabel for="cpf" value="CPF: "/>
+        <p:fieldset legend="CPF - Cadastro de Pessoa Física" styleClass="fieldset-interno">
+            <p:outputLabel for="cpf" value="Número: "/>
             <p:inputMask id="cpf" mask="999.999.999-99" value="#{cc.attrs.cpf}" size="13" maxlength="14"/>
         </p:fieldset>
         <br/>
-        <p:fieldset legend="RG" styleClass="fieldset-interno">
+        <p:fieldset legend="RG - Registro Geral" styleClass="fieldset-interno">
             <h:panelGrid columns="2">
                 <p:outputLabel for="rg" value="RG: "/>
                 <p:inputText id="rg" value="#{cc.attrs.rg}" size="20" maxlength="20"/>
@@ -67,12 +65,12 @@
             </h:panelGrid>
         </p:fieldset>
         <br/>
-        <p:fieldset legend="CTPS" styleClass="fieldset-interno">
+        <p:fieldset legend="CTPS - Carteira de Trabalho e Previdência Social" styleClass="fieldset-interno">
             <h:panelGrid columns="2">
                 <p:outputLabel for="pis-pasep" value="PIS/PASEP "/>
                 <p:inputText id="pis-pasep" value="#{cc.attrs.pisPasep}" size="20" maxlength="20"/>
 
-                <p:outputLabel for="ctps" value="CTPS: "/>
+                <p:outputLabel for="ctps" value="Número: "/>
                 <p:inputText id="ctps" value="#{cc.attrs.ctps}" size="20" maxlength="20"/>
 
                 <p:outputLabel for="ctps-serie" value="Série: "/>

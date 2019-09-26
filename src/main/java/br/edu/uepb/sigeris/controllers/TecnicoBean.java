@@ -1,6 +1,6 @@
 package br.edu.uepb.sigeris.controllers;
 
-import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.VincluoServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Tecnico;
 import br.edu.uepb.sigeris.services.TecnicoService;
@@ -45,7 +45,7 @@ public class TecnicoBean implements Serializable {
     private List<Tecnico> tecnicos;
 
     @Getter
-    private List<CategoriasServidor> categorias;
+    private List<VincluoServidor> categorias;
 
     @Getter
     private List<Estados> estados;
@@ -58,7 +58,7 @@ public class TecnicoBean implements Serializable {
     @PostConstruct
     public void init() {
         this.tecnicos = tecnicoService.findAll();
-        this.categorias = Arrays.asList(CategoriasServidor.values());
+        this.categorias = Arrays.asList(VincluoServidor.values());
         this.estados = Arrays.asList(Estados.values());
 
     }

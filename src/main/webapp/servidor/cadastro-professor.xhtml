@@ -26,14 +26,23 @@
                         <component:dadosPessoais nome="#{professorBean.professor.nome}"
                                                  matricula="#{professorBean.professor.matricula}"
                                                  sexo="#{professorBean.professor.sexo}"
-                                                 dataNascimento="#{professorBean.professor.dataNascimento}"/>
+                                                 estadoCivil="#{professorBean.professor.estadoCivil}"
+                                                 dataNascimento="#{professorBean.professor.dataNascimento}"
+                                                 naturalidade="#{professorBean.professor.naturalidade}"
+                                                 nacionalidade="#{professorBean.professor.nacionalidade}"
+                                                 deficiencia="#{professorBean.professor.deficiencia}"/>
                     </p:tab>
 
                     <p:tab id="contato" title="Contato">
                         <component:contato celular="#{professorBean.professor.celular}"
                                            telefone="#{professorBean.professor.telefone}"
                                            email="#{professorBean.professor.email}"
-                                           email2="#{professorBean.professor.email2}"/>
+                                           email2="#{professorBean.professor.email2}"
+                                           contatoEmergenciaTipo="#{professorBean.professor.contatoEmergenciaTipo}"
+                                           contatoEmergenciaNome="#{professorBean.professor.contatoEmergenciaNome}"
+                                           contatoEmergenciaEmail="#{professorBean.professor.contatoEmergenciaEmail}"
+                                           contatoEmergenciaTelefone="#{professorBean.professor.contatoEmergenciaTelefone}"
+                                           contatoEmergenciaCelular="#{professorBean.professor.contatoEmergenciaCelular}"/>
                     </p:tab>
 
                     <p:tab id="endereco" title="Endereço">
@@ -43,45 +52,77 @@
                                             numero="#{professorBean.professor.numero}"
                                             bairro="#{professorBean.professor.bairro}"
                                             cep="#{professorBean.professor.cep}"
-                                            complemento="#{professorBean.professor.complemento}"/>
+                                            complemento="#{professorBean.professor.complemento}"
+                                            paisOrigem="#{professorBean.professor.paisOrigem}"
+                                            estadoOrigem="#{professorBean.professor.estadoOrigem}"
+                                            cidadeOrigem="#{professorBean.professor.cidadeOrigem}"/>
                     </p:tab>
 
                     <p:tab id="documentacao" title="Documentação">
                         <component:documentacao rg="#{professorBean.professor.rg}"
-                                                cpf="#{professorBean.professor.cpf}"/>
+                                                cpf="#{professorBean.professor.cpf}"
+                                                rgOrgaoExpedidor="#{professorBean.professor.orgaoExpedidor}"
+                                                rgEstado="#{professorBean.professor.rgUF}"
+                                                tituloEleitoral="#{professorBean.professor.tituloEleitoral}"
+                                                tituloSecao="#{professorBean.professor.tituloSecao}"
+                                                tituloZona="#{professorBean.professor.tituloZona}"
+                                                tituloMunicipio="#{professorBean.professor.tituloMunicipio}"
+                                                ctps="#{professorBean.professor.ctps}"
+                                                ctpsSerie="#{professorBean.professor.ctpsSerie}"
+                                                ctpsEstado="#{professorBean.professor.ctpsUF}"
+                                                ctpsMunicipio="#{professorBean.professor.ctpsMunicipio}"
+                                                reservista="#{professorBean.professor.reservista}"
+                                                reservistaRM="#{professorBean.professor.reservistaRegiaoMilitar}"
+                                                reservistaMunicipio="#{professorBean.professor.reservistaMunicipio}"
+                                                reservistaEstado="#{professorBean.professor.reservistaUF}"
+                                                pisPasep="#{professorBean.professor.pisPasep}"/>
+
                     </p:tab>
 
-                    <p:tab id="academico" title="Dados acadêmicos">
-                        <component:dadosAcademicos categoria="#{professorBean.professor.categoria}"
-                                                   regimeTrabalho="#{professorBean.professor.regimeTrabalho}"
-                                                   dedicacaoExclusiva="#{professorBean.professor.dedicacaoExclusiva}"
+                    <p:tab id="profissional" title="Dados Profissionais">
+                        <component:dadosProfissionais vinculo="#{professorBean.professor.vinculo}"
+                                                      regimeTrabalho="#{professorBean.professor.regimeTrabalho}"
+                                                      escolaridade="#{professorBean.professor.profissionalEscolaridade}"
+                                                      formacao="#{professorBean.professor.profissionalFormacao}"
+                                                      funcao="#{professorBean.professor.profissionalFuncao}"
+                                                      cargo="#{professorBean.professor.profissionalCargo}"
+                                                      lotacao="#{professorBean.professor.profissionalCampusLotacao}"
+                                                      setor="#{professorBean.professor.profissionalSetor}"
+                                                      dataAdmissao="#{professorBean.professor.profissionalDataAdmissao}"
+                                                      dataFinalContrato="#{professorBean.professor.profissionalDataFinalContrato}"
+                                                      dataDesligamento="#{professorBean.professor.profissionalDataDesligamento}"/>
+                    </p:tab>
+
+<!--                    <p:tab id="academico" title="Dados acadêmicos">
+                        <component:dadosAcademicos dedicacaoExclusiva="#{professorBean.professor.dedicacaoExclusiva}"
                                                    temFuncao="#{professorBean.professor.temFuncao}"
                                                    descricaoFuncao="#{professorBean.professor.descricaoFuncao}"
                                                    classe="#{professorBean.professor.classe}"
                                                    nivel="#{professorBean.professor.nivel}"/>
-                </p:tab>
 
-            </p:tabView>
+                    </p:tab>-->
 
-            <component:observacoes estilo="margin-left:24px; margin-right:15px" altura="130" largura="560" value="#{professorBean.professor.observacoes}"/>
+                </p:tabView>
 
-        </h:form>
+                <component:observacoes estilo="margin-left:24px; margin-right:15px" altura="130" largura="560" value="#{professorBean.professor.observacoes}"/>
 
-        <p:toolbar>
-            <f:facet name="left">
-                <p:commandButton style="font-size: 13px" value="Salvar" action="#{professorBean.salvar}" 
-                                 icon="fa fa-save" id="botaoSalvar">
-                    <f:ajax execute="@form" render="@form"/>
-                </p:commandButton>
+            </h:form>
 
-                <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
-                          outcome="/servidor/listar-servidores" icon="fa fa-times">
-                </p:button>
-            </f:facet>
-        </p:toolbar>
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px" value="Salvar" action="#{professorBean.salvar}" 
+                                     icon="fa fa-save" id="botaoSalvar">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
 
-    </p:fieldset>
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/servidor/listar-servidores" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
 
-</ui:define>
+        </p:fieldset>
+
+    </ui:define>
 
 </ui:composition>

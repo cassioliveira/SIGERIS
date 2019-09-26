@@ -1,6 +1,6 @@
 package br.edu.uepb.sigeris.controllers;
 
-import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.VincluoServidor;
 import br.edu.uepb.sigeris.enumerations.Cursos;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Professor;
@@ -53,7 +53,7 @@ public class ProfessorBean implements Serializable {
     private List<Cursos> todosCursos;
     
     @Getter
-    private List<CategoriasServidor> categorias;
+    private List<VincluoServidor> categorias;
 
     @Getter
     private List<Estados> estados;
@@ -67,7 +67,7 @@ public class ProfessorBean implements Serializable {
     public void init() {
         this.professores = professorService.findAll();
         this.todosCursos = Arrays.asList(Cursos.values());
-        this.categorias = Arrays.asList(CategoriasServidor.values());
+        this.categorias = Arrays.asList(VincluoServidor.values());
         this.estados = Arrays.asList(Estados.values());
     }
 

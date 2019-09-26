@@ -32,9 +32,9 @@ public class TecnicoService implements Serializable {
         if (novoCadastro(tecnico)) {
             tecnico.setTipo("TECNICO");
             tecnico.setCadastro(new Date());
-            if (tecnico.getMatricula() == null) {
-                tecnico.setMatricula("0.00000-0");
-            }
+//            if (tecnico.getMatricula() == null) {
+//                tecnico.setMatricula("NÃO INFORMADO");
+//            }
         }
         this.tecnicos.salvar(tecnico);
     }

@@ -30,14 +30,20 @@
                                                  estadoCivil="#{tecnicoBean.tecnico.estadoCivil}"
                                                  dataNascimento="#{tecnicoBean.tecnico.dataNascimento}"
                                                  naturalidade="#{tecnicoBean.tecnico.naturalidade}"
-                                                 nacionalidade="#{tecnicoBean.tecnico.nacionalidade}"/>
+                                                 nacionalidade="#{tecnicoBean.tecnico.nacionalidade}"
+                                                 deficiencia="#{tecnicoBean.tecnico.deficiencia}"/>
                     </p:tab>
 
                     <p:tab id="contato" title="Contato">
                         <component:contato celular="#{tecnicoBean.tecnico.celular}"
                                            telefone="#{tecnicoBean.tecnico.telefone}"
                                            email="#{tecnicoBean.tecnico.email}"
-                                           email2="#{tecnicoBean.tecnico.email2}"/>
+                                           email2="#{tecnicoBean.tecnico.email2}"
+                                           contatoEmergenciaTipo="#{tecnicoBean.tecnico.contatoEmergenciaTipo}"
+                                           contatoEmergenciaNome="#{tecnicoBean.tecnico.contatoEmergenciaNome}"
+                                           contatoEmergenciaEmail="#{tecnicoBean.tecnico.contatoEmergenciaEmail}"
+                                           contatoEmergenciaTelefone="#{tecnicoBean.tecnico.contatoEmergenciaTelefone}"
+                                           contatoEmergenciaCelular="#{tecnicoBean.tecnico.contatoEmergenciaCelular}"/>
                     </p:tab>
 
                     <p:tab id="endereco" title="Endereço">
@@ -47,12 +53,45 @@
                                             numero="#{tecnicoBean.tecnico.numero}"
                                             bairro="#{tecnicoBean.tecnico.bairro}"
                                             cep="#{tecnicoBean.tecnico.cep}"
-                                            complemento="#{tecnicoBean.tecnico.complemento}"/>
+                                            complemento="#{tecnicoBean.tecnico.complemento}"
+                                            paisOrigem="#{tecnicoBean.tecnico.paisOrigem}"
+                                            estadoOrigem="#{tecnicoBean.tecnico.estadoOrigem}"
+                                            cidadeOrigem="#{tecnicoBean.tecnico.cidadeOrigem}"/>
                     </p:tab>
 
                     <p:tab id="documentacao" title="Documentação">
                         <component:documentacao rg="#{tecnicoBean.tecnico.rg}"
-                                                cpf="#{tecnicoBean.tecnico.cpf}"/>
+                                                cpf="#{tecnicoBean.tecnico.cpf}"
+                                                rgOrgaoExpedidor="#{tecnicoBean.tecnico.orgaoExpedidor}"
+                                                rgEstado="#{tecnicoBean.tecnico.rgUF}"
+                                                tituloEleitoral="#{tecnicoBean.tecnico.tituloEleitoral}"
+                                                tituloSecao="#{tecnicoBean.tecnico.tituloSecao}"
+                                                tituloZona="#{tecnicoBean.tecnico.tituloZona}"
+                                                tituloMunicipio="#{tecnicoBean.tecnico.tituloMunicipio}"
+                                                ctps="#{tecnicoBean.tecnico.ctps}"
+                                                ctpsSerie="#{tecnicoBean.tecnico.ctpsSerie}"
+                                                ctpsEstado="#{tecnicoBean.tecnico.ctpsUF}"
+                                                ctpsMunicipio="#{tecnicoBean.tecnico.ctpsMunicipio}"
+                                                reservista="#{tecnicoBean.tecnico.reservista}"
+                                                reservistaRM="#{tecnicoBean.tecnico.reservistaRegiaoMilitar}"
+                                                reservistaMunicipio="#{tecnicoBean.tecnico.reservistaMunicipio}"
+                                                reservistaEstado="#{tecnicoBean.tecnico.reservistaUF}"
+                                                pisPasep="#{tecnicoBean.tecnico.pisPasep}"/>
+
+                    </p:tab>
+
+                    <p:tab id="profissional" title="Dados Profissionais">
+                        <component:dadosProfissionais vinculo="#{tecnicoBean.tecnico.vinculo}"
+                                                      regimeTrabalho="#{tecnicoBean.tecnico.regimeTrabalho}"
+                                                      escolaridade="#{tecnicoBean.tecnico.profissionalEscolaridade}"
+                                                      formacao="#{tecnicoBean.tecnico.profissionalFormacao}"
+                                                      funcao="#{tecnicoBean.tecnico.profissionalFuncao}"
+                                                      cargo="#{tecnicoBean.tecnico.profissionalCargo}"
+                                                      lotacao="#{tecnicoBean.tecnico.profissionalCampusLotacao}"
+                                                      setor="#{tecnicoBean.tecnico.profissionalSetor}"
+                                                      dataAdmissao="#{tecnicoBean.tecnico.profissionalDataAdmissao}"
+                                                      dataFinalContrato="#{tecnicoBean.tecnico.profissionalDataFinalContrato}"
+                                                      dataDesligamento="#{tecnicoBean.tecnico.profissionalDataDesligamento}"/>
                     </p:tab>
 
                 </p:tabView>

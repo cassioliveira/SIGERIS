@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <composite:interface>
+        <composite:attribute name="vinculo"/>
+        <composite:attribute name="regimeTrabalho"/>
+        <composite:attribute name="escolaridade"/>
+        <composite:attribute name="formacao"/>
+        <composite:attribute name="cargo"/>
+        <composite:attribute name="funcao"/>
+        <composite:attribute name="lotacao"/>
+        <composite:attribute name="setor"/>
+        <composite:attribute name="dataAdmissao"/>
+        <composite:attribute name="dataFinalContrato"/>
+        <composite:attribute name="dataDesligamento"/>
+        <composite:attribute name="categoria"/>
+
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:panelGrid columns="2" cellpadding="0" cellspacing="2">
+            <p:outputLabel for="vinculo" value="Vínculo: "/>
+            <p:selectOneMenu id="vinculo" value="#{cc.attrs.vinculo}" style="width: 140px">
+                <f:selectItems var="vinculo" itemLabel="#{vinculo.description}" itemValue="#{vinculo}" value="#{professorBean.categorias}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="regimeTrabalho" value="Regime: "/>
+            <p:selectOneMenu id="regimeTrabalho" value="#{cc.attrs.regimeTrabalho}" style="width: 140px" >
+                <f:selectItem itemLabel="T40" itemValue="T40"/>
+                <f:selectItem itemLabel="T20" itemValue="T20"/>
+                <f:selectItem itemLabel="T30" itemValue="T30"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="escolaridade" value="Escolaridade: "/>
+            <p:inputText id="escolaridade" value="#{cc.attrs.escolaridade}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="formacao" value="Formação: "/>
+            <p:inputText id="formacao" value="#{cc.attrs.formacao}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="funcao" value="Função: "/>
+            <p:inputText id="funcao" value="#{cc.attrs.funcao}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="cargo" value="Cargo: "/>
+            <p:inputText id="cargo" value="#{cc.attrs.cargo}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="lotacao" value="Lotação: "/>
+            <p:inputText id="lotacao" value="#{cc.attrs.lotacao}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="setor" value="Setor: "/>
+            <p:inputText id="setor" value="#{cc.attrs.setor}" size="20" maxlength="20"/>
+
+<!--            <p:outputLabel for="vinculo" value="Vínculo:  "/>
+            <p:inputText id="vinculo" value="#{cc.attrs.vinculo}" size="20" maxlength="20"/>-->
+
+            <p:outputLabel for="admissao" value="Admissão: " style="margin-right: 1px"/>
+            <p:calendar id="admissao" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
+                        size="13" locale="pt" value="#{cc.attrs.dataFinalContrato}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+            </p:calendar>
+
+            <p:outputLabel for="final-contrato" value="Final do contrato: " style="margin-right: 1px"/>
+            <p:calendar id="final-contrato" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
+                        size="13" locale="pt" value="#{cc.attrs.dataFinalContrato}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+            </p:calendar>
+
+            <p:outputLabel for="desligamento" value="Desligamento: " style="margin-right: 1px"/>
+            <p:calendar id="desligamento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
+                        size="13" locale="pt" value="#{cc.attrs.dataDesligamento}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+            </p:calendar>
+
+        </h:panelGrid>
+
+    </composite:implementation>
+</html>

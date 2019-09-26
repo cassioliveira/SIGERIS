@@ -1,6 +1,6 @@
 package br.edu.uepb.sigeris.model;
 
-import br.edu.uepb.sigeris.enumerations.CategoriasServidor;
+import br.edu.uepb.sigeris.enumerations.VincluoServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import java.io.Serializable;
 import java.util.Date;
@@ -55,7 +55,7 @@ public class Pessoa implements Serializable {
     @NotNull(message = "Um nome deve ser informado")
     @Column(name = "nome", nullable = false, length = 200)
     private String nome;
-    
+
     @Column(name = "matricula", length = 15)
     private String matricula;
 
@@ -71,7 +71,7 @@ public class Pessoa implements Serializable {
             message = "E-mail com formato incorreto")
     @Column(name = "email2", length = 100)
     private String email2;
-    
+
     @Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$",
             message = "E-mail com formato incorreto")
     @Column(name = "email_emergencia", length = 100)
@@ -84,6 +84,13 @@ public class Pessoa implements Serializable {
 
     @Column(name = "orgao_expedidor", length = 20)
     private String orgaoExpedidor;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "rg_data_expedicao")
+    private Date rgDataExpedicao;
+
+    @Column(name = "rg_uf", length = 10)
+    private String rgUF;
 
     @Column(name = "titulo_eleitoral", length = 20)
     private String tituloEleitoral;
@@ -112,6 +119,27 @@ public class Pessoa implements Serializable {
     @Column(name = "reservista_uf", length = 10)
     private String reservistaUF;
 
+    @Column(name = "certidao_casamento_nascimento", length = 20)
+    private String certidaoCasamentoNascimento;
+
+    @Column(name = "certidao_numero", length = 20)
+    private String certidaoNumero;
+
+    @Column(name = "certidao_livro", length = 20)
+    private String certidaoLivro;
+
+    @Column(name = "certidao_folha", length = 20)
+    private String certidaoFolha;
+
+    @Column(name = "certidao_cartorio", length = 20)
+    private String certidaoCartorio;
+
+    @Column(name = "certidao_comarca", length = 20)
+    private String certidaoComarca;
+    
+    @Column(name = "certidao_uf", length = 10)
+    private String certidaoUF;
+
     @Column(name = "ctps", length = 20)
     private String ctps;
 
@@ -120,7 +148,7 @@ public class Pessoa implements Serializable {
 
     @Column(name = "ctps_uf", length = 10)
     private String ctpsUF;
-    
+
     @Column(name = "ctps_serie", length = 20)
     private String ctpsSerie;
 
@@ -129,15 +157,18 @@ public class Pessoa implements Serializable {
 
     @Column(name = "celular", length = 20)
     private String celular;
-    
+
     @Column(name = "contato_emergencia_tipo", length = 30)
     private String contatoEmergenciaTipo;
-    
+
     @Column(name = "contato_emergencia_nome", length = 200)
     private String contatoEmergenciaNome;
-    
+
     @Column(name = "contato_emergencia_telefone", length = 20)
     private String contatoEmergenciaTelefone;
+    
+    @Column(name = "contato_emergencia_celular", length = 20)
+    private String contatoEmergenciaCelular;
 
     @Column(name = "sexo", length = 1)
     private String sexo;
@@ -148,13 +179,13 @@ public class Pessoa implements Serializable {
 
     @Column(name = "estado_civil", length = 15)
     private String estadoCivil;
-    
+
     @Column(name = "pis_pasep", length = 30)
     private String pisPasep;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria")
-    private CategoriasServidor categoria;
+    private VincluoServidor vinculo;
 
     @Column(name = "observacoes")
     private String observacoes;
@@ -182,46 +213,77 @@ public class Pessoa implements Serializable {
 
     @Column(name = "endereco_cep", length = 10)
     private String cep;
-    
+
     @Column(name = "nacionalidade", length = 40)
     private String nacionalidade;
-    
+
     @Column(name = "naturalidade", length = 70)
     private String naturalidade;
-    
+
     @Column(name = "municipio_residencia", length = 70)
     private String municipioResidencia;
-    
+
     @Column(name = "estado_origem", length = 70)
     private String estadoOrigem;
+    
+    @Column(name = "pais_origem", length = 70)
+    private String paisOrigem;
+    
+    @Column(name = "cidade_origem", length = 70)
+    private String cidadeOrigem;
 
     @Column(name = "estado_residencia", length = 70)
     private String estadoResidencia;
-    
+
     @Column(name = "profissional_escolaridade", length = 50)
     private String profissionalEscolaridade;
     
+    @Column(name = "profissional_setor", length = 50)
+    private String profissionalSetor;
+
     @Column(name = "profissional_formacao", length = 50)
     private String profissionalFormacao;
-    
+
     @Column(name = "profissional_cargo", length = 50)
     private String profissionalCargo;
-    
+
     @Column(name = "profissional_funcao", length = 50)
     private String profissionalFuncao;
-    
+
     @Column(name = "profissional_campus_lotacao", length = 50)
     private String profissionalCampusLotacao;
+    
+    @Column(name = "passaporte_numero", length = 50)
+    private String passaporteNumero;
+    
+    @Column(name = "deficiencia", length = 100)
+    private String deficiencia;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "passaporte_visto")
+    private Date passaporteVisto;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "passaporte_validade")
+    private Date passaporteValidade;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "profissional_data_admissao")
     private Date profissionalDataAdmissao;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "profissional_data_final_contrato")
     private Date profissionalDataFinalContrato;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "profissional_data_desligamento")
     private Date profissionalDataDesligamento;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_ultima_atualizacao")
+    private Date dataUltimaAtualizacao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_cadastro")
+    private Date dataCadastro;
 }

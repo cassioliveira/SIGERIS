@@ -42,8 +42,8 @@
 
                     <p:column headerText="Matricula" width="12%" filterStyle="display:none" priority="1"
                               filterBy="#{servidor.matricula}" filterMatchMode="contains" style="text-align: center">
-                        <h:outputText value="#{servidor.matricula == '0.00000-0' ? 'NÃO INFORMADO' : servidor.matricula}" 
-                                      style="#{servidor.matricula == '0.00000-0' ? 'font-size: 12px; font-weight: bold; color:red' : 
+                        <h:outputText value="#{servidor.matricula == null ? 'NÃO INFORMADO' : servidor.matricula}" 
+                                      style="#{servidor.matricula == null ? 'font-size: 12px; font-weight: bold; color:red' : 
                                                'font-size: 14px; font-weight: bold; color:green'}"/>
                     </p:column>
 
