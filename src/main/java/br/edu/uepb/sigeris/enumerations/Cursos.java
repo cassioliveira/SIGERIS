@@ -11,7 +11,8 @@ public enum Cursos implements Serializable {
 
     MATEMATICA("Licenciatura Plena em Matemática"),
     CONTABEIS("Bacharelado em Ciências Contábeis"),
-    LETRAS("Licenciatura Plena em Letras");
+    LETRASPT("Licenciatura Plena em Letras Português"),
+    LETRASES("Licenciatura Plena em Letras Espanhol");
 
     @Getter
     private final String description;

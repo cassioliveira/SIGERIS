@@ -27,9 +27,9 @@ public class ProfessorService implements Serializable {
         if (novoCadastro(professor)) {
             professor.setTipo("PROFESSOR");
             professor.setCadastro(new Date());
-            if (professor.getMatricula() == null) {
-                professor.setMatricula("0.00000-0");
-            }
+//            if (professor.getMatricula() == null) {
+//                professor.setMatricula("0.00000-0");
+//            }
         }
         this.professores.salvar(professor);
     }

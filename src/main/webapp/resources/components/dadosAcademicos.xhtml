@@ -8,7 +8,7 @@
 
     <composite:interface>
         <composite:attribute name="dedicacaoExclusiva"/>
-        <composite:attribute name="temFuncao"/>
+        <composite:attribute name="titulacao"/>
         <composite:attribute name="descricaoFuncao"/>
         <composite:attribute name="classe"/>
         <composite:attribute name="nivel"/>
@@ -25,12 +25,6 @@
                 <f:selectItem  itemLabel="Não" itemValue="false"/>
             </p:selectOneRadio>
 
-            <p:outputLabel for="titulo" value="Título: "/>
-            <p:selectOneRadio id="titulo" value="#{cc.attrs.titulo}">
-                <f:selectItem itemLabel="Mestre" itemValue="MESTRE"/>
-                <f:selectItem itemLabel="Doutor" itemValue="DOUTOR"/>
-            </p:selectOneRadio>
-
             <p:outputLabel for="nivel" value="Nível: "/>
             <p:selectOneRadio id="nivel" value="#{cc.attrs.nivel}">
                 <f:selectItem itemLabel="A" itemValue="A"/>
@@ -38,7 +32,7 @@
                 <f:selectItem itemLabel="C" itemValue="C"/>
                 <f:selectItem itemLabel="D" itemValue="D"/>
             </p:selectOneRadio>
-            
+
             <p:outputLabel for="classe" value="Classe: "/>
             <p:selectOneMenu id="classe" value="#{cc.attrs.classe}" style="width: 250px">
                 <f:selectItem noSelectionOption="true"/>
@@ -48,19 +42,7 @@
                 <f:selectItem itemLabel="Professor Doutor Associado" itemValue="DOUTORASSOCIADO"/>
                 <f:selectItem itemLabel="Professor Doutor Pleno" itemValue="DOUTORPLENO"/>
             </p:selectOneMenu>
-            
-<!--            <p:outputLabel for="temFuncao" value="Tem função?"/>
-            <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
-                <f:selectItem  itemLabel="Sim" itemValue="true"/>
-                <f:selectItem  itemLabel="Não" itemValue="false"/>
-                <f:ajax execute="temFuncao" render="function-description" event="change"/>
-            </p:selectOneRadio>
-            
-            <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
-            <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
-                                    <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
-        </h:panelGroup>-->
-            
+
             <p:outputLabel for="cursos" value="Curso(s): "/>
             <p:selectCheckboxMenu id="cursos" value="#{professorBean.professor.cursos}" converter="professorCursosConverter"  
                                   style="width: 280px" updateLabel="true">
@@ -69,7 +51,23 @@
                                value="#{professorBean.todosCursos}"/>
             </p:selectCheckboxMenu>
 
+            <p:outputLabel for="titulacao" value="Títulação: "/>
+            <p:inputText id="titulacao" value="#{cc.attrs.titulacao}" size="37" maxlength="20"/>
+
         </h:panelGrid>
 
     </composite:implementation>
+
+    <!--            <p:outputLabel for="temFuncao" value="Tem função?"/>
+                      <p:selectOneRadio id="temFuncao" value="#{professorBean.professor.temFuncao}">
+                          <f:selectItem  itemLabel="Sim" itemValue="true"/>
+                          <f:selectItem  itemLabel="Não" itemValue="false"/>
+                          <f:ajax execute="temFuncao" render="function-description" event="change"/>
+                      </p:selectOneRadio>
+                      
+                      <p:outputLabel for="funcionDescription" value="Desc. Função:"/>
+                      <p:inputText id="funcionDescription" value="#{professorBean.professor.descricaoFuncao}" style="width: 273px"/>
+                                              <h:panelGroup id="function-description" rendered="#{professorBean.professor.temFuncao eq 'SIM'}">
+                  </h:panelGroup>-->
+
 </html>

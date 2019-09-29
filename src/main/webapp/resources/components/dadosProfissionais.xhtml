@@ -7,6 +7,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"> 
 
     <composite:interface>
+        <composite:attribute name="situacao"/>
+        <composite:attribute name="motivoAfastamento"/>
         <composite:attribute name="vinculo"/>
         <composite:attribute name="regimeTrabalho"/>
         <composite:attribute name="escolaridade"/>
@@ -24,7 +26,24 @@
 
     <composite:implementation>
 
-        <h:panelGrid columns="2" cellpadding="0" cellspacing="2">
+        <h:panelGrid id="grid-form" columns="2" cellpadding="0" cellspacing="2">
+
+            <p:outputLabel for="situacao" value="Situacao: "/>
+            <h:panelGroup>
+                <p:selectOneMenu id="situacao" value="#{cc.attrs.situacao}" style="width: 140px" >
+                    <f:selectItem itemLabel="Ativo" itemValue="ATIVO"/>
+                    <f:selectItem itemLabel="Inativo" itemValue="INATIVO"/>
+                    <f:selectItem itemLabel="Afastado" itemValue="AFASTADO"/>
+                    <f:ajax execute="qual-situacao" render="situacao-inativo" event="change"/>
+                </p:selectOneMenu>
+                <h:panelGroup id="situacao-inativo" style="color: red">
+                    <p:outputLabel id="esta-inativo" value="#{cc.attrs.situacao == 'INATIVO' ? '  Informe a data de desligamento/fim do contrato abaixo.' : ''}"
+                                   rendered="#{cc.attrs.situacao eq 'INATIVO'}"/>
+                    <p:outputLabel id="esta-afastado" value="#{cc.attrs.situacao == 'AFASTADO' ? '  Informe o motivo do afastamento em observações.' : ''}" 
+                                   rendered="#{cc.attrs.situacao eq 'AFASTADO'}"/>
+                </h:panelGroup>
+            </h:panelGroup>
+
             <p:outputLabel for="vinculo" value="Vínculo: "/>
             <p:selectOneMenu id="vinculo" value="#{cc.attrs.vinculo}" style="width: 140px">
                 <f:selectItems var="vinculo" itemLabel="#{vinculo.description}" itemValue="#{vinculo}" value="#{professorBean.categorias}"/>
@@ -55,8 +74,8 @@
             <p:outputLabel for="setor" value="Setor: "/>
             <p:inputText id="setor" value="#{cc.attrs.setor}" size="20" maxlength="20"/>
 
-<!--            <p:outputLabel for="vinculo" value="Vínculo:  "/>
-            <p:inputText id="vinculo" value="#{cc.attrs.vinculo}" size="20" maxlength="20"/>-->
+            <!--            <p:outputLabel for="vinculo" value="Vínculo:  "/>
+                        <p:inputText id="vinculo" value="#{cc.attrs.vinculo}" size="20" maxlength="20"/>-->
 
             <p:outputLabel for="admissao" value="Admissão: " style="margin-right: 1px"/>
             <p:calendar id="admissao" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
