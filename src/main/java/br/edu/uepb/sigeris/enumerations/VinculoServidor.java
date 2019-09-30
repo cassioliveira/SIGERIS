@@ -7,7 +7,7 @@ import lombok.Getter;
  *
  * @author cassio
  */
-public enum VincluoServidor implements Serializable {
+public enum VinculoServidor implements Serializable {
 
     EFETIVO("Efetivo"),
     SUBSTITUTO("Substituto/Contratado"),
@@ -16,7 +16,7 @@ public enum VincluoServidor implements Serializable {
     @Getter
     private final String description;
 
-    VincluoServidor(String description) {
+    VinculoServidor(String description) {
         this.description = description;
     }
 }

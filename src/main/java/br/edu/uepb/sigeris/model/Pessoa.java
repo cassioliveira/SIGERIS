@@ -1,6 +1,6 @@
 package br.edu.uepb.sigeris.model;
 
-import br.edu.uepb.sigeris.enumerations.VincluoServidor;
+import br.edu.uepb.sigeris.enumerations.VinculoServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import java.io.Serializable;
 import java.util.Date;
@@ -188,7 +188,7 @@ public class Pessoa implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria")
-    private VincluoServidor vinculo;
+    private VinculoServidor vinculo;
 
     @Column(name = "observacoes")
     private String observacoes;

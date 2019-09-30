@@ -74,12 +74,9 @@
             <p:outputLabel for="setor" value="Setor: "/>
             <p:inputText id="setor" value="#{cc.attrs.setor}" size="20" maxlength="20"/>
 
-            <!--            <p:outputLabel for="vinculo" value="Vínculo:  "/>
-                        <p:inputText id="vinculo" value="#{cc.attrs.vinculo}" size="20" maxlength="20"/>-->
-
             <p:outputLabel for="admissao" value="Admissão: " style="margin-right: 1px"/>
             <p:calendar id="admissao" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"
-                        size="13" locale="pt" value="#{cc.attrs.dataFinalContrato}" maxdate="#{dateTimeUtilBean.dateToday}" >
+                        size="13" locale="pt" value="#{cc.attrs.dataAdmissao}" maxdate="#{dateTimeUtilBean.dateToday}" >
                 <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="#{initParam.timezone}"/>
             </p:calendar>
 

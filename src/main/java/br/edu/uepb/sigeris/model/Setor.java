@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -19,11 +21,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "setor")
-//@NamedQueries({
-//    @NamedQuery(name = "Servidores.todos", query = "FROM Pessoa p WHERE p.tipo='TECNICO' OR p.tipo='PROFESSOR' ORDER BY p.nome ASC"),
-//    @NamedQuery(name = "Professores.todos", query = "FROM Pessoa p WHERE p.tipo='PROFESSOR' ORDER BY p.nome ASC"),
-//    @NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.tipo='TECNICO' ORDER BY p.nome ASC")
-//})
+@NamedQueries({
+    @NamedQuery(name = "Setor.servidores", query = "SELECT s.nome FROM Setor s WHERE s.categoria='SERVIDORES'"),
+    @NamedQuery(name = "Setor.terceirizados", query = "SELECT s.nome FROM Setor s WHERE s.categoria='TERCEIRIZADOS'"),
+})
 public class Setor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,8 +33,8 @@ public class Setor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "codigo", length = 20)
-    private String codigo;
+    @Column(name = "categoria", length = 20)
+    private String categoria;
 
     @NotNull(message = "É necessário informar o nome do setor")
     @Column(name = "nome", length = 250)

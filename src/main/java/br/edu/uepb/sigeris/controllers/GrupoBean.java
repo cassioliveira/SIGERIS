@@ -5,7 +5,6 @@ import br.edu.uepb.sigeris.model.Grupo;
 import br.edu.uepb.sigeris.services.GrupoService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;

@@ -48,18 +48,24 @@
                     <p:inputText id="name" value="#{cc.attrs.nome}" size="43" maxlength="200"/>
 
                     <p:outputLabel for="setorTecnico" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}"/>
-                    <p:selectOneMenu id="setorTecnico" value="#{cc.attrs.setorTecnico}" style="width: 279px"
-                                     rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItems var="setor" value="#{tecnicoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
-                    </p:selectOneMenu>
+                    <h:panelGroup rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}">
+                        <p:selectOneMenu id="setorTecnico" value="#{cc.attrs.setorTecnico}" style="width: 279px"
+                                         >
+                            <f:selectItem noSelectionOption="true"/>
+                            <f:selectItems var="setor" value="#{tecnicoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
+                        </p:selectOneMenu>
+                        <p:link outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"><i class="fa fa-plus"/></p:link>
+                    </h:panelGroup>
 
                     <p:outputLabel for="setorTerceirizado" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
-                    <p:selectOneMenu id="setorTerceirizado" value="#{cc.attrs.setorTerceirizado}" style="width: 279px"
-                                     rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItems var="setor" value="#{terceirizadoBean.setores}" itemLabel="#{setor.description}" itemValue="#{setor}"/>
-                    </p:selectOneMenu>
+                    <h:panelGroup rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
+                        <p:selectOneMenu id="setorTerceirizado" value="#{cc.attrs.setorTerceirizado}" style="width: 279px"
+                                         >
+                            <f:selectItem noSelectionOption="true"/>
+                            <f:selectItems var="setor" value="#{terceirizadoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
+                        </p:selectOneMenu>
+                        <p:link outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"><i class="fa fa-plus"/></p:link>
+                    </h:panelGroup>
 
                     <p:outputLabel for="turno" value="Turno: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
                     <p:selectOneMenu id="turno" value="#{cc.attrs.turno}" style="width: 279px"
@@ -99,7 +105,7 @@
 
                     <p:outputLabel for="naturalidade" value="Naturalidade: "/>
                     <p:inputText id="naturalidade" value="#{cc.attrs.naturalidade}" size="43" maxlength="200"/>
-                    
+
                     <p:outputLabel for="deficiencia" value="PCD: "/>
                     <h:panelGroup>
                         <p:inputText id="deficiencia" value="#{cc.attrs.deficiencia}" size="43" maxlength="200"/>

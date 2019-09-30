@@ -56,4 +56,9 @@ public class TerceirizadoService implements Serializable {
     public boolean novoCadastro(Terceirizado terceirizado) {
         return pessoaService.novoCadastro(terceirizado);
     }
+
+    public List<String> setores() {
+        return setorService.terceirizados();
+    }
+
 }

@@ -35,4 +35,12 @@ public class SetorService implements Serializable {
     public List<Setor> todos() {
         return setores.todos();
     }
+    
+    public List<String> servidores() {
+        return setores.servidores();
+    }
+    
+    public List<String> terceirizados() {
+        return setores.terceirizados();
+    }
 }

@@ -1,12 +1,10 @@
 package br.edu.uepb.sigeris.controllers;
 
-import br.edu.uepb.sigeris.enumerations.VincluoServidor;
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.model.Disciplina;
 import br.edu.uepb.sigeris.services.DisciplinaService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;

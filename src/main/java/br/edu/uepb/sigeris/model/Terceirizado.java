@@ -1,6 +1,5 @@
 package br.edu.uepb.sigeris.model;
 
-import br.edu.uepb.sigeris.enumerations.SetoresTerceirizados;
 import br.edu.uepb.sigeris.enumerations.TurnosTerceirizados;
 import java.io.Serializable;
 import java.util.Date;
@@ -29,9 +28,9 @@ public class Terceirizado extends Pessoa implements Serializable {
     @Column(name = "data_controle")
     private Date data;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(name = "setor", length = 30)
-    private SetoresTerceirizados setor;
+    private String setor;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "turno", length = 30)
