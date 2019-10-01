@@ -24,16 +24,25 @@
 
                     <p:tab id="pessoais" title="Dados pessoais">
                         <component:dadosPessoais nome="#{terceirizadoBean.terceirizado.nome}"
-                                                 turno="#{terceirizadoBean.terceirizado.turno}"
+                                                 matricula="#{terceirizadoBean.terceirizado.matricula}"
                                                  sexo="#{terceirizadoBean.terceirizado.sexo}"
-                                                 dataNascimento="#{terceirizadoBean.terceirizado.dataNascimento}"/>
+                                                 estadoCivil="#{terceirizadoBean.terceirizado.estadoCivil}"
+                                                 dataNascimento="#{terceirizadoBean.terceirizado.dataNascimento}"
+                                                 naturalidade="#{terceirizadoBean.terceirizado.naturalidade}"
+                                                 nacionalidade="#{terceirizadoBean.terceirizado.nacionalidade}"
+                                                 deficiencia="#{terceirizadoBean.terceirizado.deficiencia}"/>
                     </p:tab>
 
                     <p:tab id="contato" title="Contato">
                         <component:contato celular="#{terceirizadoBean.terceirizado.celular}"
                                            telefone="#{terceirizadoBean.terceirizado.telefone}"
                                            email="#{terceirizadoBean.terceirizado.email}"
-                                           email2="#{terceirizadoBean.terceirizado.email2}"/>
+                                           email2="#{terceirizadoBean.terceirizado.email2}"
+                                           contatoEmergenciaTipo="#{terceirizadoBean.terceirizado.contatoEmergenciaTipo}"
+                                           contatoEmergenciaNome="#{terceirizadoBean.terceirizado.contatoEmergenciaNome}"
+                                           contatoEmergenciaEmail="#{terceirizadoBean.terceirizado.contatoEmergenciaEmail}"
+                                           contatoEmergenciaTelefone="#{terceirizadoBean.terceirizado.contatoEmergenciaTelefone}"
+                                           contatoEmergenciaCelular="#{terceirizadoBean.terceirizado.contatoEmergenciaCelular}"/>
                     </p:tab>
 
                     <p:tab id="endereco" title="Endereço">
@@ -43,12 +52,35 @@
                                             numero="#{terceirizadoBean.terceirizado.numero}"
                                             bairro="#{terceirizadoBean.terceirizado.bairro}"
                                             cep="#{terceirizadoBean.terceirizado.cep}"
-                                            complemento="#{terceirizadoBean.terceirizado.complemento}"/>
+                                            complemento="#{terceirizadoBean.terceirizado.complemento}"
+                                            paisOrigem="#{terceirizadoBean.terceirizado.paisOrigem}"
+                                            estadoOrigem="#{terceirizadoBean.terceirizado.estadoOrigem}"
+                                            cidadeOrigem="#{terceirizadoBean.terceirizado.cidadeOrigem}"/>
                     </p:tab>
 
                     <p:tab id="documentacao" title="Documentação">
                         <component:documentacao rg="#{terceirizadoBean.terceirizado.rg}"
-                                                cpf="#{terceirizadoBean.terceirizado.cpf}"/>
+                                                cpf="#{terceirizadoBean.terceirizado.cpf}"
+                                                rgOrgaoExpedidor="#{terceirizadoBean.terceirizado.orgaoExpedidor}"
+                                                rgEstado="#{terceirizadoBean.terceirizado.rgUF}"
+                                                nisNit="#{terceirizadoBean.terceirizado.nisNit}"
+                                                pisPasep="#{terceirizadoBean.terceirizado.pisPasep}"/>
+                    </p:tab>
+
+                    <p:tab id="profissional" title="Dados Profissionais">
+                        <component:dadosProfissionais vinculo="#{terceirizadoBean.terceirizado.vinculo}"
+                                                      setorTerceirizado="#{terceirizadoBean.terceirizado.profissionalSetor}"
+                                                      regimeTrabalho="#{terceirizadoBean.terceirizado.regimeTrabalho}"
+                                                      escolaridade="#{terceirizadoBean.terceirizado.profissionalEscolaridade}"
+                                                      formacao="#{terceirizadoBean.terceirizado.profissionalFormacao}"
+                                                      funcao="#{terceirizadoBean.terceirizado.profissionalFuncao}"
+                                                      cargo="#{terceirizadoBean.terceirizado.profissionalCargo}"
+                                                      lotacao="#{terceirizadoBean.terceirizado.profissionalCampusLotacao}"
+                                                      setor="#{terceirizadoBean.terceirizado.profissionalSetor}"
+                                                      turno="#{terceirizadoBean.terceirizado.turno}"
+                                                      dataAdmissao="#{terceirizadoBean.terceirizado.profissionalDataAdmissao}"
+                                                      dataFinalContrato="#{terceirizadoBean.terceirizado.profissionalDataFinalContrato}"
+                                                      dataDesligamento="#{terceirizadoBean.terceirizado.profissionalDataDesligamento}"/>
                     </p:tab>
 
                 </p:tabView>

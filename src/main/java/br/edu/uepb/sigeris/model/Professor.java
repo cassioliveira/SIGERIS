@@ -32,19 +32,6 @@ public class Professor extends Pessoa implements Serializable {
     @Column(name = "data_controle")
     private Date data;
 
-    @Column(name = "regime_trabalho")
-    private String regimeTrabalho;
-
-    /*Aqui informa a área como Direito, Economia, Administração, etc.*/
-    @Column(name = "area", length = 100)
-    private String area;
-
-    @Column(name = "descricao_funcao", length = 100)
-    private String descricaoFuncao;
-
-    @Column(name = "tem_funcao")
-    private boolean temFuncao;
-
     @Column(name = "dedicacao_exclusiva")
     private boolean dedicacaoExclusiva;
 
@@ -53,9 +40,6 @@ public class Professor extends Pessoa implements Serializable {
 
     @Column(name = "nivel", length = 50)
     private String nivel;
-    
-    @Column(name = "titulacao", length = 50)
-    private String titulacao;
 
     @CPF
     @Column(name = "cpf", unique = true)
@@ -65,15 +49,4 @@ public class Professor extends Pessoa implements Serializable {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "profesor_cursos")
     private List<Cursos> cursos;
-
-//    @ManyToMany(targetEntity = Curso.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "professor_curso", joinColumns = {
-//        @JoinColumn(name = "professor_id")}, inverseJoinColumns = {
-//        @JoinColumn(name = "curso_id")})
-//    private List<Curso> cursos = new ArrayList<>();
-//    @ManyToMany(targetEntity = Pendencia.class, mappedBy = "professores")
-//    private List<Pendencia> pendencia = new ArrayList<>();
-//    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-//    @JoinColumn(name = "professor_pendencia", referencedColumnName = "id")
-//    private Pendencia pendencia;
 }

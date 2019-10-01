@@ -8,7 +8,6 @@
 
     <composite:interface>
         <composite:attribute name="nome"/>
-        <composite:attribute name="turno"/>
         <composite:attribute name="matricula"/>
         <composite:attribute name="sexo"/>
         <composite:attribute name="estadoCivil"/>
@@ -44,13 +43,6 @@
 
                     <p:outputLabel for="name" value="Nome: "/>
                     <p:inputText id="name" value="#{cc.attrs.nome}" size="43" maxlength="200"/>
-
-                    <p:outputLabel for="turno" value="Turno: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
-                    <p:selectOneMenu id="turno" value="#{cc.attrs.turno}" style="width: 279px"
-                                     rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItems var="turno" value="#{terceirizadoBean.turnos}" itemLabel="#{turno.description}" itemValue="#{turno}"/>
-                    </p:selectOneMenu>
 
                     <p:outputLabel for="registration" value="Matrícula: "  rendered="#{view.viewId ne '/servidor/cadastro-terceirizado.xhtml'}"/>
                     <p:inputMask id="registration" value="#{cc.attrs.matricula}" size="13" 

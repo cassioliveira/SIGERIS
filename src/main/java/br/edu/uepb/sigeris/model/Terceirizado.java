@@ -28,10 +28,6 @@ public class Terceirizado extends Pessoa implements Serializable {
     @Column(name = "data_controle")
     private Date data;
 
-//    @Enumerated(EnumType.STRING)
-    @Column(name = "setor", length = 30)
-    private String setor;
-    
     @Enumerated(EnumType.STRING)
     @Column(name = "turno", length = 30)
     private TurnosTerceirizados turno;

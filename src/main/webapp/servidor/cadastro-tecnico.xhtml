@@ -63,25 +63,13 @@
                                                 cpf="#{tecnicoBean.tecnico.cpf}"
                                                 rgOrgaoExpedidor="#{tecnicoBean.tecnico.orgaoExpedidor}"
                                                 rgEstado="#{tecnicoBean.tecnico.rgUF}"
-                                                tituloEleitoral="#{tecnicoBean.tecnico.tituloEleitoral}"
-                                                tituloSecao="#{tecnicoBean.tecnico.tituloSecao}"
-                                                tituloZona="#{tecnicoBean.tecnico.tituloZona}"
-                                                tituloMunicipio="#{tecnicoBean.tecnico.tituloMunicipio}"
-                                                ctps="#{tecnicoBean.tecnico.ctps}"
-                                                ctpsSerie="#{tecnicoBean.tecnico.ctpsSerie}"
-                                                ctpsEstado="#{tecnicoBean.tecnico.ctpsUF}"
-                                                ctpsMunicipio="#{tecnicoBean.tecnico.ctpsMunicipio}"
-                                                reservista="#{tecnicoBean.tecnico.reservista}"
-                                                reservistaRM="#{tecnicoBean.tecnico.reservistaRegiaoMilitar}"
-                                                reservistaMunicipio="#{tecnicoBean.tecnico.reservistaMunicipio}"
-                                                reservistaEstado="#{tecnicoBean.tecnico.reservistaUF}"
+                                                nisNit="#{tecnicoBean.tecnico.nisNit}"
                                                 pisPasep="#{tecnicoBean.tecnico.pisPasep}"/>
-
                     </p:tab>
 
                     <p:tab id="profissional" title="Dados Profissionais">
                         <component:dadosProfissionais vinculo="#{tecnicoBean.tecnico.vinculo}"
-                                                      setorTecnico="#{tecnicoBean.tecnico.setor}"
+                                                      setorTecnico="#{tecnicoBean.tecnico.profissionalSetor}"
                                                       regimeTrabalho="#{tecnicoBean.tecnico.regimeTrabalho}"
                                                       escolaridade="#{tecnicoBean.tecnico.profissionalEscolaridade}"
                                                       formacao="#{tecnicoBean.tecnico.profissionalFormacao}"

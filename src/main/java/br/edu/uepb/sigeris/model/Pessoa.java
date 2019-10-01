@@ -60,8 +60,8 @@ public class Pessoa implements Serializable {
     private String matricula;
 
     @Column(name = "situacao", length = 10)
-    private String situacao; 
-    
+    private String situacao;
+
     @Column(name = "nome_social", length = 100)
     private String nomeSocial;
 
@@ -95,66 +95,6 @@ public class Pessoa implements Serializable {
     @Column(name = "rg_uf", length = 10)
     private String rgUF;
 
-    @Column(name = "titulo_eleitoral", length = 20)
-    private String tituloEleitoral;
-
-    @Column(name = "titulo_zona", length = 5)
-    private String tituloZona;
-
-    @Column(name = "titulo_secao", length = 5)
-    private String tituloSecao;
-
-    @Column(name = "titulo_municipio", length = 70)
-    private String tituloMunicipio;
-
-    @Column(name = "titulo_uf", length = 10)
-    private String tituloUF;
-
-    @Column(name = "reservista", length = 20)
-    private String reservista;
-
-    @Column(name = "reservista_regiao_militar", length = 20)
-    private String reservistaRegiaoMilitar;
-
-    @Column(name = "reservista_municipio", length = 70)
-    private String reservistaMunicipio;
-
-    @Column(name = "reservista_uf", length = 10)
-    private String reservistaUF;
-
-    @Column(name = "certidao_casamento_nascimento", length = 20)
-    private String certidaoCasamentoNascimento;
-
-    @Column(name = "certidao_numero", length = 20)
-    private String certidaoNumero;
-
-    @Column(name = "certidao_livro", length = 20)
-    private String certidaoLivro;
-
-    @Column(name = "certidao_folha", length = 20)
-    private String certidaoFolha;
-
-    @Column(name = "certidao_cartorio", length = 20)
-    private String certidaoCartorio;
-
-    @Column(name = "certidao_comarca", length = 20)
-    private String certidaoComarca;
-    
-    @Column(name = "certidao_uf", length = 10)
-    private String certidaoUF;
-
-    @Column(name = "ctps", length = 20)
-    private String ctps;
-
-    @Column(name = "ctps_municipio", length = 70)
-    private String ctpsMunicipio;
-
-    @Column(name = "ctps_uf", length = 10)
-    private String ctpsUF;
-
-    @Column(name = "ctps_serie", length = 20)
-    private String ctpsSerie;
-
     @Column(name = "telefone", length = 20)
     private String telefone;
 
@@ -169,7 +109,7 @@ public class Pessoa implements Serializable {
 
     @Column(name = "contato_emergencia_telefone", length = 20)
     private String contatoEmergenciaTelefone;
-    
+
     @Column(name = "contato_emergencia_celular", length = 20)
     private String contatoEmergenciaCelular;
 
@@ -185,6 +125,9 @@ public class Pessoa implements Serializable {
 
     @Column(name = "pis_pasep", length = 30)
     private String pisPasep;
+
+    @Column(name = "nis_nit", length = 30)
+    private String nisNit;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria")
@@ -228,10 +171,10 @@ public class Pessoa implements Serializable {
 
     @Column(name = "estado_origem", length = 70)
     private String estadoOrigem;
-    
+
     @Column(name = "pais_origem", length = 70)
     private String paisOrigem;
-    
+
     @Column(name = "cidade_origem", length = 70)
     private String cidadeOrigem;
 
@@ -240,7 +183,7 @@ public class Pessoa implements Serializable {
 
     @Column(name = "profissional_escolaridade", length = 50)
     private String profissionalEscolaridade;
-    
+
     @Column(name = "profissional_setor", length = 50)
     private String profissionalSetor;
 
@@ -255,13 +198,16 @@ public class Pessoa implements Serializable {
 
     @Column(name = "profissional_campus_lotacao", length = 50)
     private String profissionalCampusLotacao;
-    
+
     @Column(name = "passaporte_numero", length = 50)
     private String passaporteNumero;
-    
+
     @Column(name = "deficiencia", length = 100)
     private String deficiencia;
-    
+
+    @Column(name = "regime_trabalho")
+    private String regimeTrabalho;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "passaporte_visto")
     private Date passaporteVisto;
@@ -269,7 +215,7 @@ public class Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "passaporte_validade")
     private Date passaporteValidade;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "profissional_data_admissao")
     private Date profissionalDataAdmissao;
