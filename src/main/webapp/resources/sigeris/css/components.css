@@ -294,6 +294,12 @@
     box-shadow: none;
 }
 
+.botao-novo-servidor {
+    text-align: right; 
+    font-size: 16px; 
+    font-weight: bold;
+}
+
 .nounderscore-link{
     text-decoration: none;
 }

@@ -8,6 +8,8 @@
 
     <composite:interface>
         <composite:attribute name="situacao"/>
+        <composite:attribute name="setorTecnico"/>
+        <composite:attribute name="setorTerceirizado"/>
         <composite:attribute name="motivoAfastamento"/>
         <composite:attribute name="vinculo"/>
         <composite:attribute name="regimeTrabalho"/>
@@ -44,6 +46,28 @@
                 </h:panelGroup>
             </h:panelGroup>
 
+            <p:outputLabel for="setorTecnico" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}"/>
+            <h:panelGroup rendered="#{view.viewId eq '/servidor/cadastro-tecnico.xhtml'}">
+                <p:selectOneMenu id="setorTecnico" value="#{cc.attrs.setorTecnico}" style="width: 140px"
+                                 >
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="setor" value="#{tecnicoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
+                </p:selectOneMenu>
+                <p:link id="adicionar-setor-tecnico" outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"><i class="fa fa-plus"/></p:link>
+                <p:tooltip for="adicionar-setor-tecnico" value="Adicione um novo setor"/>
+            </h:panelGroup>
+
+            <p:outputLabel for="setorTerceirizado" value="Setor: " rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}"/>
+            <h:panelGroup rendered="#{view.viewId eq '/servidor/cadastro-terceirizado.xhtml'}">
+                <p:selectOneMenu id="setorTerceirizado" value="#{cc.attrs.setorTerceirizado}" style="width: 140px"
+                                 >
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItems var="setor" value="#{terceirizadoBean.setores}" itemLabel="#{setor}" itemValue="#{setor}"/>
+                </p:selectOneMenu>
+                <p:link id="adicionar-setor-terceirizado" outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"><i class="fa fa-plus"/></p:link>
+                <p:tooltip for="adicionar-setor-terceirizado" value="Adicione um novo setor"/>
+            </h:panelGroup>
+
             <p:outputLabel for="vinculo" value="Vínculo: "/>
             <p:selectOneMenu id="vinculo" value="#{cc.attrs.vinculo}" style="width: 140px">
                 <f:selectItems var="vinculo" itemLabel="#{vinculo.description}" itemValue="#{vinculo}" value="#{professorBean.categorias}"/>
@@ -56,23 +80,23 @@
                 <f:selectItem itemLabel="T30" itemValue="T30"/>
             </p:selectOneMenu>
 
-            <p:outputLabel for="escolaridade" value="Escolaridade: "/>
-            <p:inputText id="escolaridade" value="#{cc.attrs.escolaridade}" size="20" maxlength="20"/>
+            <!--            <p:outputLabel for="escolaridade" value="Escolaridade: "/>
+                        <p:inputText id="escolaridade" value="#{cc.attrs.escolaridade}" size="20" maxlength="20"/>-->
 
             <p:outputLabel for="formacao" value="Formação: "/>
             <p:inputText id="formacao" value="#{cc.attrs.formacao}" size="20" maxlength="20"/>
 
-            <p:outputLabel for="funcao" value="Função: "/>
-            <p:inputText id="funcao" value="#{cc.attrs.funcao}" size="20" maxlength="20"/>
-
             <p:outputLabel for="cargo" value="Cargo: "/>
             <p:inputText id="cargo" value="#{cc.attrs.cargo}" size="20" maxlength="20"/>
+
+            <p:outputLabel for="funcao" value="Função administrativa: "/>
+            <p:inputText id="funcao" value="#{cc.attrs.funcao}" size="20" maxlength="20"/>
 
             <p:outputLabel for="lotacao" value="Lotação: "/>
             <p:inputText id="lotacao" value="#{cc.attrs.lotacao}" size="20" maxlength="20"/>
 
-            <p:outputLabel for="setor" value="Setor: "/>
-            <p:inputText id="setor" value="#{cc.attrs.setor}" size="20" maxlength="20"/>
+            <!--            <p:outputLabel for="setor" value="Setor: "/>
+                        <p:inputText id="setor" value="#{cc.attrs.setor}" size="20" maxlength="20"/>-->
 
             <p:outputLabel for="admissao" value="Admissão: " style="margin-right: 1px"/>
             <p:calendar id="admissao" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" maxlength="10" mask="true"

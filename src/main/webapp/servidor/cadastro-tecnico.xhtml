@@ -25,7 +25,6 @@
                     <p:tab id="pessoais" title="Dados pessoais">
                         <component:dadosPessoais nome="#{tecnicoBean.tecnico.nome}"
                                                  matricula="#{tecnicoBean.tecnico.matricula}"
-                                                 setorTecnico="#{tecnicoBean.tecnico.setor}"
                                                  sexo="#{tecnicoBean.tecnico.sexo}"
                                                  estadoCivil="#{tecnicoBean.tecnico.estadoCivil}"
                                                  dataNascimento="#{tecnicoBean.tecnico.dataNascimento}"
@@ -82,6 +81,7 @@
 
                     <p:tab id="profissional" title="Dados Profissionais">
                         <component:dadosProfissionais vinculo="#{tecnicoBean.tecnico.vinculo}"
+                                                      setorTecnico="#{tecnicoBean.tecnico.setor}"
                                                       regimeTrabalho="#{tecnicoBean.tecnico.regimeTrabalho}"
                                                       escolaridade="#{tecnicoBean.tecnico.profissionalEscolaridade}"
                                                       formacao="#{tecnicoBean.tecnico.profissionalFormacao}"

@@ -37,10 +37,10 @@
             <p:selectOneMenu id="classe" value="#{cc.attrs.classe}" style="width: 250px">
                 <f:selectItem noSelectionOption="true"/>
                 <f:selectItem itemLabel="Professor Graduado" itemValue="GRADUADO"/>
+                <f:selectItem itemLabel="Professor Especialista" itemValue="ESPECIALISTA"/>
                 <f:selectItem itemLabel="Professor Mestre" itemValue="MESTRADO"/>
                 <f:selectItem itemLabel="Professor Doutor" itemValue="DOUTOR"/>
-                <f:selectItem itemLabel="Professor Doutor Associado" itemValue="DOUTORASSOCIADO"/>
-                <f:selectItem itemLabel="Professor Doutor Pleno" itemValue="DOUTORPLENO"/>
+                <f:selectItem itemLabel="Professor Pós-doutor" itemValue="POSDOUTOR"/>
             </p:selectOneMenu>
 
             <p:outputLabel for="cursos" value="Curso(s): "/>
@@ -51,8 +51,8 @@
                                value="#{professorBean.todosCursos}"/>
             </p:selectCheckboxMenu>
 
-            <p:outputLabel for="titulacao" value="Títulação: "/>
-            <p:inputText id="titulacao" value="#{cc.attrs.titulacao}" size="37" maxlength="20"/>
+<!--            <p:outputLabel for="titulacao" value="Títulação: "/>
+            <p:inputText id="titulacao" value="#{cc.attrs.titulacao}" size="37" maxlength="20"/>-->
 
         </h:panelGrid>
 
