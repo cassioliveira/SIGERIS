@@ -2,6 +2,7 @@ package br.edu.uepb.sigeris.repository;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;

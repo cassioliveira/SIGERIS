@@ -1,13 +1,14 @@
 package br.edu.uepb.sigeris.converters;
 
-import br.edu.uepb.sigeris.exceptions.SIGERISException;
-import br.edu.uepb.sigeris.model.Setor;
-import br.edu.uepb.sigeris.services.SetorService;
-import br.edu.uepb.sigeris.util.cdi.CDIServiceLocator;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
+import br.edu.uepb.sigeris.exceptions.SIGERISException;
+import br.edu.uepb.sigeris.model.Setor;
+import br.edu.uepb.sigeris.services.SetorService;
+import br.edu.uepb.sigeris.util.cdi.CDIServiceLocator;
 
 /**
  *

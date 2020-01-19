@@ -1,7 +1,8 @@
 package br.edu.uepb.sigeris.repository;
 
-import br.edu.uepb.sigeris.model.Usuario;
 import java.io.Serializable;
+
+import br.edu.uepb.sigeris.model.Usuario;
 
 /**
  *

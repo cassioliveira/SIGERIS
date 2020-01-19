@@ -1,8 +1,10 @@
 package br.edu.uepb.sigeris.repository;
 
-import br.edu.uepb.sigeris.model.Setor;
 import java.io.Serializable;
 import java.util.List;
+
+import br.edu.uepb.sigeris.model.Pessoa;
+import br.edu.uepb.sigeris.model.Setor;
 
 /**
  *
