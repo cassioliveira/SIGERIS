@@ -28,7 +28,7 @@
 //        Curso objectToReturn = null;
 //
 //        if (value != null) {
-//            objectToReturn = this.cursoService.porId(new Long(value));
+//            objectToReturn = this.cursoService.porId(Long.valueOf(value));
 //        }
 //        return objectToReturn;
 //    }

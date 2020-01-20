@@ -29,7 +29,7 @@ public class TecnicoConverter implements Converter {
         Tecnico objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.tecnicoService.findById(new Long(value));
+            objectToReturn = this.tecnicoService.findById(Long.valueOf(value));
         }
         return objectToReturn;
     }

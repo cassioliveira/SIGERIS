@@ -29,7 +29,7 @@ public class DisciplinaConverter implements Converter {
         Disciplina objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.disciplinaService.porId(new Long(value));
+            objectToReturn = this.disciplinaService.porId(Long.valueOf(value));
         }
         return objectToReturn;
     }

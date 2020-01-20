@@ -29,7 +29,7 @@ public class UsuarioConveter implements Converter {
         Usuario objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.usuarioService.porId(new Long(value));
+            objectToReturn = this.usuarioService.porId(Long.valueOf(value));
         }
         return objectToReturn;
     }

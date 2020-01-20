@@ -29,7 +29,9 @@ import net.sf.jasperreports.engine.JRException;
 @ViewScoped
 public class ExecutaRelatorios implements Serializable {
 
-    private final GeraRelatorios geradorRelatorios = new GeraRelatorios();
+	private static final long serialVersionUID = 1L;
+
+	private final GeraRelatorios geradorRelatorios = new GeraRelatorios();
 
     @Inject
     @Getter

@@ -29,7 +29,7 @@ public class ProfessorConverter implements Converter {
         Professor objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.teacherService.findById(new Long(value));
+            objectToReturn = this.teacherService.findById(Long.valueOf(value));
         }
         return objectToReturn;
     }

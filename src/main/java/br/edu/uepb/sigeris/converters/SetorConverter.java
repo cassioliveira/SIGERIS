@@ -29,7 +29,7 @@ public class SetorConverter implements Converter {
         Setor objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.setorService.porId(new Long(value));
+            objectToReturn = this.setorService.porId(Long.valueOf(value));
         }
         return objectToReturn;
     }

@@ -29,7 +29,7 @@ public class TerceirizadoConverter implements Converter {
         Terceirizado objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.terceirizadoService.findById(new Long(value));
+            objectToReturn = this.terceirizadoService.findById(Long.valueOf(value));
         }
         return objectToReturn;
     }

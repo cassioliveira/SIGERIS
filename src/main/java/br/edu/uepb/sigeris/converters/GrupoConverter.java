@@ -29,7 +29,7 @@ public class GrupoConverter implements Converter {
         Grupo objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.grupoService.porId(new Long(value));
+            objectToReturn = this.grupoService.porId(Long.valueOf(value));
         }
         return objectToReturn;
     }
