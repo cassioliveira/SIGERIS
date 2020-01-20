@@ -1,91 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/WEB-INF/templates/Layout.xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/templates/Layout.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-    <f:metadata>
-        <f:viewParam name="grupo" value="#{grupoBean.grupo}"/>
-    </f:metadata>
+	<f:metadata>
+		<f:viewParam name="grupo" value="#{grupoBean.grupo}" />
+	</f:metadata>
 
-    <ui:define name="content">
-        <p:fieldset id="fieldsetGrupo" legend="Cadastro de grupos">
+	<ui:define name="content">
+		<p:fieldset id="fieldsetGrupo" legend="Cadastro de grupos">
 
-            <p:messages closable="true" severity="info,warn,error">
-                <p:autoUpdate/>
-            </p:messages>
+			<p:messages closable="true" severity="info,warn,error">
+				<p:autoUpdate />
+			</p:messages>
 
-            <h:form id="formCadastroGrupo">
+			<h:form id="formCadastroGrupo">
 
-                <h:panelGrid id="panelCadastroGrupo" columns="2" style="margin-bottom: 10px">
-                    
-<!--                    <p:outputLabel for="grupo" value="Grupo: "/>
+				<h:panelGrid id="panelCadastroGrupo" columns="2"
+					style="margin-bottom: 10px">
+
+					<!--                    <p:outputLabel for="grupo" value="Grupo: "/>
                     <p:inputText id="grupo" value="#{grupoBean.grupo.nome}" size="25"/>-->
 
-                    <p:outputLabel for="grupo" value="Grupo: "/>
-                    <p:selectOneMenu id="grupo" value="#{grupoBean.grupo.nome}" style="width: 279px">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItems var="grupo" value="#{grupoBean.grupos}" itemLabel="#{grupo.descricao}" itemValue="#{grupo}"/>
-                    </p:selectOneMenu>
+					<p:outputLabel for="grupo" value="Grupo: " />
+					<p:selectOneMenu id="grupo" value="#{grupoBean.grupo.nome}"
+						style="width: 279px">
+						<f:selectItem noSelectionOption="true" />
+						<f:selectItems var="grupo" value="#{grupoBean.grupos}"
+							itemLabel="#{grupo.descricao}" itemValue="#{grupo}" />
+					</p:selectOneMenu>
 
-                </h:panelGrid>
+				</h:panelGrid>
 
-                <p:toolbar>
-                    <f:facet name="left">
-                        <p:commandButton style="font-size: 13px; margin-left: 5px; vertical-align: middle" value="Salvar" action="#{grupoBean.salvar}" 
-                                         update="datatablePesquisaGrupo panelCadastroGrupo" icon="fa fa-save" id="botaoSalvar">
-                        </p:commandButton>
-                    </f:facet>
-                </p:toolbar>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton
+							style="font-size: 13px; margin-left: 5px; vertical-align: middle"
+							value="Salvar" action="#{grupoBean.salvar}"
+							update="datatablePesquisaGrupo panelCadastroGrupo"
+							icon="fa fa-save" id="botaoSalvar">
+						</p:commandButton>
+					</f:facet>
+				</p:toolbar>
 
-                <p:dataTable id="datatablePesquisaGrupo" var="grupo" value="#{grupoBean.gruposCadastrados}"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10" reflow="true" sortOrder="ascending" 
-                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaGrupo"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-                             scrollable="true" scrollRows="10" scrollHeight="290" sortBy="#{grupo.nome}">
+				<p:dataTable id="datatablePesquisaGrupo" var="grupo"
+					value="#{grupoBean.gruposCadastrados}"
+					paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10"
+					reflow="true" sortOrder="ascending" paginatorPosition="bottom"
+					emptyMessage="Nenhum registro encontrado" paginator="true"
+					widgetVar="pesquisaGrupo"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,20,50,100" scrollable="true"
+					scrollRows="10" scrollHeight="290" sortBy="#{grupo.nome}">
 
-                    <f:facet name="header">
-                        <p:outputPanel id="panelFiltroGrupo">
-                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaGrupo').filter()" style="width:300px" placeholder="Pesquise na tabela..."/>
-                        </p:outputPanel>
-                    </f:facet>
-                    
-                    <p:column headerText="Nome" width="40%" filterStyle="display:none" priority="1"
-                              filterBy="#{grupo.nome}" filterMatchMode="contains">
-                        <h:outputText value="#{grupo.nome}" style="font-size: 15px; font-weight: bold"/>
-                    </p:column>
+					<f:facet name="header">
+						<p:outputPanel id="panelFiltroGrupo">
+							<p:inputText id="globalFilter"
+								onkeyup="PF('pesquisaGrupo').filter()" style="width:300px"
+								placeholder="Pesquise na tabela..." />
+						</p:outputPanel>
+					</f:facet>
 
-                    <p:column id="acoes" style="text-align: center" width="10%">
-                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
-                            <f:param  name="grupo" value="#{grupo.id}"/>
-                            <p:tooltip for="botaoEditar" value="Editar"/>
-                        </p:button>
+					<p:column headerText="Nome" width="40%" filterStyle="display:none"
+						priority="1" filterBy="#{grupo.nome}" filterMatchMode="contains">
+						<h:outputText value="#{grupo.nome}"
+							style="font-size: 15px; font-weight: bold" />
+					</p:column>
 
-                        <p:commandButton id="botaoExcluir" title="Excluir" icon="ui-icon ui-icon-trash" style="font-size: 10px"
-                                         action="#{grupoBean.excluir}" process="datatablePesquisaGrupo" update="datatablePesquisaGrupo">
-                            <f:setPropertyActionListener value="#{grupo}" target="#{grupoBean.grupoSelecionado}"/>
-                            <p:tooltip for="botaoExcluir" value="Excluir"/>
+					<p:column id="acoes" style="text-align: center" width="10%">
+						<p:button id="botaoEditar" title="Editar"
+							icon="ui-icon ui-icon-pencil" style="font-size: 10px">
+							<f:param name="grupo" value="#{grupo.id}" />
+							<p:tooltip for="botaoEditar" value="Editar" />
+						</p:button>
 
-                            <p:confirm icon="ui-icon-alert" header="Excluir grupo" message="Deseja realmente excluir o grupo #{grupo.nome}?"/>
+						<p:commandButton id="botaoExcluir" title="Excluir"
+							icon="ui-icon ui-icon-trash" style="font-size: 10px"
+							action="#{grupoBean.excluir}" process="datatablePesquisaGrupo"
+							update="datatablePesquisaGrupo">
+							<f:setPropertyActionListener value="#{grupo}"
+								target="#{grupoBean.grupoSelecionado}" />
+							<p:tooltip for="botaoExcluir" value="Excluir" />
 
-                        </p:commandButton>
-                    </p:column>
+							<p:confirm icon="ui-icon-alert" header="Excluir grupo"
+								message="Deseja realmente excluir o grupo #{grupo.nome}?" />
 
-                    <f:facet name="footer">
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
                         Há #{fn:length(grupoBean.gruposCadastrados)} #{fn:length(grupoBean.gruposCadastrados) > 1 ? ' grupos cadastrados' : ' grupo cadastrado'}.
                     </f:facet>
 
-                </p:dataTable>
+				</p:dataTable>
 
-            </h:form>
+			</h:form>
 
-        </p:fieldset>
+		</p:fieldset>
 
-    </ui:define>
+	</ui:define>
 
 </ui:composition>

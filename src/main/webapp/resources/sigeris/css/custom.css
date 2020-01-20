@@ -10,8 +10,8 @@ body {
 	color: #555;
 }
 
-@media (max-width: 640px) {
-	.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+@media ( max-width : 640px) {
+	.ui-tabs.ui-tabs-top>.ui-tabs-nav li {
 		width: 100%;
 	}
 }
@@ -21,7 +21,7 @@ body {
 	border: none;
 }
 
-@media (max-width: 640px) {
+@media ( max-width : 640px) {
 	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
 		border: none;
 	}

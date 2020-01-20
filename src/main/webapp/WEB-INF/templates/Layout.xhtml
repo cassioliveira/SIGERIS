@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <f:facet name="first">
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </f:facet>
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
 
-        <title>SIGERIS - Sistema de Gerenciamento e Integração de Setores</title>
+	<title>SIGERIS - Sistema de Gerenciamento e Integração de
+		Setores</title>
 
-        <h:outputStylesheet library="sigeris" name="css/custom.css" />
-        <h:outputStylesheet library="sigeris" name="css/layout.css" />
-        <h:outputStylesheet  library="sigeris" name="css/components.css" />
+	<h:outputStylesheet library="sigeris" name="css/custom.css" />
+	<h:outputStylesheet library="sigeris" name="css/layout.css" />
+	<h:outputStylesheet library="sigeris" name="css/components.css" />
 
-        <h:outputScript  library="sigeris" name="js/primefacesCalendarLocale.js" />
-        <h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
-        <h:outputScript target="body" library="sigeris" name="js/app.js" />
+	<h:outputScript library="sigeris" name="js/primefacesCalendarLocale.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
+	<h:outputScript target="body" library="sigeris" name="js/app.js" />
 
-        <link rel="icon" type="image/x-icon" href="http://localhost:8080/SIGERIS/resources/sigeris/imagens/cche.ico"/>
-    </h:head>
+	<link rel="icon" type="image/x-icon"
+		href="http://localhost:8080/SIGERIS/resources/sigeris/imagens/cche.ico" />
+</h:head>
 
-    <h:body>
+<h:body>
 
-        <!--            Componente Primefaces que exibe dialog após determinado tempo ter passado.
+	<!--            Componente Primefaces que exibe dialog após determinado tempo ter passado.
                        Usado basicamente para exibir janela de sessão expirada após finalizada sessão do usuário.-->
-        <p:idleMonitor onidle="PF('idleDialog').show()" timeout="900000"/>
-        <p:dialog header="Sessão expirada" resizable="false" widgetVar="idleDialog" modal="true" 
-                  width="200" closable="false" styleClass="box-sessao-expirada">
-            <h:outputText value="Faça login novamente!"  style="text-align: center !important"/>
-            <br/>
-            <p:button value="OK" outcome="/inicio.xhtml" styleClass="botao-ok-sessao-expirada"/>
-        </p:dialog>
+	<p:idleMonitor onidle="PF('idleDialog').show()" timeout="900000" />
+	<p:dialog header="Sessão expirada" resizable="false"
+		widgetVar="idleDialog" modal="true" width="200" closable="false"
+		styleClass="box-sessao-expirada">
+		<h:outputText value="Faça login novamente!"
+			style="text-align: center !important" />
+		<br />
+		<p:button value="OK" outcome="/inicio.xhtml"
+			styleClass="botao-ok-sessao-expirada" />
+	</p:dialog>
 
-        <h:form>
-
-
-            <header class="aw-topbar">
-                
-                <a href="#" class="aw-toggle  js-toggle"><i class="fa fa-bars"></i></a>
-                
-                <a href="/SIGERIS/inicio.xhtml">
-                    <h:graphicImage library="sigeris" name="imagens/logo-uepb.png" style="margin-left: 20px; margin-top: 2px"/>
-                </a>
-
-                <span class="user-welcome-message" style="margin-top: -10px">
-                    Olá usuario#{security.nomeUsuario}!
-                </span>
-
-            </header>
-
-            <aside class="aw-sidebar  js-sidebar">
-                <ui:include src="Menu.xhtml" />
-            </aside>
-
-            <section class="aw-content  js-content">
-                <div style="text-align: right; margin-top: 5px; padding-top: 5px !important;">
-                    <!--<p:clock mode="server" pattern="dd/MM/yyyy  HH:mm:ss" autoSync="true"/>-->
-                </div>
-                <ui:insert name="content" />
-            </section>
+	<h:form>
 
 
-            <!--Dialog global para telas de confirmação de exclusão, edição, etc.-->
-            <p:confirmDialog global="true" style="z-index: 100;">
-                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" 
-                                 icon="ui-icon-close"/>
+		<header class="aw-topbar">
 
-                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" 
-                                 icon="ui-icon-check"/>
-            </p:confirmDialog>
+			<a href="#" class="aw-toggle  js-toggle"><i class="fa fa-bars"></i></a>
 
-        </h:form>
+			<a href="/SIGERIS/inicio.xhtml"> <h:graphicImage
+					library="sigeris" name="imagens/logo-uepb.png"
+					style="margin-left: 20px; margin-top: 2px" />
+			</a> <span class="user-welcome-message" style="margin-top: -10px">
+				Olá usuario#{security.nomeUsuario}! </span>
 
-        <!--Mascara de telefone para 8 e 9 dígitos-->
-        <script type="text/javascript">
+		</header>
+
+		<aside class="aw-sidebar  js-sidebar">
+			<ui:include src="Menu.xhtml" />
+		</aside>
+
+		<section class="aw-content  js-content">
+			<div
+				style="text-align: right; margin-top: 5px; padding-top: 5px !important;">
+				<!--<p:clock mode="server" pattern="dd/MM/yyyy  HH:mm:ss" autoSync="true"/>-->
+			</div>
+			<ui:insert name="content" />
+		</section>
+
+
+		<!--Dialog global para telas de confirmação de exclusão, edição, etc.-->
+		<p:confirmDialog global="true" style="z-index: 100;">
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		</p:confirmDialog>
+
+	</h:form>
+
+	<!--Mascara de telefone para 8 e 9 dígitos-->
+	<script type="text/javascript">
             /* Máscaras ER de http://wbruno.com.br/expressao-regular/mascara-campo-de-telefone-em-javascript-com-regex-nono-digito-telefones-sao-paulo/*/
             function mascara(o, f) {
             v_obj = o;
@@ -103,8 +108,8 @@
             };
         </script>
 
-        <!--This script changes the mask of money format-->
-        <script>
+	<!--This script changes the mask of money format-->
+	<script>
             function validateMoney() {
             $('.money').maskMoney({
             decimal: ",",
@@ -119,6 +124,6 @@
             });
         </script>
 
-    </h:body>
+</h:body>
 
 </html>
