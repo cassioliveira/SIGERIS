@@ -1,6 +1,5 @@
 package br.edu.uepb.sigeris.util.cdi;
 
-import br.edu.uepb.sigeris.exceptions.SIGERISException;
 import java.util.Set;
 
 import javax.enterprise.context.spi.CreationalContext;
@@ -8,6 +7,7 @@ import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -18,18 +18,18 @@ public class CDIServiceLocator {
     private CDIServiceLocator() {
     }
 
-    private static BeanManager getBeanManager() throws SIGERISException {
+    private static BeanManager getBeanManager() {
         try {
             InitialContext initialContext = new InitialContext();
             return (BeanManager) initialContext.lookup("java:comp/BeanManager");
         } catch (NamingException e) {
             LOGGER.error(e);
-            throw new SIGERISException("Não pôde encontrar BeanManager no JNDI.");
+            throw new RuntimeException("Não pôde encontrar BeanManager no JNDI.");
         }
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getBean(Class<T> clazz) throws SIGERISException {
+    public static <T> T getBean(Class<T> clazz) {
         BeanManager bm = getBeanManager();
         Set<Bean<?>> beans = (Set<Bean<?>>) bm.getBeans(clazz);
 

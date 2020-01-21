@@ -35,4 +35,8 @@ public class UsuarioService implements Serializable {
     public List<Usuario> todos() {
         return usuarios.todos();
     }
+    
+    public Usuario porUsuario(String userName) {
+        return usuarios.porUsuario(userName);
+    }
 }

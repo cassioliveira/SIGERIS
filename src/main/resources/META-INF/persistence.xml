@@ -18,7 +18,7 @@
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.default_schema" value="public" />
 			<property name="hibernate.max_fetch_depth" value="4" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 
 			<property name="hibernate.transaction.jta.platform"
 				value="org.hibernate.engine.transaction.jta.platform.internal.JBossAppServerJtaPlatform" />
@@ -26,6 +26,11 @@
 				value="java:app/EntityManager" />
 			<property name="hibernate.enable_lazy_load_no_trans"
 				value="true" />
+				
+				<!--Insere o usuário para o primeiro acesso ao sistema e cadastro de outros 
+				usuarios -->
+			<property name="javax.persistence.sql-load-script-source"
+				value="META-INF/sql/user_groups.sql" />
 		</properties>
 	</persistence-unit>
 </persistence>
