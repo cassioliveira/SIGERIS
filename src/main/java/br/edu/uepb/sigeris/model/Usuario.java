@@ -43,13 +43,17 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "O usuário é o CPF (somente números)")
+	@NotNull(message = "O usuário deve ser informado")
 	@Column(name = "username", length = 14)
 	private String userName;
 
 	@NotNull(message = "Informe uma senha")
 	@Column(name = "password", length = 20)
 	private String password;
+	
+	@NotNull(message = "Informe o primeiro nome do usuário")
+	@Column(name = "nome", length = 20)
+	private String nome;
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "grupo_id"))

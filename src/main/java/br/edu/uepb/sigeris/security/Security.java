@@ -25,7 +25,7 @@ public class Security {
 
         SystemUser systemUser = getLoggedUser();
         if (systemUser != null) {
-            nome = systemUser.getSubject().getUserName();
+            nome = systemUser.getSubject().getNome();
         }
 
         return nome;
