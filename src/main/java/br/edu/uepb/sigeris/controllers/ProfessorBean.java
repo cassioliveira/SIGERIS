@@ -53,7 +53,7 @@ public class ProfessorBean implements Serializable {
     private List<Cursos> todosCursos;
     
     @Getter
-    private List<VinculoServidor> categorias;
+    private List<VinculoServidor> vinculos;
 
     @Getter
     private List<Estados> estados;
@@ -67,7 +67,7 @@ public class ProfessorBean implements Serializable {
     public void init() {
         this.professores = professorService.findAll();
         this.todosCursos = Arrays.asList(Cursos.values());
-        this.categorias = Arrays.asList(VinculoServidor.values());
+        this.vinculos = Arrays.asList(VinculoServidor.values());
         this.estados = Arrays.asList(Estados.values());
     }
 

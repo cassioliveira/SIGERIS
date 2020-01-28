@@ -45,7 +45,7 @@ public class TecnicoBean implements Serializable {
     private List<Tecnico> tecnicos;
 
     @Getter
-    private List<VinculoServidor> categorias;
+    private List<VinculoServidor> vinculos;
 
     @Getter
     private List<Estados> estados;
@@ -58,7 +58,7 @@ public class TecnicoBean implements Serializable {
     @PostConstruct
     public void init() {
         this.tecnicos = tecnicoService.findAll();
-        this.categorias = Arrays.asList(VinculoServidor.values());
+        this.vinculos = Arrays.asList(VinculoServidor.values());
         this.estados = Arrays.asList(Estados.values());
 
     }

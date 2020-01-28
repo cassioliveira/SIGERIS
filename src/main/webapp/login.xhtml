@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
@@ -23,9 +23,7 @@
 		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
 	</f:metadata>
 
-	<p:messages closable="true" severity="info,warn,error">
-		<p:autoUpdate />
-	</p:messages>
+
 
 
 
@@ -59,7 +57,9 @@
 		<p:panel rendered="true" id="panelLogin" style="margin-top: 20px">
 			<center>
 				<h:form id="login" prependId="false">
-					<p:growl id="messages" autoUpdate="true" />
+					<p:messages closable="true" severity="info,warn,error">
+						<p:autoUpdate />
+					</p:messages>
 					<h:panelGrid id="loginPanelGrid" cellpadding="10"
 						style="margin-top: 15px">
 						<p:inputText id="username" required="true" placeholder="Login"
@@ -78,8 +78,8 @@
 			</center>
 		</p:panel>
 		<p class="copy-right">
-			&copy; 2020. UEPB > CCHE <br /> SIGERIS - Sistema de Gerenciamento e
-			Integração de Setores
+			&#9400; 2020. UEPB > CCHE <br /> SIGERIS - Sistema de Gerenciamento
+			e Integração de Setores
 		</p>
 	</center>
 
@@ -91,7 +91,7 @@
 			style="font-weight: bold !important" />
 		<br />
 		<br />
-		<p:graphicImage library="sigeris" name="imagens/progressbar.gif"/>
+		<p:graphicImage library="sigeris" name="imagens/progressbar.gif" />
 	</p:dialog>
 
 </h:body>

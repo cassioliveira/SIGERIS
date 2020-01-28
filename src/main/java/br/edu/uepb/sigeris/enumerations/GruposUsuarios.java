@@ -1,7 +1,6 @@
 package br.edu.uepb.sigeris.enumerations;
 
 import java.io.Serializable;
-import lombok.Getter;
 
 /**
  *
@@ -9,18 +8,28 @@ import lombok.Getter;
  */
 public enum GruposUsuarios implements Serializable {
 
-    ADMINISTRADORES("ADMINISTRADORES"),
-    PROFESSORES("PROFESSORES"),
-    TECNICOS("TECNICOS"),
-    TERCEIRIZADOS("TERCEIRIZADOS"),
-    COORDENADORES("COORDENADORES"),
-    VISITANTES("VISITANTES");
-    
-    @Getter
-    private final String descricao;
-
-    private GruposUsuarios(String descricao) {
-        this.descricao = descricao;
-    }
+	CPD,
+    DIRECAO,
+    EXTENSAO,
+    SECLETRAS,
+    BIBLIOTECA,
+    PROFESSORES,
+    SECCONTABEIS,
+    SECMATEMATICA,
+    TERCEIRIZADOS,
+    COORDENADORES,
+	ADMINISTRADORES;
     
 }
+
+//ADMINISTRADORES("ADMINISTRADORES"),
+//PROFESSORES("PROFESSORES"),
+//TECNICOS("TECNICOS"),
+//MATEMATICA("MATEMATICA"),
+//LETRAS("LETRAS"),
+//CONTABEIS("CONTABEIS"),
+//CPD("CPD"),
+//BIBLIOTECA("BIBLIOTECA"),
+//TERCEIRIZADOS("TERCEIRIZADOS"),
+//COORDENADORES("COORDENADORES"),
+//DIRECAO("DIRECAO");

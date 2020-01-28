@@ -1,12 +1,14 @@
 package br.edu.uepb.sigeris.services;
 
-import br.edu.uepb.sigeris.model.Professor;
-import br.edu.uepb.sigeris.repository.Professores;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+import br.edu.uepb.sigeris.model.Professor;
+import br.edu.uepb.sigeris.repository.Professores;
 
 /**
  *
@@ -25,8 +27,8 @@ public class ProfessorService implements Serializable {
     @Transactional
     public void salvar(Professor professor) {
         if (novoCadastro(professor)) {
-            professor.setTipo("PROFESSOR");
-            professor.setCadastro(new Date());
+            professor.setCategoria("PROFESSOR");
+			professor.setDataCadastro(new Date());
         }
         this.professores.salvar(professor);
     }

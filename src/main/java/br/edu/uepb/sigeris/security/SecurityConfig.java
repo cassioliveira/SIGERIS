@@ -21,6 +21,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new SystemUserDetailsService();
     }
 
+    /**
+     *  Referência das permissões a serem utilizadas
+     *  
+     *  ADMINISTRADORES
+     *  MATEMATICA
+     *  LETRAS
+     *  CONTABEIS
+     *  DIRECAO
+     *  BIBLIOTECA
+     *  CPD
+     *  
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         JsfLoginUrlAuthenticationEntryPoint jsfLoginEntry = new JsfLoginUrlAuthenticationEntryPoint();
