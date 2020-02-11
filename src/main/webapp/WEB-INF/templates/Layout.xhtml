@@ -21,7 +21,8 @@
 	<h:outputScript library="sigeris" name="js/primefacesCalendarLocale.js" />
 	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
 	<h:outputScript target="body" library="sigeris" name="js/app.js" />
-	<h:outputScript target="body" library="sigeris" name="js/jquery.maskMoney.min.js" />
+	<h:outputScript target="body" library="sigeris" name="js/jquery.mask.min.js" />
+	<h:outputScript target="body" library="sigeris" name="js/phone.mask.js" />
 
 	<link rel="icon" type="image/x-icon"
 		href="http://localhost:8080/SIGERIS/resources/sigeris/imagens/cche.ico" />
@@ -80,49 +81,22 @@
 		</p:confirmDialog>
 
 	</h:form>
-
-	<!--Mascara de telefone para 8 e 9 dígitos-->
-	<script type="text/javascript">
-            /* Máscaras ER de http://wbruno.com.br/expressao-regular/mascara-campo-de-telefone-em-javascript-com-regex-nono-digito-telefones-sao-paulo/*/
-            function mascara(o, f) {
-            v_obj = o;
-            v_fun = f;
-            setTimeout("execmascara()", 1);
-            }
-            function execmascara() {
-            v_obj.value = v_fun(v_obj.value);
-            }
-            function telefone(v) {
-            v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
-            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-            v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
-            return v;
-            }
-            function id(el) {
-            return document.getElementById(el);
-            }
-            window.onload = function () {
-            id('telefone').onkeyup = function () {
-            mascara(this, telefone);
-            };
-            };
-        </script>
-
-	<!--This script changes the mask of money format-->
+	
+	<!--This script changes the mask of money format
 	<script>
-            function validateMoney() {
-            $('.money').maskMoney({
-            decimal: ",",
-            thousands: ".",
-            allowZero: true,
-            symbol: "R$"
-            });
-            }
-
-            $(document).ready(function () {
-            validateMoney();
-            });
-        </script>
+		function validateMoney() {
+		$('.money').maskMoney({
+		decimal: ",",
+		thousands: ".",
+		allowZero: true,
+		symbol: "R$"
+		});
+		}
+		
+		$(document).ready(function () {
+		validateMoney();
+		});
+	</script> -->
 
 </h:body>
 
