@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import br.edu.uepb.sigeris.model.Terceirizado;
 import br.edu.uepb.sigeris.repository.Terceirizados;
+import br.edu.uepb.sigeris.security.Security;
 
 /**
  *
@@ -26,6 +27,9 @@ public class TerceirizadoService implements Serializable {
 
 	@Inject
 	private SetorService setorService;
+	
+	@Inject
+	private Security security;
 
 	@Transactional
 	public void salvar(Terceirizado terceirizado) {
@@ -33,6 +37,7 @@ public class TerceirizadoService implements Serializable {
 			terceirizado.setCategoria("TERCEIRIZADO");
 			terceirizado.setDataCadastro(new Date());
 		}
+		terceirizado.setUsuario(security.usuarioLogado());
 		this.terceirizados.salvar(terceirizado);
 	}
 

@@ -19,7 +19,6 @@
 	<composite:attribute name="cargo" />
 	<composite:attribute name="funcao" />
 	<composite:attribute name="lotacao" />
-	<composite:attribute name="setor" />
 	<composite:attribute name="dataAdmissao" />
 	<composite:attribute name="dataFinalContrato" />
 	<composite:attribute name="dataDesligamento" />
@@ -61,12 +60,12 @@
 				<f:selectItems var="setor" value="#{tecnicoBean.setores}"
 					itemLabel="#{setor}" itemValue="#{setor}" />
 			</p:selectOneMenu>
-			<p:link id="adicionar-setor-tecnico"
-				outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px">
-				<i class="fa fa-plus" />
-			</p:link>
-			<p:tooltip for="adicionar-setor-tecnico"
-				value="Adicione um novo setor" />
+<!-- 			<p:link id="adicionar-setor-tecnico" -->
+<!-- 				outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"> -->
+<!-- 				<i class="fa fa-plus" /> -->
+<!-- 			</p:link> -->
+<!-- 			<p:tooltip for="adicionar-setor-tecnico" -->
+<!-- 				value="Adicione um novo setor" /> -->
 		</h:panelGroup>
 
 		<p:outputLabel for="setorTerceirizado" value="Setor: "
@@ -79,12 +78,12 @@
 				<f:selectItems var="setor" value="#{terceirizadoBean.setores}"
 					itemLabel="#{setor}" itemValue="#{setor}" />
 			</p:selectOneMenu>
-			<p:link id="adicionar-setor-terceirizado"
-				outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px">
-				<i class="fa fa-plus" />
-			</p:link>
-			<p:tooltip for="adicionar-setor-terceirizado"
-				value="Adicione um novo setor" />
+<!-- 			<p:link id="adicionar-setor-terceirizado" -->
+<!-- 				outcome="/setor/cadastro-setor.xhtml" style="margin-left: 5px"> -->
+<!-- 				<i class="fa fa-plus" /> -->
+<!-- 			</p:link> -->
+<!-- 			<p:tooltip for="adicionar-setor-terceirizado" -->
+<!-- 				value="Adicione um novo setor" /> -->
 		</h:panelGroup>
 
 		<p:outputLabel for="turno" value="Turno: "

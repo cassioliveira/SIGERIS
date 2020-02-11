@@ -14,40 +14,103 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @Model
 public class Security {
 
-    /**
-     * Captura o usuário já logado e retorna o nome do mesmo para ser exibido na
-     * página
-     *
-     * @return
-     */
-    public String getNomeUsuario() {
-        String nome = null;
+	/**
+	 * Captura o nome 'amigável' do usuário logado.
+	 *
+	 * @return
+	 */
+	public String getNomeDoUsuarioLogado() {
+		String nome = null;
 
-        SystemUser systemUser = getLoggedUser();
-        if (systemUser != null) {
-            nome = systemUser.getSubject().getNome();
-        }
+		SystemUser systemUser = getLoggedUser();
+		if (systemUser != null) {
+			nome = systemUser.getSubject().getNome();
+		}
 
-        return nome;
-    }
+		return nome;
+	}
 
-    /**
-     * Verifica o usuário que está logado no sistema
-     *
-     * @return
-     */
-    private SystemUser getLoggedUser() {
+	/**
+	 * Captura o nome de usuário que faz o login (CPF)
+	 *
+	 * @return
+	 */
+	public String usuarioLogado() {
+		String nome = null;
 
-        SystemUser systemUser = null;
+		SystemUser systemUser = getLoggedUser();
+		if (systemUser != null) {
+			nome = systemUser.getSubject().getUserName();
+		}
 
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) 
-                FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+		return nome;
+	}
 
-        if (authenticationToken != null && authenticationToken.getPrincipal() != null) {
-            systemUser = (SystemUser) authenticationToken.getPrincipal();
-        }
+	/**
+	 * Captura o ID do usuário logado
+	 *
+	 * @return
+	 */
+	public Long idDoUsuarioLogado() {
+		Long nome = null;
 
-        return systemUser;
-    }
+		SystemUser systemUser = getLoggedUser();
+		if (systemUser != null) {
+			nome = systemUser.getSubject().getId();
+//			nome = systemUser.getSubject().getId().intValue(); Versão com id convertido para int.
+		}
+
+		return nome;
+	}
+
+	/**
+	 * Verifica o usuário que está logado no sistema
+	 *
+	 * @return
+	 */
+	private SystemUser getLoggedUser() {
+
+		SystemUser systemUser = null;
+
+		UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) FacesContext
+				.getCurrentInstance().getExternalContext().getUserPrincipal();
+
+		if (authenticationToken != null && authenticationToken.getPrincipal() != null) {
+			systemUser = (SystemUser) authenticationToken.getPrincipal();
+		}
+
+		return systemUser;
+	}
+
+	// COMPARAR SE O USUÁRIO LOGADO ESTÁ CONTIDO NA LISTA DE USUÁRIOS RETORNADOS DE
+	// UM GRUPO ESPECÍFICO.
+
+//	public boolean getEstaNoGrupo() {
+//
+//		System.out.println("USUARIO LOGADO >>>>>>>>>>: " + usuarioLogado());
+//		String grupoDoUsuarioLogado = usuarioService.grupoDoUsuario(idDoUsuarioLogado());
+//		System.out.println("GRUPO >>>>>>>>>>: " + grupoDoUsuarioLogado);
+//		System.out.println("USUARIOS DO GRUPO >>>>>>>>>>: " + usuarioService.usuariosPorGrupo(grupoDoUsuarioLogado));
+//		Boolean usuarioEstaNoGrupo = false;
+//		if (usuarioService.usuariosPorGrupo(grupoDoUsuarioLogado).contains(usuarioLogado())) {
+//			usuarioEstaNoGrupo = true;
+//		}
+//		System.out.println("O USUARIO ESTÁ NO GRUPO??? >>>>>>>>>>: " + usuarioEstaNoGrupo);
+//		return usuarioEstaNoGrupo;
+//	}
+
+//	public boolean estaNoGrupo(String grupo) {
+//		System.out.println("GRUPO >>>>>>>>>>: " + grupo);
+//		Boolean usuarioEstaNoGrupo = false;
+//		for (String usuario : usuarioService.usuariosPorGrupo(grupo)) {
+//			System.out.println("Usuario da vez >>>>>>: " + usuario);
+//			System.out.println("Usuario Logado>>>>>>>: " + getLoggedUser().getUsername());
+//			if (usuario.equals(getLoggedUser().getUsername())) {
+//				usuarioEstaNoGrupo = true;
+//			}
+//		}
+//		System.out.println("USUARIO DO GRUPO >>>>>>>>>: " + usuarioEstaNoGrupo);
+//		return usuarioEstaNoGrupo;
+//	}
 
 }

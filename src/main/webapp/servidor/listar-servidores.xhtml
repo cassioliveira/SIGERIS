@@ -66,10 +66,11 @@
 					</p:column>
 
 					<p:column headerText="Categoria" width="13%"
-						filterStyle="display:none" priority="2" sortBy="#{servidor.tipo}"
-						filterBy="#{servidor.tipo}" filterMatchMode="contains"
-						style="text-align: center" sortable="true">
-						<h:outputText value="#{servidor.tipo}"
+						filterStyle="display:none" priority="2"
+						sortBy="#{servidor.categoria}" filterBy="#{servidor.categoria}"
+						filterMatchMode="contains" style="text-align: center"
+						sortable="true">
+						<h:outputText value="#{servidor.categoria}"
 							style="font-size: 12px; font-weight: bold" />
 					</p:column>
 

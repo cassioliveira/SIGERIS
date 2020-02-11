@@ -1,6 +1,0 @@
-INSERT INTO grupo VALUES (1,'ADMINISTRADORES'),(2,'SECRETARIAS'),(3,'COORDENADORES'),(4,'BIBLIOTECA'),(5,'DIRECAO');
-INSERT INTO usuario  VALUES (1,'Cássio','123','01404526480');
-INSERT INTO usuario  VALUES (2,'Vania','123','31958889806');
-INSERT INTO usuario_grupo VALUES (1,1)
-INSERT INTO usuario_grupo VALUES (2,5)
--- select setval('', 1);

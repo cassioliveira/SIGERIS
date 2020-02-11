@@ -1,16 +1,18 @@
 package br.edu.uepb.sigeris.controllers;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.edu.uepb.sigeris.model.Grupo;
 import br.edu.uepb.sigeris.model.Usuario;
 import br.edu.uepb.sigeris.services.GrupoService;
 import br.edu.uepb.sigeris.services.UsuarioService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
-import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,6 +52,15 @@ public class UsuarioBean implements Serializable {
 
     @Getter
     private List<Grupo> gruposCadastrados;
+    
+//    @Getter
+//    private List<Usuario> usuariosPorGrupo = usuarioService.usuariosPorGrupo(1L);
+    
+//    public void teste(){
+//    	for (Usuario usuario : usuariosPorGrupo) {
+//			System.out.println(usuario);
+//		}
+//    }
 
     public UsuarioBean() {
         usuario = new Usuario();

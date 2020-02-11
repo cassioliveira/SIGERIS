@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import br.edu.uepb.sigeris.model.Tecnico;
 import br.edu.uepb.sigeris.repository.Tecnicos;
+import br.edu.uepb.sigeris.security.Security;
 
 /**
  *
@@ -26,6 +27,9 @@ public class TecnicoService implements Serializable {
 
 	@Inject
 	private SetorService setorService;
+	
+	@Inject
+	private Security security;
 
 	@Transactional
 	public void salvar(Tecnico tecnico) {
@@ -33,6 +37,7 @@ public class TecnicoService implements Serializable {
 			tecnico.setCategoria("TECNICO");
 			tecnico.setDataCadastro(new Date());
 		}
+		tecnico.setUsuario(security.usuarioLogado());
 		this.tecnicos.salvar(tecnico);
 	}
 

@@ -26,11 +26,11 @@
 				value="java:app/EntityManager" />
 			<property name="hibernate.enable_lazy_load_no_trans"
 				value="true" />
-				
-				<!--Insere o usuário para o primeiro acesso ao sistema e cadastro de outros 
+
+			<!--Insere o usuário para o primeiro acesso ao sistema e cadastro de outros 
 				usuarios -->
 			<property name="javax.persistence.sql-load-script-source"
-				value="META-INF/sql/user_groups.sql" />
+				value="META-INF/sql/cadastros.sql" />
 		</properties>
 	</persistence-unit>
 </persistence>

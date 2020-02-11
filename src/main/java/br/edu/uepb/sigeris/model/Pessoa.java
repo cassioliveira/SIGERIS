@@ -37,7 +37,8 @@ import lombok.Data;
 @NamedQueries({
 		@NamedQuery(name = "Servidores.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' OR p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
 		@NamedQuery(name = "Professores.todos", query = "FROM Pessoa p WHERE p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
-		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC") })
+		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC") 
+})
 public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -220,4 +221,7 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_cadastro")
 	private Date dataCadastro;
+	
+	@Column(name = "usuario")
+	private String usuario;
 }

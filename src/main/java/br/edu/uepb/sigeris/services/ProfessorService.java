@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import br.edu.uepb.sigeris.model.Professor;
 import br.edu.uepb.sigeris.repository.Professores;
+import br.edu.uepb.sigeris.security.Security;
 
 /**
  *
@@ -23,6 +24,9 @@ public class ProfessorService implements Serializable {
 
     @Inject
     private PessoaService pessoaService;
+    
+    @Inject
+	private Security security;
 
     @Transactional
     public void salvar(Professor professor) {
@@ -30,6 +34,7 @@ public class ProfessorService implements Serializable {
             professor.setCategoria("PROFESSOR");
 			professor.setDataCadastro(new Date());
         }
+        professor.setUsuario(security.usuarioLogado());
         this.professores.salvar(professor);
     }
 
