@@ -7,6 +7,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.edu.uepb.sigeris.model.Terceirizado;
 import br.edu.uepb.sigeris.repository.Terceirizados;
 import br.edu.uepb.sigeris.security.Security;
@@ -19,6 +22,8 @@ public class TerceirizadoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(TerceirizadoService.class);
+
 	@Inject
 	private Terceirizados terceirizados;
 
@@ -27,7 +32,7 @@ public class TerceirizadoService implements Serializable {
 
 	@Inject
 	private SetorService setorService;
-	
+
 	@Inject
 	private Security security;
 
@@ -37,6 +42,9 @@ public class TerceirizadoService implements Serializable {
 			terceirizado.setCategoria("TERCEIRIZADO");
 			terceirizado.setDataCadastro(new Date());
 		}
+		LOGGER.warn(">>> AVISO <<<");
+		LOGGER.error(">>> ERRO <<<");
+		LOGGER.info(">>> INFORMAÇÃO <<<");
 		terceirizado.setUsuario(security.usuarioLogado());
 		this.terceirizados.salvar(terceirizado);
 	}
