@@ -18,10 +18,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.enumerations.VinculoServidor;
+import br.edu.uepb.sigeris.validator.Email;
+import br.edu.uepb.sigeris.validator.RG;
 import lombok.Data;
 
 /**
@@ -37,8 +38,7 @@ import lombok.Data;
 @NamedQueries({
 		@NamedQuery(name = "Servidores.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' OR p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
 		@NamedQuery(name = "Professores.todos", query = "FROM Pessoa p WHERE p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
-		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC") 
-})
+		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC") })
 public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -63,19 +63,19 @@ public class Pessoa implements Serializable {
 	@Column(name = "nome_social", length = 100)
 	private String nomeSocial;
 
-	@Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$", message = "E-mail com formato incorreto")
+	@Email
 	@Column(name = "email", length = 100)
 	private String email;
 
-	@Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$", message = "E-mail com formato incorreto")
+	@Email
 	@Column(name = "email2", length = 100)
 	private String email2;
 
-	@Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$", message = "E-mail com formato incorreto")
+	@Email
 	@Column(name = "email_emergencia", length = 100)
 	private String contatoEmergenciaEmail;
 
-	@Pattern(regexp = "^$|[a-zA-Z\\d/.-]{1,}", message = "Apenas letras números ou os caracteres a seguir são aceitos para o RG: / . -")
+	@RG
 	@Column(name = "rg", length = 15)
 	private String rg;
 
@@ -221,7 +221,7 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_cadastro")
 	private Date dataCadastro;
-	
+
 	@Column(name = "usuario")
 	private String usuario;
 }

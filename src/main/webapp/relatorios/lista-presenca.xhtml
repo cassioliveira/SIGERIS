@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="reuniao" value="#{reuniaoBean.reuniao}" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<p:messages id="msgs" closable="true" severity="info,warn,error">
+			<p:autoUpdate />
+		</p:messages>
+
+		<h:form id="formCadastroRelatorio">
+
+			<p:panel id="listaFrequencia" header="Lista de presença"
+				style="margin-top: 20px">
+
+				<h:panelGrid id="panelCadastroReuniao" columns="2">
+
+					<p:outputLabel for="setor" value="Setor: " />
+					<h:panelGroup>
+						<p:selectOneMenu id="setor" value="#{reuniaoBean.reuniao.setor}"
+							style="width: 140px">
+							<f:selectItem noSelectionOption="true" />
+							<f:selectItems var="setor" value="#{setorBean.setores}"
+								itemLabel="#{setor.nome}" itemValue="#{setor}" />
+						</p:selectOneMenu>
+						<p:tooltip for="setor"
+							value="Setor responsável pela atividade/reunião" />
+					</h:panelGroup>
+
+					<p:outputLabel for="data" value="Data: " />
+					<p:calendar id="data" navigator="true" pattern="dd/MM/yyyy"
+						yearRange="c-100:c+100" showOn="button" maxlength="10" mask="true"
+						size="21" locale="pt" value="#{reuniaoBean.reuniao.data}"
+						mindate="#{dateTimeUtilBean.date}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />
+						<p:tooltip for="data"
+							value="Informe a data em que ocorrerá a atividade" />
+					</p:calendar>
+
+					<p:outputLabel for="hora" value="Hora: " />
+					<p:calendar id="hora" navigator="false" pattern="HH:mm"
+						timeOnly="true" maxlength="10" mask="true" size="26" locale="pt"
+						value="#{reuniaoBean.reuniao.hora}">
+						<f:convertDateTime type="time" pattern="HH:mm" locale="pt_BR" />
+						<p:tooltip for="hora"
+							value="Informe a hora em que ocorrerá a atividade" />
+					</p:calendar>
+
+					<p:outputLabel for="listaServidores" value="Servidores: " />
+					<p:selectCheckboxMenu id="listaServidores"
+						value="#{reuniaoBean.reuniao.pessoas}" style="width: 402px"
+						filter="true" filterMatchMode="contains">
+						<f:selectItems var="servidor"
+							value="#{reuniaoBean.pessoasCadastradas}" itemLabel="#{servidor}"
+							itemValue="#{servidor}" />
+					</p:selectCheckboxMenu>
+
+					<p:outputLabel for="descricao" value="Descrição " />
+					<p:inputText id="descricao"
+						placeholder="Informe a descrição da atividade/reunião"
+						value="#{reuniaoBean.reuniao.descricao}" size="60">
+					</p:inputText>
+
+					<p:outputLabel for="local" value="Local: " />
+					<p:inputText id="local" value="#{reuniaoBean.reuniao.local}"
+						size="60" maxlength="200"
+						placeholder="Informe a sede/sala/local da atividade/reunião">
+					</p:inputText>
+
+					<p:outputLabel for="pauta" value="Pauta: " />
+					<p:textEditor id="pauta" value="#{reuniaoBean.reuniao.pauta}"
+						width="40" height="150">
+						<f:facet name="toolbar">
+							<span class="ql-formats"> <select class="ql-font"></select>
+								<select class="ql-size"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-bold"></button>
+								<button class="ql-italic"></button>
+								<button class="ql-underline"></button>
+							</span>
+						</f:facet>
+					</p:textEditor>
+
+				</h:panelGrid>
+
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton
+							style="font-size: 13px; margin-left: 5px; vertical-align: middle"
+							value="Gerar" action="#{reuniaoBean.salvar()}"
+							disabled="#{setorBean.setores.size() == 0}"
+							update="datatablePesquisaReuniao panelCadastroReuniao"
+							icon="fa fa-save" id="botaoSalvar">
+						</p:commandButton>
+						<h:outputLabel id="validacaoCadastrarSetores"
+							value="  Deve cadastrar setores antes de gerar a lista."
+							rendered="#{setorBean.setores.size() == 0}"
+							style="color: red; font-weight: normal" />
+					</f:facet>
+				</p:toolbar>
+
+			</p:panel>
+
+			<p:dataTable id="datatablePesquisaReuniao" var="reuniao"
+				value="#{reuniaoBean.reunioes}" paginatorAlwaysVisible="false"
+				style="margin-top: 20px; " rows="10" reflow="true"
+				sortOrder="ascending" paginatorPosition="bottom"
+				emptyMessage="Nenhum registro encontrado" paginator="true"
+				widgetVar="pesquisaReuniao"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,20,50,100" scrollable="true"
+				scrollRows="10" scrollHeight="290" sortBy="#{reuniao.descricao}">
+
+				<f:facet name="header">
+					<p:outputPanel id="panelFiltroReuniao">
+						<p:inputText id="globalFilter"
+							onkeyup="PF('pesquisaReuniao').filter()" style="width:300px"
+							placeholder="Pesquise na tabela..." />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column headerText="Descrição" width="35%"
+					filterStyle="display:none" priority="1"
+					filterBy="#{reuniao.descricao}" filterMatchMode="contains">
+					<h:outputText value="#{reuniao.descricao}"
+						style="font-size: 15px; font-weight: bold" />
+				</p:column>
+
+				<p:column headerText="Localização" width="20%"
+					filterStyle="display:none" priority="1" filterBy="#{reuniao.local}"
+					filterMatchMode="contains">
+					<h:outputText value="#{reuniao.local}"
+						style="font-size: 15px; font-weight: bold" />
+				</p:column>
+
+				<p:column headerText="Setor" width="20%" filterStyle="display:none"
+					priority="1" filterBy="#{reuniao.setor}" filterMatchMode="contains">
+					<h:outputText value="#{reuniao.setor.nome}"
+						style="font-size: 15px; font-weight: bold" />
+				</p:column>
+
+				<p:column headerText="Data" width="10%" filterStyle="display:none"
+					priority="1" filterBy="#{reuniao.data}" filterMatchMode="contains">
+					<h:outputText value="#{reuniao.data}"
+						style="font-size: 15px; font-weight: bold" />
+				</p:column>
+
+				<p:column headerText="Hora" width="5%" filterStyle="display:none"
+					priority="1" filterBy="#{reuniao.hora}" filterMatchMode="contains">
+					<h:outputText value="#{reuniao.hora}"
+						style="font-size: 15px; font-weight: bold">
+						<f:convertDateTime type="time" pattern="HH:mm" locale="pt_BR" />
+					</h:outputText>
+				</p:column>
+
+				<!-- 				<p:column headerText="Pauta" width="5%"> -->
+				<!-- 					<p:commandButton icon="fa fa-eye" type="buttom" -->
+				<!-- 						oncomplete="PF('pautaReuniao').show();"> -->
+				<!-- 						<f:setPropertyActionListener -->
+				<!-- 							value="#{reuniaoBean.reuniaoSelecionada}" target="#{reuniao}" /> -->
+				<!-- 					</p:commandButton> -->
+				<!-- 				</p:column> -->
+
+				<p:column id="acoes" width="5%">
+					<p:button style="font-size: 12px;" id="botaoVisualizar"
+						outcome="/relatorios/visualizar-lista" icon="fa fa-eye">
+						<f:param name="reuniao" value="#{reuniao.id}" />
+					</p:button>
+
+					<p:commandButton id="botaoExcluir" title="Excluir"
+						icon="ui-icon ui-icon-trash" style="font-size: 12px"
+						action="#{reuniaoBean.excluir}" process="datatablePesquisaReuniao"
+						update="datatablePesquisaReuniao">
+						<f:setPropertyActionListener value="#{reuniao}"
+							target="#{reuniaoBean.reuniaoSelecionada}" />
+						<p:tooltip for="botaoExcluir" value="Excluir" />
+
+						<p:confirm icon="ui-icon-alert" header="Excluir reuniao"
+							message="Deseja realmente excluir o reuniao #{reuniao.descricao}?" />
+
+					</p:commandButton>
+				</p:column>
+
+				<!-- 				<f:facet name="footer"> -->
+				<!--                         Há #{fn:length(reuniaoBean.reunioes)} #{fn:length(reuniaoBean.reunioes) > 1 ? ' reunioes cadastradas' : ' reuniao cadastrada'}. -->
+				<!--                 </f:facet> -->
+
+			</p:dataTable>
+
+		</h:form>
+
+		<p:dialog header="Pauta da reunião" widgetVar="pautaReuniao"
+			modal="true">
+			<h:outputText value="#{reuniaoBean.reuniao.pauta}" />
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>
