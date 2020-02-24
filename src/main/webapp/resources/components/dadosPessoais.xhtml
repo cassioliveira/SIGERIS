@@ -41,9 +41,12 @@
 
 		<h:panelGroup>
 
-			<h:panelGrid columns="2">
+			<h:panelGrid id="panelGridTecnicos" columns="2">
 
-				<p:outputLabel for="name" value="Nome: " />
+				<h:panelGroup>
+					<p:focus context="panelGridTecnicos" />
+					<p:outputLabel for="name" value="Nome: " />
+				</h:panelGroup>
 				<p:inputText id="name" value="#{cc.attrs.nome}" size="43"
 					maxlength="200" />
 

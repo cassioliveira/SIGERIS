@@ -33,16 +33,44 @@ public class PessoaService implements Serializable {
 	}
 
 	public List<Pessoa> servidores() {
-		return pessoas.servidores();
+		return pessoas.consulta("Servidores.todos");
 	}
 
 	public List<Pessoa> tecnicos() {
-		return pessoas.tecnicos();
+		return pessoas.consulta("Tecnicos.todos");
 	}
 
 	public List<Pessoa> professores() {
-		return pessoas.professores();
+		return pessoas.consulta("Professores.todos");
 	}
+
+//	public List<Pessoa> tecnicosContratados() {
+//		return pessoas.consulta("TecnicosContratados.todos");
+//	}
+//
+//	public List<Pessoa> tecnicosEfetivos() {
+//		return pessoas.consulta("TecnicosEfetivos.todos");
+//	}
+//
+//	public List<Pessoa> professoresContratados() {
+//		return pessoas.consulta("ProfessoresContratados.todos");
+//	}
+//
+//	public List<Pessoa> professoresEfetivos() {
+//		return pessoas.consulta("ProfessoresEfetivos.todos");
+//	}
+//
+//	public List<Pessoa> terceirizados() {
+//		return pessoas.consulta("Terceirizados.todos");
+//	}
+//
+//	public List<Pessoa> terceirizadosApoio() {
+//		return pessoas.consulta("TerceirizadosApoio.todos");
+//	}
+//
+//	public List<Pessoa> terceirizadosVigilantes() {
+//		return pessoas.consulta("TerceirizadosVigilantes.todos");
+//	}
 
 	/**
 	 * Responsável por retornar o caminho da tela de edição de acordo com o tipo de
@@ -65,6 +93,45 @@ public class PessoaService implements Serializable {
 			break;
 		}
 		return pagina;
+	}
+
+	public List<Pessoa> chamaConsulta(String tipoConsulta) {
+		List<Pessoa> listaServidores = null;
+		switch (tipoConsulta) {
+		case "servidores":
+			listaServidores = pessoas.consulta("Servidores.todos");
+			break;
+		case "tecnicos":
+			listaServidores = pessoas.consulta("Tecnicos.todos");
+			break;
+		case "tcontratados":
+			listaServidores = pessoas.consulta("TecnicosContratados.todos");
+			break;
+		case "tefetivos":
+			listaServidores = pessoas.consulta("TecnicosEfetivos.todos");
+			break;
+		case "professores":
+			listaServidores = pessoas.consulta("Professores.todos");
+			break;
+		case "pcontratados":
+			listaServidores = pessoas.consulta("ProfessoresContratados.todos");
+			break;
+		case "pefetivos":
+			listaServidores = pessoas.consulta("ProfessoresEfetivos.todos");
+			break;
+		case "terceirizados":
+			listaServidores = pessoas.consulta("Terceirizados.todos");
+			break;
+		case "apoio":
+			listaServidores = pessoas.consulta("TerceirizadosApoio.todos");
+			break;
+		case "vigilantes":
+			listaServidores = pessoas.consulta("TerceirizadosVigilantes.todos");
+			break;
+		default:
+			break;
+		}
+		return listaServidores;
 	}
 
 	@Transactional

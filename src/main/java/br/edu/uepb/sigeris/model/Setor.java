@@ -3,6 +3,8 @@ package br.edu.uepb.sigeris.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +12,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import br.edu.uepb.sigeris.enumerations.SetoresPessoas;
 import lombok.Data;
 
 /**
@@ -36,8 +40,11 @@ public class Setor implements Serializable {
     @Column(name = "categoria", length = 20)
     private String categoria;
 
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "É necessário informar o nome do setor")
     @Column(name = "nome", length = 250)
-    private String nome;
+    private SetoresPessoas nome;
 
+    @Column(name = "observacoes", length = 250)
+    private String observacoes;
 }

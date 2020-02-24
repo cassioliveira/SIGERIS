@@ -23,10 +23,15 @@
 		</p:selectOneMenu>
 
 		<p:outputLabel for="nome" value="Nome do setor: " />
-		<p:inputText id="nome" value="#{cc.attrs.nome}" size="35"
-			maxlength="200">
-			<p:tooltip for="nome" value="Informe o nome do setor" />
-		</p:inputText>
+		<p:selectOneMenu id="nome" value="#{cc.attrs.nome}">
+			<f:selectItems var="nomeSetor" value="#{setorBean.setoresPessoas}"
+				itemLabel="#{nomeSetor.description}" itemValue="#{nomeSetor}" />
+		</p:selectOneMenu>
+		
+		<!-- 		<p:inputText id="nome" value="#{cc.attrs.nome}" size="35" -->
+		<!-- 			maxlength="200" style="text-transform: upper"> -->
+		<!-- 			<p:tooltip for="nome" value="Informe o nome do setor" /> -->
+		<!-- 		</p:inputText> -->
 
 	</h:panelGrid>
 

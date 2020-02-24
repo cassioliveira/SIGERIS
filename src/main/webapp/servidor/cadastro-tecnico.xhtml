@@ -14,13 +14,14 @@
 
 	<ui:define name="content" id="ui-define-tecnico">
 		<p:fieldset id="fieldsetTecnico"
-			legend="#{tecnicoBean.editando ? 'Alteração de cadastro de técnico' : 'Cadastro de técnico'}">
+			legend="#{tecnicoBean.editando ? 'Alteração de cadastro de tecnico' : 'Cadastro de técnico'}">
 
 			<p:messages closable="true" severity="info,warn,error">
 				<p:autoUpdate />
 			</p:messages>
 
 			<h:form id="formPesquisaTecnico" enctype="multipart/form-data">
+
 				<p:tabView id="tabContainer">
 
 					<p:tab id="pessoais" title="Dados pessoais">

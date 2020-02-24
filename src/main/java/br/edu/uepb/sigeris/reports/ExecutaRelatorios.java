@@ -1,5 +1,6 @@
 package br.edu.uepb.sigeris.reports;
 
+import br.edu.uepb.sigeris.controllers.ReuniaoBean;
 import br.edu.uepb.sigeris.services.PessoaService;
 import java.io.IOException;
 import java.io.Serializable;
@@ -37,6 +38,11 @@ public class ExecutaRelatorios implements Serializable {
     @Getter
     @Setter
     private PessoaService pessoaService;
+    
+    @Inject
+    @Getter
+    @Setter
+    private ReuniaoBean reuniaoBean;
 
     /**
      * Retorna o relatório de PROFESSORES, TÉCNICOS ou ambos de acordo com tipo
@@ -48,36 +54,65 @@ public class ExecutaRelatorios implements Serializable {
      * @throws java.io.IOException
      */
     public void servidores(String tipo) throws SQLException, JRException, IOException {
+    	String titulo = null;
+    	String pdfFileName = null;
         String jasperFileName = "/servidores.jasper";
-        String pdfFileName = null;
-        List<?> dados = null;
-        String titulo = null;
-        String setor = null;
-        if (null != tipo) {
+        List<?> dados = pessoaService.chamaConsulta(tipo);
             switch (tipo) {
-                case "SERVIDORES":
-                    titulo = "Servidores cadastrados";
-                    pdfFileName = titulo + ".pdf";
-                    setor = "Direção";
-                    dados = pessoaService.servidores();
+                case "servidores":
+                	titulo = "Todos os servidores";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
                     break;
-                case "PROFESSORES":
-                    titulo = "Professores cadastrados";
-                    pdfFileName = titulo + ".pdf";
-                    setor = "Coordençaõ de matemática";
-                    dados = pessoaService.professores();
+                case "professores":
+                	titulo = "Todos os professores";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
                     break;
-                case "TECNICOS":
-                    titulo = "Técnicos cadastrados";
-                    pdfFileName = titulo + ".pdf";
-                    setor = "Coordençaõ de letras";
-                    dados = pessoaService.tecnicos();
+                case "tecnicos":
+                    titulo = "Todos os técnicos";
+                    pdfFileName = titulo+".pdf";
+                    new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "tcontratados":
+                	titulo = "Técnicos contratados";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "tefetivos":
+                	titulo = "Técnicos efetivos";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "pcontratados":
+                	titulo = "Professores contratados";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "pefetivos":
+                	titulo = "Professores efetivos";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "terceirizados":
+                	titulo = "Todos os terceirizados";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "apoio":
+                	titulo = "Terceirizados APOIO";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
+                    break;
+                case "vigilantes":
+                	titulo = "Terceirizados VIGILANTES";
+                	pdfFileName = titulo+".pdf";
+                	new DadosParaPDFDePessoas( titulo,"/servidores.jasper", pdfFileName, dados);
                     break;
                 default:
                     break;
             }
-        }
-        geradorRelatorios.gerarPdf(jasperFileName, pdfFileName, dados, titulo, setor,null, null, null, null, null);
+        geradorRelatorios.gerarPdfPessoas(jasperFileName, pdfFileName, dados, titulo);
     }
 
 //    public void listaReunioes() throws JRException, IOException{

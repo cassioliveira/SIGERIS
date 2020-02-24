@@ -17,10 +17,12 @@
 	<h:panelGrid columns="2" style="margin-top: 5px">
 		<p:outputLabel for="observacoes" value="Observações: "
 			style="#{cc.attrs.estilo}" />
-		<p:editor
-			controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo"
-			id="observacoes" width="#{cc.attrs.largura}"
-			height="#{cc.attrs.altura}" value="#{cc.attrs.value}" />
+			<p:textEditor id="observacoes" width="#{cc.attrs.largura}"
+ 			height="#{cc.attrs.altura}" value="#{cc.attrs.value}"/>
+<!-- 		<p:editor -->
+<!-- 			controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" -->
+<!-- 			id="observacoes" width="#{cc.attrs.largura}" -->
+<!-- 			height="#{cc.attrs.altura}" value="#{cc.attrs.value}" /> -->
 	</h:panelGrid>
 
 </composite:implementation>

@@ -1,6 +1,8 @@
 package br.edu.uepb.sigeris.controllers;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +13,14 @@ import javax.inject.Named;
 
 import br.edu.uepb.sigeris.model.Pessoa;
 import br.edu.uepb.sigeris.model.Reuniao;
+import br.edu.uepb.sigeris.reports.ExecutaRelatorios;
+import br.edu.uepb.sigeris.reports.GeraRelatorios;
 import br.edu.uepb.sigeris.services.PessoaService;
 import br.edu.uepb.sigeris.services.ReuniaoService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * Managed bean usado pela página de cadastro de consulta. É responsável por
@@ -30,7 +35,16 @@ public class ReuniaoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	private final GeraRelatorios geradorRelatorios = new GeraRelatorios();
+	private final GeraRelatorios geradorRelatorios = new GeraRelatorios();
+
+	@Getter
+	@Setter
+	private String tipoConsulta;
+
+	@Inject
+	@Getter
+	@Setter
+	private ExecutaRelatorios executaRelatorios;
 
 	@Inject
 	@Getter
@@ -50,9 +64,6 @@ public class ReuniaoBean implements Serializable {
 	@Setter
 	private Reuniao reuniaoSelecionada;
 
-//	@Getter
-//	private List<Pessoa> pessoasCadastradas;
-
 	@Getter
 	private List<Reuniao> reunioes;
 
@@ -64,7 +75,6 @@ public class ReuniaoBean implements Serializable {
 	public void init() {
 		this.reunioes = reuniaoService.todos();
 		getPessoasCadastradas();
-//		this.pessoasCadastradas = pessoaService.todos();
 	}
 
 	public void salvar() {
@@ -80,6 +90,12 @@ public class ReuniaoBean implements Serializable {
 		FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
 	}
 
+	/**
+	 * Retorna uma lista com o NOME de todos o servidores+terceirizados cadastrados,
+	 * para seleção.
+	 * 
+	 * @return
+	 */
 	public List<String> getPessoasCadastradas() {
 		List<String> pessoasCadastradas = new ArrayList<>();
 		if (!pessoaService.todos().equals(null)) {
@@ -90,12 +106,64 @@ public class ReuniaoBean implements Serializable {
 		return pessoasCadastradas;
 	}
 
-//	public void listaDePresenca() throws JRException, IOException {
-//		geradorRelatorios.gerarPdf("/reunioes.jasper", reuniao.getTituloDocumento() + ".pdf",
-//				pessoaService.servidores(), reuniao.getTituloDocumento(), reuniao.getSetor().getNome(),
-//				reuniao.getDescricao(), reuniao.getData(), reuniao.getHora(), reuniao.getLocal(), reuniao.getPauta());
+	/**
+	 * Chama o método responsável pela geração dos relatórios, baseados no tipo de
+	 * consulta selecionada.
+	 * 
+	 * @throws SQLException
+	 * @throws JRException
+	 * @throws IOException
+	 */
+	public void executaRelatorio() throws SQLException, JRException, IOException {
+		executaRelatorios.servidores(tipoConsulta);
+	}
+
+	public List<Pessoa> getServidores() {
+		return pessoaService.servidores();
+	}
+
+	public List<Pessoa> getTecnicos() {
+		return pessoaService.tecnicos();
+	}
+
+	public List<Pessoa> getProfessores() {
+		return pessoaService.professores();
+	}
+
+//	public List<Pessoa> getTecnicosContratados() {
+//		return pessoaService.tecnicosContratados();
 //	}
 //
+//	public List<Pessoa> getTecnicosEfetivos() {
+//		return pessoaService.tecnicosEfetivos();
+//	}
+//
+//	public List<Pessoa> getProfessoresContratados() {
+//		return pessoaService.professoresContratados();
+//	}
+//
+//	public List<Pessoa> getProfessoresEfetivos() {
+//		return pessoaService.professoresEfetivos();
+//	}
+//
+//	public List<Pessoa> getTerceirizados() {
+//		return pessoaService.terceirizados();
+//	}
+//
+//	public List<Pessoa> getTerceirizadosApoio() {
+//		return pessoaService.terceirizadosApoio();
+//	}
+//
+//	public List<Pessoa> getTerceirizadosVigilantes() {
+//		return pessoaService.terceirizadosVigilantes();
+//	}
+
+	public void listaDePresenca() throws JRException, IOException {
+		geradorRelatorios.gerarPdfListaReuniao("/reunioes.jasper", reuniao.getTituloDocumento() + ".pdf",
+				pessoaService.servidores(), reuniao.getTituloDocumento(), reuniao.getDescricao(), reuniao.getData(),
+				reuniao.getHora(), reuniao.getLocal(), reuniao.getPauta());
+	}
+
 //	public List<Object> dados() {
 //		List<Object> dados = new ArrayList<>();
 //

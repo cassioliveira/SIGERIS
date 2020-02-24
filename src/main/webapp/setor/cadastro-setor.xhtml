@@ -22,11 +22,17 @@
 
 			<h:form id="formCadastroSetor">
 
-				<h:panelGrid id="panelCadastroSetor" columns="2"
+				<h:panelGrid id="panelCadastroSetor" columns="1"
 					style="margin-bottom: 10px">
 
 					<component:setor categoria="#{setorBean.setor.categoria}"
 						nome="#{setorBean.setor.nome}" />
+
+					<component:observacoes id="observacoes"
+						value="#{setorBean.setor.observacoes}"
+						estilo="margin-left:24px; margin-right:15px" altura="130"
+						largura="560" />
+
 				</h:panelGrid>
 
 				<p:toolbar>

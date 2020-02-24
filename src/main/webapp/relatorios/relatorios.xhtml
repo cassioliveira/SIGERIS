@@ -23,155 +23,168 @@
 
 				<p:panel id="filtros" header="Filtros">
 
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
 
-						<p:outputLabel value="Situação: " />
-						<p:selectOneRadio>
-							<f:selectItem itemLabel="Ativos" itemValue="ativos" />
-							<f:selectItem itemLabel="Inativos" itemValue="inativos" />
-						</p:selectOneRadio>
+						<!-- 						<p:outputLabel value="Situação: " /> -->
+						<!-- 						<p:selectOneRadio> -->
+						<!-- 							<f:selectItem itemLabel="Ativos" itemValue="ativos" /> -->
+						<!-- 							<f:selectItem itemLabel="Inativos" itemValue="inativos" /> -->
+						<!-- 						</p:selectOneRadio> -->
 
-						<p:outputLabel value="Tipo: " />
-						<p:selectOneMenu>
-							<f:selectItem noSelectionOption="true" />
+						<p:selectOneRadio id="tipoConsulta" value="#{reuniaoBean.tipoConsulta}" columns="1"
+							layout="grid">
 							<f:selectItem itemLabel="Todos os servidores"
 								itemValue="servidores" />
-							<f:selectItem itemLabel="Todos os técnicos" itemValue="tecnicos" />
+							<f:selectItem itemLabel="Todos os técnicos" 
+							itemValue="tecnicos" />
 							<f:selectItem itemLabel="Técnicos contratados"
 								itemValue="tcontratados" />
-							<f:selectItem itemLabel="Técnicos efetivos" itemValue="tefetivos" />
+							<f:selectItem itemLabel="Técnicos efetivos" 
+							itemValue="tefetivos" />
 							<f:selectItem itemLabel="Todos os professores"
 								itemValue="professores" />
 							<f:selectItem itemLabel="Professores contratados"
 								itemValue="pcontratados" />
 							<f:selectItem itemLabel="Professores efetivos"
-								itemValue="pefeitivos" />
+								itemValue="pefetivos" />
 							<f:selectItem itemLabel="Todos os terceirizados"
 								itemValue="terceirizados" />
-							<f:selectItem itemLabel="Terceirizados apoio" itemValue="apoio" />
-							<f:selectItem itemLabel="Terceirizados vigilantes"
+							<f:selectItem itemLabel="Terceirizados APOIO" 
+							itemValue="apoio" />
+							<f:selectItem itemLabel="Terceirizados VIGILANTES"
 								itemValue="vigilantes" />
-						</p:selectOneMenu>
-
-						<p:outputLabel value="Setor " />
-						<p:selectOneMenu>
-							<f:selectItem noSelectionOption="true" />
-							<f:selectItem itemLabel="Matemática" itemValue="matematica" />
-							<f:selectItem itemLabel="Letras" itemValue="letras" />
-							<f:selectItem itemLabel="Contábeis" itemValue="contabeis" />
-							<f:selectItem itemLabel="Direção" itemValue="direcao" />
-							<f:selectItem itemLabel="Biblioteca" itemValue="biblioteca" />
-							<f:selectItem itemLabel="etc" itemValue="etc" />
-						</p:selectOneMenu>
-
-						<p:outputLabel value="Campos: " />
-						<p:selectManyCheckbox>
-							<f:selectItem itemLabel="Matrícula" itemValue="matricula" />
-							<f:selectItem itemLabel="Nome" itemValue="nome" />
-							<f:selectItem itemLabel="Email" itemValue="email" />
-							<f:selectItem itemLabel="Telefone" itemValue="telefone" />
-						</p:selectManyCheckbox>
-
-						<p:outputLabel value="Ordenação: " />
-						<p:selectOneRadio>
-							<f:selectItem itemLabel="A - Z" itemValue="az" />
-							<f:selectItem itemLabel="Z - A" itemValue="za" />
 						</p:selectOneRadio>
+
+						<!-- 						<p:outputLabel value="Setor " /> -->
+						<!-- 						<p:selectOneMenu> -->
+						<!-- 							<f:selectItem noSelectionOption="true" /> -->
+						<!-- 							<f:selectItem itemLabel="Matemática" itemValue="matematica" /> -->
+						<!-- 							<f:selectItem itemLabel="Letras" itemValue="letras" /> -->
+						<!-- 							<f:selectItem itemLabel="Contábeis" itemValue="contabeis" /> -->
+						<!-- 							<f:selectItem itemLabel="Direção" itemValue="direcao" /> -->
+						<!-- 							<f:selectItem itemLabel="Biblioteca" itemValue="biblioteca" /> -->
+						<!-- 							<f:selectItem itemLabel="etc" itemValue="etc" /> -->
+						<!-- 						</p:selectOneMenu> -->
+
+						<!-- 						<p:outputLabel value="Campos: " /> -->
+						<!-- 						<p:selectManyCheckbox> -->
+						<!-- 							<f:selectItem itemLabel="Matrícula" itemValue="matricula" /> -->
+						<!-- 							<f:selectItem itemLabel="Nome" itemValue="nome" /> -->
+						<!-- 							<f:selectItem itemLabel="Email" itemValue="email" /> -->
+						<!-- 							<f:selectItem itemLabel="Telefone" itemValue="telefone" /> -->
+						<!-- 						</p:selectManyCheckbox> -->
+
+						<!-- 						<p:outputLabel value="Ordenação: " /> -->
+						<!-- 						<p:selectOneRadio> -->
+						<!-- 							<f:selectItem itemLabel="A - Z" itemValue="az" /> -->
+						<!-- 							<f:selectItem itemLabel="Z - A" itemValue="za" /> -->
+						<!-- 						</p:selectOneRadio> -->
 
 					</h:panelGrid>
 
 					<p:toolbar style="margin-top: 10px">
 						<f:facet name="left">
-							<p:commandButton id="pdfRelatorioComFiltro"
-								action="#{reuniaoBean.listaDePresenca()}" immediate="true"
-								ajax="false" icon="fa fa-file-pdf-o" value="Emitir"
-								onclick="this.form.target = '_blank'"
+
+							<p:commandButton id="pdfServidores"
+								action="#{reuniaoBean.executaRelatorio}"
+								ajax="false" icon="fa fa-file-pdf-o"
+								value="Servidores" onclick="this.form.target = '_blank'"
 								disabled="#{pessoaBean.servidores.size() == 0}" />
+								
+							<!-- 							<p:commandButton id="teste" -->
+							<!-- 								action="#{reuniaoBean.chamaConsulta()}" value="Exibir" -->
+							<!-- 								disabled="#{pessoaBean.servidores.size() == 0}" /> -->
+
+							<!-- 							<p:commandButton id="pdfRelatorioComFiltro" -->
+							<!-- 								action="#{reuniaoBean.listaDePresenca()}" immediate="true" -->
+							<!-- 								ajax="false" icon="fa fa-file-pdf-o" value="Emitir" -->
+							<!-- 								onclick="this.form.target = '_blank'" -->
+							<!-- 								disabled="#{pessoaBean.servidores.size() == 0}" /> -->
 
 						</f:facet>
 					</p:toolbar>
 
 				</p:panel>
 
-<!-- 				<p:panel id="listaFrequencia" header="Lista de presença" -->
-<!-- 					style="margin-top: 20px"> -->
+				<!-- 				<p:panel id="listaFrequencia" header="Lista de presença" -->
+				<!-- 					style="margin-top: 20px"> -->
 
-<!-- 					<h:panelGrid id="panelCadastroRelatorio" columns="2"> -->
+				<!-- 					<h:panelGrid id="panelCadastroRelatorio" columns="2"> -->
 
-<!-- 						<p:outputLabel for="data" value="Data: " /> -->
-<!-- 						<p:calendar id="data" navigator="true" pattern="dd/MM/yyyy" -->
-<!-- 							yearRange="c-100:c+100" showOn="button" maxlength="10" -->
-<!-- 							mask="true" size="21" locale="pt" -->
-<!-- 							value="#{reuniaoBean.reuniao.data}"> -->
-<!-- 							<f:convertDateTime type="date" pattern="dd/MM/yyyy" -->
-<!-- 								locale="pt_BR" /> -->
-<!-- 							<p:tooltip for="data" -->
-<!-- 								value="Informe a data em que ocorrerá a atividade" /> -->
-<!-- 						</p:calendar> -->
+				<!-- 						<p:outputLabel for="data" value="Data: " /> -->
+				<!-- 						<p:calendar id="data" navigator="true" pattern="dd/MM/yyyy" -->
+				<!-- 							yearRange="c-100:c+100" showOn="button" maxlength="10" -->
+				<!-- 							mask="true" size="21" locale="pt" -->
+				<!-- 							value="#{reuniaoBean.reuniao.data}"> -->
+				<!-- 							<f:convertDateTime type="date" pattern="dd/MM/yyyy" -->
+				<!-- 								locale="pt_BR" /> -->
+				<!-- 							<p:tooltip for="data" -->
+				<!-- 								value="Informe a data em que ocorrerá a atividade" /> -->
+				<!-- 						</p:calendar> -->
 
-<!-- 						<p:outputLabel for="hora" value="Hora: " /> -->
-<!-- 						<p:calendar id="hora" navigator="false" pattern="HH:mm" -->
-<!-- 							timeOnly="true" maxlength="10" mask="true" size="26" locale="pt" -->
-<!-- 							value="#{reuniaoBean.reuniao.hora}"> -->
-<!-- 							<f:convertDateTime type="time" pattern="HH:mm" locale="pt_BR" /> -->
-<!-- 							<p:tooltip for="hora" -->
-<!-- 								value="Informe a hora em que ocorrerá a atividade" /> -->
-<!-- 						</p:calendar> -->
+				<!-- 						<p:outputLabel for="hora" value="Hora: " /> -->
+				<!-- 						<p:calendar id="hora" navigator="false" pattern="HH:mm" -->
+				<!-- 							timeOnly="true" maxlength="10" mask="true" size="26" locale="pt" -->
+				<!-- 							value="#{reuniaoBean.reuniao.hora}"> -->
+				<!-- 							<f:convertDateTime type="time" pattern="HH:mm" locale="pt_BR" /> -->
+				<!-- 							<p:tooltip for="hora" -->
+				<!-- 								value="Informe a hora em que ocorrerá a atividade" /> -->
+				<!-- 						</p:calendar> -->
 
-<!-- 						<p:outputLabel for="setor" value="Setor: " /> -->
-<!-- 						<p:selectOneMenu id="setor" value="#{reuniaoBean.reuniao.setor}" -->
-<!-- 							style="width: 373px"> -->
-<!-- 							<f:selectItem noSelectionOption="true" /> -->
-<!-- 							<f:selectItems var="setor" value="#{setorBean.setores}" -->
-<!-- 								itemLabel="#{setor.nome}" itemValue="#{setor}" /> -->
-<!-- 						</p:selectOneMenu> -->
+				<!-- 						<p:outputLabel for="setor" value="Setor: " /> -->
+				<!-- 						<p:selectOneMenu id="setor" value="#{reuniaoBean.reuniao.setor}" -->
+				<!-- 							style="width: 373px"> -->
+				<!-- 							<f:selectItem noSelectionOption="true" /> -->
+				<!-- 							<f:selectItems var="setor" value="#{setorBean.setores}" -->
+				<!-- 								itemLabel="#{setor.nome}" itemValue="#{setor}" /> -->
+				<!-- 						</p:selectOneMenu> -->
 
-<!-- 						<p:outputLabel for="listaServidores" value="Servidores: " /> -->
-<!-- 						<p:selectCheckboxMenu id="listaServidores" -->
-<!-- 							value="#{reuniaoBean.servidores}" style="width: 402px" -->
-<!-- 							filter="true" filterMatchMode="contains"> -->
-<!-- 							<f:selectItems var="servidor" value="#{reuniaoBean.servidores}" -->
-<!-- 								itemLabel="#{servidor.nome}" itemValue="#{servidor}" /> -->
-<!-- 						</p:selectCheckboxMenu> -->
+				<!-- 						<p:outputLabel for="listaServidores" value="Servidores: " /> -->
+				<!-- 						<p:selectCheckboxMenu id="listaServidores" -->
+				<!-- 							value="#{reuniaoBean.servidores}" style="width: 402px" -->
+				<!-- 							filter="true" filterMatchMode="contains"> -->
+				<!-- 							<f:selectItems var="servidor" value="#{reuniaoBean.servidores}" -->
+				<!-- 								itemLabel="#{servidor.nome}" itemValue="#{servidor}" /> -->
+				<!-- 						</p:selectCheckboxMenu> -->
 
-<!-- 						<p:outputLabel for="atividade" value="Atividade: " /> -->
-<!-- 						<p:inputText id="atividade" -->
-<!-- 							value="#{reuniaoBean.reuniao.atividade}" size="47" maxlength="20"> -->
-<!-- 							<p:tooltip for="atividade" -->
-<!-- 								value="Informe a atividade a ser realizada" /> -->
-<!-- 						</p:inputText> -->
+				<!-- 						<p:outputLabel for="atividade" value="Atividade: " /> -->
+				<!-- 						<p:inputText id="atividade" -->
+				<!-- 							value="#{reuniaoBean.reuniao.atividade}" size="47" maxlength="20"> -->
+				<!-- 							<p:tooltip for="atividade" -->
+				<!-- 								value="Informe a atividade a ser realizada" /> -->
+				<!-- 						</p:inputText> -->
 
-<!-- 						<p:outputLabel for="local" value="Local: " /> -->
-<!-- 						<p:inputText id="local" value="#{reuniaoBean.reuniao.local}" -->
-<!-- 							size="47" maxlength="200"> -->
-<!-- 							<p:tooltip for="local" -->
-<!-- 								value="Informe o local onde ocorrerá a atividade" /> -->
-<!-- 						</p:inputText> -->
+				<!-- 						<p:outputLabel for="local" value="Local: " /> -->
+				<!-- 						<p:inputText id="local" value="#{reuniaoBean.reuniao.local}" -->
+				<!-- 							size="47" maxlength="200"> -->
+				<!-- 							<p:tooltip for="local" -->
+				<!-- 								value="Informe o local onde ocorrerá a atividade" /> -->
+				<!-- 						</p:inputText> -->
 
-<!-- 						<p:outputLabel for="pauta" value="Pauta: " /> -->
-<!-- 						<p:editor -->
-<!-- 							controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" -->
-<!-- 							id="pauta" width="400" height="150" -->
-<!-- 							value="#{reuniaoBean.reuniao.pauta}" /> -->
+				<!-- 						<p:outputLabel for="pauta" value="Pauta: " /> -->
+				<!-- 						<p:editor -->
+				<!-- 							controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" -->
+				<!-- 							id="pauta" width="400" height="150" -->
+				<!-- 							value="#{reuniaoBean.reuniao.pauta}" /> -->
 
-<!-- 					</h:panelGrid> -->
+				<!-- 					</h:panelGrid> -->
 
-<!-- 					<p:toolbar style="margin-top: 10px"> -->
-<!-- 						<f:facet name="left"> -->
-<!-- 							<p:commandButton id="pdfListaFrequencia" -->
-<!-- 								action="#{reuniaoBean.listaDePresenca()}" immediate="true" -->
-<!-- 								ajax="false" icon="fa fa-file-pdf-o" value="Emitir lista" -->
-<!-- 								onclick="this.form.target = '_blank'" -->
-<!-- 								disabled="#{pessoaBean.servidores.size() == 0}" /> -->
+				<!-- 					<p:toolbar style="margin-top: 10px"> -->
+				<!-- 						<f:facet name="left"> -->
+				<!-- 							<p:commandButton id="pdfListaFrequencia" -->
+				<!-- 								action="#{reuniaoBean.listaDePresenca()}" immediate="true" -->
+				<!-- 								ajax="false" icon="fa fa-file-pdf-o" value="Emitir lista" -->
+				<!-- 								onclick="this.form.target = '_blank'" -->
+				<!-- 								disabled="#{pessoaBean.servidores.size() == 0}" /> -->
 
 
-<!-- 							<p:commandButton id="teste" action="#{reuniaoBean.dados}" -->
-<!-- 								immediate="true" ajax="false" icon="fa fa-file-pdf-o" -->
-<!-- 								value="Teste" /> -->
-<!-- 						</f:facet> -->
-<!-- 					</p:toolbar> -->
+				<!-- 							<p:commandButton id="teste" action="#{reuniaoBean.dados}" -->
+				<!-- 								immediate="true" ajax="false" icon="fa fa-file-pdf-o" -->
+				<!-- 								value="Teste" /> -->
+				<!-- 						</f:facet> -->
+				<!-- 					</p:toolbar> -->
 
-<!-- 				</p:panel> -->
+				<!-- 				</p:panel> -->
 
 <!-- 				<div class="ui-g"> -->
 <!-- 					<div class="ui-g-6"> -->

@@ -1,14 +1,18 @@
 package br.edu.uepb.sigeris.controllers;
 
-import br.edu.uepb.sigeris.model.Setor;
-import br.edu.uepb.sigeris.services.SetorService;
-import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.edu.uepb.sigeris.enumerations.SetoresPessoas;
+import br.edu.uepb.sigeris.model.Setor;
+import br.edu.uepb.sigeris.services.SetorService;
+import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,6 +44,9 @@ public class SetorBean implements Serializable {
 
     @Getter
     private List<Setor> setores;
+    
+    @Getter
+    private List<SetoresPessoas> setoresPessoas;
 
     public SetorBean() {
         setor = new Setor();
@@ -49,6 +56,7 @@ public class SetorBean implements Serializable {
     @PostConstruct
     public void init() {
         this.setores = setorService.todos();
+        this.setoresPessoas = Arrays.asList(SetoresPessoas.values());
     }
 
     /**

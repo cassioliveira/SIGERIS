@@ -38,7 +38,14 @@ import lombok.Data;
 @NamedQueries({
 		@NamedQuery(name = "Servidores.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' OR p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
 		@NamedQuery(name = "Professores.todos", query = "FROM Pessoa p WHERE p.categoria='PROFESSOR' ORDER BY p.nome ASC"),
-		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC") })
+		@NamedQuery(name = "Terceirizados.todos", query = "FROM Pessoa p WHERE p.categoria='TERCEIRIZADO' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "TerceirizadosVigilantes.todos", query = "FROM Pessoa p WHERE p.categoria='TERCEIRIZADO' AND p.profissionalSetor='VIGILANTES' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "TerceirizadosApoio.todos", query = "FROM Pessoa p WHERE p.categoria='TERCEIRIZADO' AND p.profissionalSetor<>'VIGILANTES' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "ProfessoresContratados.todos", query = "FROM Pessoa p WHERE p.categoria='PROFESSOR' AND p.vinculo='SUBSTITUTO' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "ProfessoresEfetivos.todos", query = "FROM Pessoa p WHERE p.categoria='PROFESSOR' AND p.vinculo='EFETIVO' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "Tecnicos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "TecnicosContratados.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' AND p.vinculo='SUBSTITUTO' ORDER BY p.nome ASC"),
+		@NamedQuery(name = "TecnicosEfetivos.todos", query = "FROM Pessoa p WHERE p.categoria='TECNICO' AND p.vinculo='EFETIVO' ORDER BY p.nome ASC") })
 public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -127,7 +134,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "vinculo")
 	private VinculoServidor vinculo;
 
-	@Column(name = "observacoes")
+	@Column(name = "observacoes", length = 1000)
 	private String observacoes;
 
 	private byte[] foto;
