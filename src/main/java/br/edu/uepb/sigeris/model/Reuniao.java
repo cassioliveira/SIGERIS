@@ -35,36 +35,36 @@ public class Reuniao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String tituloDocumento;
-
-	@NotNull(message = "Informe o setor responsável")
-	private Setor setor;
-
-	@NotNull(message = "Informe a descrição")
-	private String descricao;
-
-	@NotNull(message = "Informe o local")
-	private String local;
-
-	@NotNull(message = "Informe a data")
-	@Temporal(TemporalType.DATE)
-	private Date data;
-
-	@NotNull(message = "Informe a hora")
-	@Temporal(TemporalType.TIME)
-	private Date hora;
-
-	@Column(name = "pauta", length = 1000)
-	private String pauta;
-
-	@ElementCollection
-	private List<String> pessoas;
+//	private String tituloDocumento;
+//
+//	@NotNull(message = "Informe o setor responsável")
+//	private Setor setor;
+//
+//	@NotNull(message = "Informe a descrição")
+//	private String descricao;
+//
+//	@NotNull(message = "Informe o local")
+//	private String local;
+//
+//	@NotNull(message = "Informe a data")
+//	@Temporal(TemporalType.DATE)
+//	private Date data;
+//
+//	@NotNull(message = "Informe a hora")
+//	@Temporal(TemporalType.TIME)
+//	private Date hora;
+//
+//	@Column(name = "pauta", length = 1000)
+//	private String pauta;
+//
+//	@ElementCollection
+//	private List<String> pessoas;
 
 //	@OneToMany
 //	@JoinTable(name = "reuniao_pessoa", joinColumns = @JoinColumn(name = "id_reuniao"), inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
 
-	public Reuniao() {
-		setTituloDocumento("Lista de presença");
-	}
+//	public Reuniao() {
+//		setTituloDocumento("Lista de presença");
+//	}
 
 }

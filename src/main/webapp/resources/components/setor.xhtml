@@ -17,13 +17,13 @@
 
 		<p:outputLabel for="categoria" value="Categoria " />
 		<p:selectOneMenu id="categoria" value="#{cc.attrs.categoria}"
-			style="width: 140px" required="true">
+			style="width: 310px" required="true">
 			<f:selectItem itemLabel="Servidores" itemValue="SERVIDORES" />
 			<f:selectItem itemLabel="Terceirizados" itemValue="TERCEIRIZADOS" />
 		</p:selectOneMenu>
 
 		<p:outputLabel for="nome" value="Nome do setor: " />
-		<p:selectOneMenu id="nome" value="#{cc.attrs.nome}">
+		<p:selectOneMenu id="nome" value="#{cc.attrs.nome}" style="width:310px">
 			<f:selectItems var="nomeSetor" value="#{setorBean.setoresPessoas}"
 				itemLabel="#{nomeSetor.description}" itemValue="#{nomeSetor}" />
 		</p:selectOneMenu>

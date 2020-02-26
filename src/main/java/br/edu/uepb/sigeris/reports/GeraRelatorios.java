@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.uepb.sigeris.model.Setor;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -61,7 +62,7 @@ public class GeraRelatorios {
 	 * @param dados
 	 * @param titulo
 	 * @param setor
-	 * @param atividade
+	 * @param descricao
 	 * @param data
 	 * @param hora
 	 * @param local
@@ -69,8 +70,8 @@ public class GeraRelatorios {
 	 * @throws JRException
 	 * @throws IOException
 	 */
-	public void gerarPdfListaReuniao(String jasperFileName, String pdfFileName, List<?> dados, String titulo,
-			String atividade, Date data, Date hora, String local, String pauta) throws JRException, IOException {
+	public void gerarPdfListaReuniao(String jasperFileName, String pdfFileName, List<?> dados, String titulo, Setor setor,
+			String descricao, Date data, Date hora, String local, String pauta) throws JRException, IOException {
 
 		Map<String, Object> parametros = new HashMap<>();
 		String uepb = FacesUtil.caminhoContexto("/resources/sigeris/imagens/relatorio-uepb.png");
@@ -79,12 +80,22 @@ public class GeraRelatorios {
 		parametros.put("cche", cche);
 		String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
 		parametros.put("titulo", titulo);
-//		parametros.put("setor", setor);
-		parametros.put("atividade", atividade);
+		parametros.put("setor", setor);
+		parametros.put("atividade", descricao);
 		parametros.put("data", data);
 		parametros.put("hora", hora);
 		parametros.put("local", local);
 		parametros.put("pauta", pauta);
+		
+		System.out.println("************* PRINT DO Gera Relatório *******************");
+		System.out.println(titulo);
+		System.out.println(setor);
+		System.out.println(descricao);
+		System.out.println(data);
+		System.out.println(hora);
+		System.out.println(local);
+		System.out.println(pauta);
+		System.out.println(dados);
 
 		processarRelatorio(dados, parametros, caminhoArquivoJasper, pdfFileName);
 	}

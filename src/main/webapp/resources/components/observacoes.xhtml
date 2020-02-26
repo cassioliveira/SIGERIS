@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:composite="http://xmlns.jcp.org/jsf/composite">
 
 <composite:interface>
@@ -15,14 +16,25 @@
 <composite:implementation>
 
 	<h:panelGrid columns="2" style="margin-top: 5px">
-		<p:outputLabel for="observacoes" value="Observações: "
-			style="#{cc.attrs.estilo}" />
-			<p:textEditor id="observacoes" width="#{cc.attrs.largura}"
- 			height="#{cc.attrs.altura}" value="#{cc.attrs.value}"/>
-<!-- 		<p:editor -->
-<!-- 			controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" -->
-<!-- 			id="observacoes" width="#{cc.attrs.largura}" -->
-<!-- 			height="#{cc.attrs.altura}" value="#{cc.attrs.value}" /> -->
+		<p:outputLabel for="observacoes" value="Observações: "/>
+		<p:textEditor id="observacoes" value="#{cc.attrs.value}" 
+			style="#{cc.attrs.estilo}" width="#{cc.attrs.largura}"
+			height="#{cc.attrs.altura}">
+			<f:facet name="toolbar">
+				<span class="ql-formats"> <select class="ql-font"></select> <select
+					class="ql-size"></select>
+				</span>
+				<span class="ql-formats">
+					<button class="ql-bold"></button>
+					<button class="ql-italic"></button>
+					<button class="ql-underline"></button>
+				</span>
+			</f:facet>
+		</p:textEditor>
+		<!-- 		<p:editor -->
+		<!-- 			controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" -->
+		<!-- 			id="observacoes" width="#{cc.attrs.largura}" -->
+		<!-- 			height="#{cc.attrs.altura}" value="#{cc.attrs.value}" /> -->
 	</h:panelGrid>
 
 </composite:implementation>
