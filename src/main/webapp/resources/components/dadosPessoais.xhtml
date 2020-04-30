@@ -3,10 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:composite="http://xmlns.jcp.org/jsf/composite"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <composite:interface>
+	<composite:attribute name="foto" />
 	<composite:attribute name="nome" />
 	<composite:attribute name="matricula" />
 	<composite:attribute name="sexo" />
@@ -19,25 +21,37 @@
 
 <composite:implementation>
 
+	<h:panelGrid id="panelGridFoto" columns="2">
 
-	<h:panelGrid columns="2">
+		<h:panelGroup id="panelGroupFoto">
 
-		<h:panelGroup>
-			<div style="border: 0px solid red; width: 100px; position: relative">
-				<h:panelGroup id="fotoProfessor">
-					<p:graphicImage library="sigeris" name="imagens/avatar.png"
-						cache="false"
-						style="height: 97px; margin-bottom: 2px; text-align: center; margin-top: 10px" />
-				</h:panelGroup>
+			<!-- value="#{imageBean.fotoSalva}" -->
+			<h:panelGrid columns="1" style="text-align: center">
 
-				<p:fileUpload id="photoUpload" cancelLabel="Cancelar"
-					dragDropSupport="true" fileLimit="1" label="Alterar foto"
-					update="fotoProfessor" mode="simple" uploadLabel="Enviar..."
-					skinSimple="true"
-					style="width: 100px; font-size: 11px; font-weight: bold"
-					auto="true" disabled="true" />
-			</div>
+				<!-- 				<p:fileUpload id="imageFileUploader" -->
+				<!-- 					fileUploadListener="#{tecnicoBean.upload}" mode="advanced" -->
+				<!-- 					multiple="false" fileLimit="1" value="#{cc.attrs.foto}" -->
+				<!-- 					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="@form" /> -->
+
+				<!-- 				<div> -->
+				<!-- 					<img src="#{tecnicoBean.fotoEmBase64}" id="foto" -->
+				<!-- 						style="#{tecnicoBean.fotoEmBase64 eq null ? 'display: none' : ''}" /> -->
+				<!-- 				</div> -->
+
+
+				<!-- 				<img src="data:image/jpg;base64,#{tecnicoBean.fotoDoBanco}" id="foto" /> -->
+				<p:graphicImage id="foto" value="#{tecnicoBean.fotoSalva}" cache="false"
+					width="150" height="200" rendered="#{cc.attrs.foto ne null}">
+					<f:param name="id" value="#{tecnicoBean.tecnico.id}" />
+				</p:graphicImage>
+				<p:graphicImage id="avatar" library="sigeris"
+					name="imagens/avatar.png" cache="false" width="150" height="200"
+					rendered="#{cc.attrs.foto eq null}" />
+				<p:commandButton value="Incluir/alterar foto"
+					oncomplete="PF('uploadFoto').show();" />
+			</h:panelGrid>
 		</h:panelGroup>
+
 
 		<h:panelGroup>
 
@@ -48,7 +62,8 @@
 					<p:outputLabel for="name" value="Nome: " />
 				</h:panelGroup>
 				<p:inputText id="name" value="#{cc.attrs.nome}" size="43"
-					maxlength="200" />
+					maxlength="200" required="true"
+					requiredMessage="Um nome deve ser informado" />
 
 				<p:outputLabel for="registration" value="Matrícula: "
 					rendered="#{view.viewId ne '/servidor/cadastro-terceirizado.xhtml'}" />
@@ -98,12 +113,34 @@
 						size="43" maxlength="200" />
 					<p:tooltip value="Pessoa Com Deficiência*" for="deficiencia" />
 				</h:panelGroup>
-
 			</h:panelGrid>
 
 		</h:panelGroup>
 
 	</h:panelGrid>
+
+	<p:dialog header="Upload de foto" widgetVar="uploadFoto"
+		closeOnEscape="true" draggable="false" resizable="false" modal="true"
+		closable="false" hideEffect="fade" showEffect="fade">
+
+		<h:panelGrid columns="2" width="100%">
+
+			<p:fileUpload id="fotoUpload" value="#{tecnicoBean.foto}"
+				label="Escolher foto" fileUploadListener="#{tecnicoBean.upload}"
+				uploadLabel="Anexar foto" allowTypes="/(\.|\/)(jpe?g)$/"
+				sizeLimit="300000" accept=".jpg"
+				invalidFileMessage="Apenas foto do tipo .jpg será aceita | "
+				invalidSizeMessage="A foto não deve ser maior que 300Kb | " />
+		</h:panelGrid>
+
+		<!-- 		<p:fileUpload id="fotoUpload" value="#{imageBean.foto}" -->
+		<!-- 				label="Escolher foto" fileUploadListener="#{imageBean.upload}" -->
+		<!-- 				uploadLabel="Anexar foto" allowTypes="/(\.|\/)(jpe?g)$/" -->
+		<!-- 				sizeLimit="300000" accept=".jpg" -->
+		<!-- 				invalidFileMessage="Apenas foto do tipo .jpg será aceita | " -->
+		<!-- 				invalidSizeMessage="A foto não deve ser maior que 300Kb | " /> -->
+		<!-- 		</h:panelGrid> -->
+	</p:dialog>
 
 </composite:implementation>
 </html>

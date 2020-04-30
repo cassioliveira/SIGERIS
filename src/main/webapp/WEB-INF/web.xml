@@ -28,7 +28,7 @@
 
 	<context-param>
 		<param-name>primefaces.UPLOADER</param-name>
-		<param-value>auto</param-value>
+		<param-value>commons</param-value>
 	</context-param>
 
 	<!-- Hide comments on code to avoid security breach and weight in the renderization 
@@ -85,11 +85,17 @@
 	<welcome-file-list>
 		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
-
-	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
-		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
-		<url-pattern>/*</url-pattern> <dispatcher>FORWARD</dispatcher> <dispatcher>REQUEST</dispatcher> 
-		</filter-mapping> -->
+	
+	<filter>
+	    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+	    <filter-class>
+	    org.primefaces.webapp.filter.FileUploadFilter
+	    </filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+	    <servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
 
 	<mime-mapping>
 		<extension>eot</extension>
@@ -115,5 +121,10 @@
 		<extension>sgv</extension>
 		<mime-type>image/sgv+xml</mime-type>
 	</mime-mapping>
+	<mime-mapping>
+	    <extension>ico</extension>
+	    <mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+	
 
 </web-app>

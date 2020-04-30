@@ -12,12 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import br.edu.uepb.sigeris.enumerations.Estados;
 import br.edu.uepb.sigeris.enumerations.VinculoServidor;
@@ -57,8 +57,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "categoria", length = 15)
 	private String categoria;
 
-	@NotNull(message = "Um nome deve ser informado")
-	@Column(name = "nome", nullable = false, length = 200)
+	@Column(name = "nome", length = 200)
 	private String nome;
 
 	@Column(name = "matricula", length = 15)
@@ -137,7 +136,8 @@ public class Pessoa implements Serializable {
 	@Column(name = "observacoes", length = 1000)
 	private String observacoes;
 
-	private byte[] foto;
+	@Column(columnDefinition = "text")
+	private String foto;
 
 	@Column(name = "endereco_rua", length = 200)
 	private String rua;

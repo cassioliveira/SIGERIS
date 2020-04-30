@@ -16,23 +16,25 @@
 		<p:fieldset id="fieldsetTecnico"
 			legend="#{tecnicoBean.editando ? 'Alteração de cadastro de tecnico' : 'Cadastro de técnico'}">
 
-			<p:messages closable="true" severity="info,warn,error">
+			<p:growl id="growl" closable="true" severity="info,warn,error">
 				<p:autoUpdate />
-			</p:messages>
+			</p:growl>
 
-			<h:form id="formPesquisaTecnico" enctype="multipart/form-data">
+			<h:form id="formPesquisaTecnico" enctype="multipart/form-data" prependId="false">
 
 				<p:tabView id="tabContainer">
 
 					<p:tab id="pessoais" title="Dados pessoais">
-						<component:dadosPessoais nome="#{tecnicoBean.tecnico.nome}"
+						<component:dadosPessoais id="dadosPessoaisComponent" nome="#{tecnicoBean.tecnico.nome}"
 							matricula="#{tecnicoBean.tecnico.matricula}"
 							sexo="#{tecnicoBean.tecnico.sexo}"
 							estadoCivil="#{tecnicoBean.tecnico.estadoCivil}"
 							dataNascimento="#{tecnicoBean.tecnico.dataNascimento}"
 							naturalidade="#{tecnicoBean.tecnico.naturalidade}"
 							nacionalidade="#{tecnicoBean.tecnico.nacionalidade}"
-							deficiencia="#{tecnicoBean.tecnico.deficiencia}" />
+							deficiencia="#{tecnicoBean.tecnico.deficiencia}"
+							foto="#{tecnicoBean.tecnico.foto}"/>
+						
 					</p:tab>
 
 					<p:tab id="contato" title="Contato">
@@ -88,7 +90,7 @@
 				</p:tabView>
 
 				<component:observacoes estilo="margin-left:24px; margin-right:15px"
-					altura="130" largura="560"
+					altura="100" largura="560"
 					value="#{tecnicoBean.tecnico.observacoes}" />
 
 			</h:form>
@@ -96,8 +98,8 @@
 			<p:toolbar>
 				<f:facet name="left">
 					<p:commandButton style="font-size: 13px" value="Salvar"
-						action="#{tecnicoBean.salvar}" icon="fa fa-save" id="botaoSalvar">
-						<f:ajax execute="@form" render="@form" />
+						action="#{tecnicoBean.salvar}" icon="fa fa-save" id="botaoSalvar" ajax="false">
+<!-- 						<f:ajax execute="@form" render="@form" /> -->
 					</p:commandButton>
 
 					<p:button style="font-size: 13px;" value="Cancelar"

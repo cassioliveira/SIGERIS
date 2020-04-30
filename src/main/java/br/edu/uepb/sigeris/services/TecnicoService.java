@@ -19,6 +19,10 @@ public class TecnicoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+//	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
+
+	Tecnico retorno;
+
 	@Inject
 	private Tecnicos tecnicos;
 
@@ -27,24 +31,53 @@ public class TecnicoService implements Serializable {
 
 	@Inject
 	private SetorService setorService;
-	
+
 	@Inject
 	private Security security;
 
 	@Transactional
-	public void salvar(Tecnico tecnico) {
-		if (novoCadastro(tecnico)) {
-			tecnico.setCategoria("TECNICO");
-			tecnico.setDataCadastro(new Date());
+	public Tecnico salvar(Tecnico tecnico) {
+		try {
+			if (novoCadastro(tecnico)) {
+				tecnico.setCategoria("TECNICO");
+				tecnico.setDataCadastro(new Date());
+			}
+			tecnico.setUsuario(security.usuarioLogado());
+
+			retorno = (Tecnico) this.tecnicos.salvar(tecnico);
+			pessoaService.apagarFotoLocal();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		tecnico.setUsuario(security.usuarioLogado());
-		this.tecnicos.salvar(tecnico);
+
+//		pessoaService.salvaImagemPastaDestino(tecnico, retorno);
+
+		return retorno;
 	}
 
-	@Transactional
-	public void deletar(Tecnico tecnico) {
-		tecnicos.excluir(findById(tecnico.getId()));
-	}
+//	/**
+//	 * Read the file and returns the byte array
+//	 * 
+//	 * @param file
+//	 * @return the bytes of the file
+//	 */
+//	private byte[] readFile(String file) {
+//		ByteArrayOutputStream bos = null;
+//		try {
+//			File f = new File(file);
+//			FileInputStream fis = new FileInputStream(f);
+//			byte[] buffer = new byte[1024];
+//			bos = new ByteArrayOutputStream();
+//			for (int len; (len = fis.read(buffer)) != -1;) {
+//				bos.write(buffer, 0, len);
+//			}
+//		} catch (FileNotFoundException e) {
+//			System.err.println(e.getMessage());
+//		} catch (IOException e2) {
+//			System.err.println(e2.getMessage());
+//		}
+//		return bos != null ? bos.toByteArray() : null;
+//	}
 
 	public Tecnico findById(Long id) {
 		return tecnicos.porId(id);
@@ -64,15 +97,6 @@ public class TecnicoService implements Serializable {
 		return pessoaService.novoCadastro(tecnico);
 	}
 
-//    public List<String> setores() {
-//        List<String> setoresString = new ArrayList<>();
-//
-//        for (Setor item : setorService.todos()) {
-//            setoresString.add(item.getNome());
-//        }
-//
-//        return setoresString;
-//    }
 	public List<String> setores() {
 		return setorService.servidores();
 	}

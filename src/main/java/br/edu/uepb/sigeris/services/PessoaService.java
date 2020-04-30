@@ -1,5 +1,6 @@
 package br.edu.uepb.sigeris.services;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 
 import br.edu.uepb.sigeris.model.Pessoa;
 import br.edu.uepb.sigeris.repository.Pessoas;
+import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 
 /**
  * Possui metodos comuns a todas as entidades que herdam de <b>Pessoa</b>
@@ -18,6 +20,8 @@ import br.edu.uepb.sigeris.repository.Pessoas;
 public class PessoaService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
 
 	@Inject
 	private Pessoas pessoas;
@@ -43,34 +47,6 @@ public class PessoaService implements Serializable {
 	public List<Pessoa> professores() {
 		return pessoas.consulta("Professores.todos");
 	}
-
-//	public List<Pessoa> tecnicosContratados() {
-//		return pessoas.consulta("TecnicosContratados.todos");
-//	}
-//
-//	public List<Pessoa> tecnicosEfetivos() {
-//		return pessoas.consulta("TecnicosEfetivos.todos");
-//	}
-//
-//	public List<Pessoa> professoresContratados() {
-//		return pessoas.consulta("ProfessoresContratados.todos");
-//	}
-//
-//	public List<Pessoa> professoresEfetivos() {
-//		return pessoas.consulta("ProfessoresEfetivos.todos");
-//	}
-//
-//	public List<Pessoa> terceirizados() {
-//		return pessoas.consulta("Terceirizados.todos");
-//	}
-//
-//	public List<Pessoa> terceirizadosApoio() {
-//		return pessoas.consulta("TerceirizadosApoio.todos");
-//	}
-//
-//	public List<Pessoa> terceirizadosVigilantes() {
-//		return pessoas.consulta("TerceirizadosVigilantes.todos");
-//	}
 
 	/**
 	 * Responsável por retornar o caminho da tela de edição de acordo com o tipo de
@@ -134,9 +110,31 @@ public class PessoaService implements Serializable {
 		return listaServidores;
 	}
 
+//	/**
+//	 * @param tecnico
+//	 * @param retorno
+//	 */vice.C
+//	public void salvaImagemPastaDestino(Tecnico tecnico, Tecnico retorno){
+//		try {
+//			Path origem = Paths.get(tecnico.getCaminhoTempFoto());
+//			Path destino = Paths.get(CAMINHO_FOTO_SERVIDORES + retorno.getId() + ".jpg");
+//			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 	@Transactional
 	public void excluir(Pessoa pessoa) {
-		pessoas.excluir(findById(pessoa.getId()));
+		try {
+			Pessoa pessoaSelecionada = findById(pessoa.getId());
+			pessoas.excluir(pessoaSelecionada);
+//			Path arquivo = Paths.get(PessoaService.CAMINHO_FOTO_SERVIDORES + pessoaSelecionada.getId() + ".jpg");
+//			Files.deleteIfExists(arquivo);
+		} catch (RuntimeException e) {
+			FacesUtil.mensagemErro("Ocorreu um erro ao excluir o cadastro");
+			e.printStackTrace();
+		}
 	}
 
 	public Pessoa findById(Long id) {
@@ -146,4 +144,74 @@ public class PessoaService implements Serializable {
 	public List<Pessoa> todos() {
 		return pessoas.todos();
 	}
+
+	public void apagarFotoLocal() {
+		File file = new File(CAMINHO_FOTO_SERVIDORES + "foto.jpg");
+		file.delete();
+	}
+
+//	/**
+//	 * Responsável por ler a imagem na pasta selecionada e a retornar com um
+//	 * StreamedContent para exibir no GraphicImage.
+//	 * 
+//	 * @return
+//	 * @throws Exception 
+//	 */
+//	public StreamedContent fotoSalva(String stringFotoBanco, String caminhoFotoDecodificada) throws Exception {
+//		
+//		decodeImage(stringFotoBanco, caminhoFotoDecodificada);
+//		
+//		File fotoSalvaNoDisco = new File(CAMINHO_FOTO_SERVIDORES + "foto.jpg");
+//		DefaultStreamedContent conteudoImagem = null;
+//		try {
+//			BufferedInputStream imagemInputStream = new BufferedInputStream(new FileInputStream(fotoSalvaNoDisco));
+//			byte[] bytes = new byte[imagemInputStream.available()];
+//			imagemInputStream.read(bytes);
+//			imagemInputStream.close();
+//			conteudoImagem = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return conteudoImagem;
+//	}
+
+//	/**
+//	 * Responsável por ler a imagem na pasta selecionada e a retornar com um
+//	 * StreamedContent para exibir no GraphicImage.
+//	 * 
+//	 * @return
+//	 * @throws Exception 
+//	 */
+//	public StreamedContent fotoSalva() throws Exception {
+//		File fotoSalvaNoDisco = new File(CAMINHO_FOTO_SERVIDORES + "foto.jpg");
+//		DefaultStreamedContent conteudoImagem = null;
+//		try {
+//			BufferedInputStream imagemInputStream = new BufferedInputStream(new FileInputStream(fotoSalvaNoDisco));
+//			byte[] bytes = new byte[imagemInputStream.available()];
+//			imagemInputStream.read(bytes);
+//			imagemInputStream.close();
+//			conteudoImagem = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return conteudoImagem;
+//	}
+
+//	 //decode image from base64 string stored in a file to an image
+//    private static void decodeImage(String stringFotoBanco, String caminhoFotoDecodificada) throws Exception{
+//
+//        // read from text file
+////        FileInputStream inputStream = new FileInputStream(txtPath);
+//
+//        byte[] data = Base64.getMimeDecoder().decode(stringFotoBanco);
+//
+//        // Base64.getDecoder().decode(inputStream.readAllBytes());
+//        FileOutputStream fileOutputStream = new FileOutputStream(caminhoFotoDecodificada);
+//
+//        // write array of bytes to an image file
+//        fileOutputStream.write(data);
+//
+//        // close streams
+//        fileOutputStream.close();
+//    }
 }

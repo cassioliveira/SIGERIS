@@ -21,6 +21,7 @@ import javax.persistence.EntityTransaction;
  * //@see Transactional * Based on estructure of codes of Algaworks GitHub
  * Repository (http://github.com/algaworks)
  */
+@SuppressWarnings("cdi-missing-interceptor-binding")
 @Interceptor
 //@Transactional
 public class TransactionInterceptor implements Serializable {

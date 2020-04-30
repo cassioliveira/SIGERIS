@@ -3,6 +3,7 @@ package br.edu.uepb.sigeris.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -44,14 +45,9 @@ public abstract class Generic<T> implements Serializable {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
-    /**
-     * Metodo utilizado para salvar um novo cadastro no banco de dados.
-     *
-     * @param entity
-     */
-    public void salvar(T entity) {
-        entityManager.merge(entity);
+    
+    public T salvar(T entity) {
+    	return (T) entityManager.merge(entity);
     }
 
     /**

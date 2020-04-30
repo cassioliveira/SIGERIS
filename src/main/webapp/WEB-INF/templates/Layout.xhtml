@@ -19,17 +19,18 @@
 	<h:outputStylesheet library="sigeris" name="css/components.css" />
 
 	<h:outputScript library="sigeris" name="js/primefacesCalendarLocale.js" />
-	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
 	<h:outputScript target="body" library="sigeris" name="js/app.js" />
-	<h:outputScript target="body" library="sigeris" name="js/jquery.mask.min.js" />
+	<h:outputScript target="body" library="sigeris"
+		name="js/jquery.mask.min.js" />
 	<h:outputScript target="body" library="sigeris" name="js/phone.mask.js" />
 
-	<link rel="icon" type="image/x-icon"
-		href="http://localhost:8080/SIGERIS/resources/sigeris/imagens/cche.ico" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['/sigeris/imagens/cche.ico']}" />
 </h:head>
 
 <h:body>
-
 	<!--            Componente Primefaces que exibe dialog após determinado tempo ter passado.
                        Usado basicamente para exibir janela de sessão expirada após finalizada sessão do usuário.-->
 	<p:idleMonitor onidle="PF('idleDialog').show()" timeout="900000" />
@@ -43,8 +44,9 @@
 			styleClass="botao-ok-sessao-expirada" />
 	</p:dialog>
 
-	<h:form>
+	<h:form id="formLayout">
 
+<!-- 		<p:poll listener="#{imageBean.monitorarPaginasApagarImagem}" /> -->
 
 		<header class="aw-topbar">
 
@@ -81,7 +83,7 @@
 		</p:confirmDialog>
 
 	</h:form>
-	
+
 	<!--This script changes the mask of money format
 	<script>
 		function validateMoney() {

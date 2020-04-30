@@ -19,9 +19,12 @@
 
 				<p:toolbar id="toolbar">
 					<f:facet name="left">
-						<p:button outcome="/servidor/cadastro-tecnico"
-							value="Novo TÉCNICO" icon="fa fa-user-plus"
-							styleClass="botao-novo-servidor" />
+					<p:commandButton value="Novo TÉCNICO" icon="fa fa-user-plus"
+							styleClass="botao-novo-servidor" action="#{pessoaBean.redirecionaCadastroTecnico}"/>
+					
+<!-- 						<p:button outcome="/servidor/cadastro-tecnico" -->
+<!-- 							value="Novo TÉCNICO" icon="fa fa-user-plus" -->
+<!-- 							styleClass="botao-novo-servidor" /> -->
 
 						<p:button outcome="/servidor/cadastro-professor"
 							value="Novo PROFESSOR" icon="fa fa-user-plus"
@@ -46,7 +49,7 @@
 								onkeyup="PF('pesquisaServidor').filter()" style="width:300px"
 								placeholder="Pesquise na tabela..." />
 						</p:outputPanel>
-					</f:facet>
+					</f:facet>am name="servidor" value="#{tecnicoBean.tecnico}"
 
 					<p:column headerText="Matricula" width="12%"
 						filterStyle="display:none" priority="1"
@@ -81,13 +84,14 @@
 					</p:column>
 
 					<p:column id="acoes" style="text-align: center" width="15%">
+
 						<p:button id="botaoEditar" title="Editar"
 							icon="ui-icon ui-icon-pencil" style="font-size: 10px"
 							outcome="#{pessoaBean.telaEdicaoServidor(servidor)}">
 							<f:param name="servidor" value="#{servidor.id}" />
 							<p:tooltip for="botaoEditar" value="Edita o registro selecionado" />
 						</p:button>
-
+						
 						<p:commandButton id="botaoExcluir" title="Excluir"
 							icon="ui-icon ui-icon-trash" style="font-size: 10px"
 							action="#{pessoaBean.excluir}"
