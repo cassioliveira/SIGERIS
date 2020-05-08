@@ -14,15 +14,4 @@
 		</locale-config>
 	</application>
 
-
-
-<!-- 	<navigation-rule> -->
-<!-- 		<from-view-id>/*</from-view-id> -->
-<!-- 		<navigation-case> -->
-<!-- 			<from-action>#{pessoaBean.apagarFotoLocal}</from-action> -->
-<!-- 			<to-view-id>/*</to-view-id> -->
-<!-- 			<redirect/> -->
-<!-- 		</navigation-case> -->
-<!-- 	</navigation-rule> -->
-
 </faces-config>
