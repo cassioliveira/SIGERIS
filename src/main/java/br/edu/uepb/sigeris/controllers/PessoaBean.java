@@ -12,6 +12,7 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import br.edu.uepb.sigeris.model.Pessoa;
+import br.edu.uepb.sigeris.model.Tecnico;
 import br.edu.uepb.sigeris.services.PessoaService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import lombok.Getter;
@@ -91,9 +92,18 @@ public class PessoaBean implements Serializable {
 		FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
 	}
 	
-	public String redirecionaCadastroTecnico() {
+	public void apagarFotoLocal() {
 		pessoaService.apagarFotoLocal();
-		return "cadastro-tecnico?faces-redirect=true";
+	}
+	
+	/**
+	 * Metodo que verifica se o objeto esta nulo quando for recuperado. Se sim,
+	 * refere-se a um novo cadastro, senao refere-se a um produto a ser editado
+	 *
+	 * @return
+	 */
+	public boolean getEditando() {
+		return this.pessoa.getId() != null;
 	}
 
 //	public void upload(FileUploadEvent event) {

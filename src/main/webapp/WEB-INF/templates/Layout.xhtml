@@ -28,6 +28,17 @@
 
 	<link rel="shortcut icon" type="image/x-icon"
 		href="#{resource['/sigeris/imagens/cche.ico']}" />
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{pessoaBean.apagarFotoLocal}" />
+	</f:metadata>
+
+<!-- 	<script> -->
+// 	    var loadFile = function (event) {
+// 	        var output = document.getElementById('formLayout:tabContainer:dadosPessoaisComponent:foto');
+// 	        output.src = URL.createObjectURL(event.target.files[0]);
+// 	    };
+<!-- 	</script> -->
 </h:head>
 
 <h:body>
@@ -46,7 +57,7 @@
 
 	<h:form id="formLayout">
 
-<!-- 		<p:poll listener="#{imageBean.monitorarPaginasApagarImagem}" /> -->
+		<!-- 		<p:poll listener="#{imageBean.monitorarPaginasApagarImagem}" /> -->
 
 		<header class="aw-topbar">
 

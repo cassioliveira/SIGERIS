@@ -42,8 +42,6 @@ public class TecnicoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
-
 	@Getter
 	@Setter
 	private Tecnico tecnico;
@@ -206,7 +204,7 @@ public class TecnicoBean implements Serializable {
 
 		PrimeFaces current = PrimeFaces.current();
 		current.executeScript("PF('uploadFoto').hide();"); // Fecha o dialog após o upload
-		current.ajax().update("formLayout:tabContainer:dadosPessoaisComponent:foto");
+		current.ajax().update("formLayout:tabContainer:dadosPessoaisComponent:panelGroupFoto");
 //		current.ajax().update("formLayout:tabContainer:dadosPessoaisComponent:foto");
 	}
 
@@ -217,9 +215,14 @@ public class TecnicoBean implements Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public StreamedContent getFotoSalva() throws Exception {
+	public StreamedContent getFotoSalva() {
 
-		imageBean.decodificarStringImagem(tecnico.getFoto());
+		try {
+			imageBean.decodificarStringImagem(tecnico.getFoto());
+		} catch (Exception e) {
+			FacesUtil.mensagemErro("Houve um problema ao recuperar a imagem.");
+			e.printStackTrace();
+		}
 
 		return retornaImagemPastaLocal();
 	}
@@ -241,6 +244,12 @@ public class TecnicoBean implements Serializable {
 			e.printStackTrace();
 		}
 		return conteudoImagem;
+	}
+	
+	public String redirecionaCadastroTecnico() {
+		pessoaService.apagarFotoLocal();
+		this.tecnico = new Tecnico();
+		return "cadastro-tecnico?faces-redirect=true";
 	}
 
 }

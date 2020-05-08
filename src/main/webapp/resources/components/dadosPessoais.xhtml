@@ -41,12 +41,12 @@
 
 				<!-- 				<img src="data:image/jpg;base64,#{tecnicoBean.fotoDoBanco}" id="foto" /> -->
 				<p:graphicImage id="foto" value="#{tecnicoBean.fotoSalva}" cache="false"
-					width="150" height="200" rendered="#{cc.attrs.foto ne null}">
+					width="150" height="200">
 					<f:param name="id" value="#{tecnicoBean.tecnico.id}" />
 				</p:graphicImage>
-				<p:graphicImage id="avatar" library="sigeris"
-					name="imagens/avatar.png" cache="false" width="150" height="200"
-					rendered="#{cc.attrs.foto eq null}" />
+<!-- 				<p:graphicImage id="avatar" library="sigeris" -->
+<!-- 					name="imagens/avatar.png" cache="false" width="150" height="200" -->
+<!-- 					rendered="#{pessoaBean.editando eq false or cc.attrs.foto eq null}" /> -->
 				<p:commandButton value="Incluir/alterar foto"
 					oncomplete="PF('uploadFoto').show();" />
 			</h:panelGrid>
@@ -121,7 +121,7 @@
 
 	<p:dialog header="Upload de foto" widgetVar="uploadFoto"
 		closeOnEscape="true" draggable="false" resizable="false" modal="true"
-		closable="false" hideEffect="fade" showEffect="fade">
+		closable="true" hideEffect="fade" showEffect="fade">
 
 		<h:panelGrid columns="2" width="100%">
 
