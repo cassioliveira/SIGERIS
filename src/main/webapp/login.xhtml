@@ -23,10 +23,6 @@
 		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
 	</f:metadata>
 
-
-
-
-
 	<!-- 		<p:panel id="panelLogin" style="margin-top: 20px"> -->
 	<!-- 			<center> -->
 	<!-- 				<h:form id="login" prependId="false"> -->
@@ -57,15 +53,17 @@
 		<p:panel rendered="true" id="panelLogin" style="margin-top: 20px">
 			<center>
 				<h:form id="login" prependId="false">
-					<p:messages closable="true" severity="info,warn,error">
+					<p:growl closable="true" severity="info,warn,error">
 						<p:autoUpdate />
-					</p:messages>
+					</p:growl>
 					<h:panelGrid id="loginPanelGrid" cellpadding="10"
 						style="margin-top: 15px">
 						<h:panelGroup>
-							<p:focus context="loginPanelGrid" />
-							<p:inputText id="username" required="true" placeholder="Login"
-								requiredMessage="Nome de usuário é obrigatório!" size="40" />
+<!-- 							<p:focus context="loginPanelGrid" /> -->
+							<p:inputMask id="username" required="true" placeholder="Login"
+								requiredMessage="Nome de usuário é obrigatório!" size="40"
+								mask="99999999999" maxlength="11">
+							</p:inputMask>
 						</h:panelGroup>
 
 						<p:password id="password" size="40" placeholder="Senha"
