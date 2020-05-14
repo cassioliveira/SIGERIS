@@ -12,7 +12,6 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import br.edu.uepb.sigeris.model.Pessoa;
-import br.edu.uepb.sigeris.model.Tecnico;
 import br.edu.uepb.sigeris.services.PessoaService;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
 import lombok.Getter;
@@ -91,11 +90,11 @@ public class PessoaBean implements Serializable {
 		getServidores();
 		FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
 	}
-	
+
 	public void apagarFotoLocal() {
 		pessoaService.apagarFotoLocal();
 	}
-	
+
 	/**
 	 * Metodo que verifica se o objeto esta nulo quando for recuperado. Se sim,
 	 * refere-se a um novo cadastro, senao refere-se a um produto a ser editado

@@ -20,12 +20,16 @@ public class ImageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
-
 	@Getter
 	@Setter
 	@Inject
 	private PessoaService pessoaService;
+
+//	@Inject
+//	@Getter
+//	Security security;
+//	
+//	private String nomeLocalFotoServidor = security.usuarioLogado();
 
 	/**
 	 * Recebe uma String de imagem em base64 e cria um arquivo dessa imagem em pasta
@@ -38,12 +42,9 @@ public class ImageBean implements Serializable {
 	public void decodificarStringImagem(String fotoString) throws IOException, FileNotFoundException {
 		byte[] data = Base64.getMimeDecoder().decode(fotoString);
 
-		FileOutputStream fileOutputStream = new FileOutputStream(PessoaService.CAMINHO_FOTO_SERVIDORES + "foto.jpg");
-
-		// write array of bytes to an image file
-		fileOutputStream.write(data);
-
-		// close stream
+		FileOutputStream fileOutputStream = new FileOutputStream(
+				PessoaService.CAMINHO_FOTO_SERVIDORES + pessoaService.nomeLocalFotoServidor + ".jpg");
+		fileOutputStream.write(data);// write array of bytes to an image file
 		fileOutputStream.close();
 	}
 

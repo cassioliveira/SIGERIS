@@ -186,6 +186,9 @@ public class TecnicoBean implements Serializable {
 
 		String encodedImage = java.util.Base64.getEncoder().encodeToString(event.getFile().getContents());
 		this.fotoEmBase64 = String.format(encodedImage);
+		
+		System.out.println("                     ");
+		System.out.println("#################### "+PessoaService.CAMINHO_FOTO_SERVIDORES);
 //		this.fotoEmBase64 = String.format("data:image/%s;base64, %s", extension, encodedImage);
 
 		exibirImagemAposUpload();
@@ -235,7 +238,7 @@ public class TecnicoBean implements Serializable {
 	private StreamedContent retornaImagemPastaLocal() {
 		try {
 			BufferedInputStream imagemInputStream = new BufferedInputStream(
-					new FileInputStream(PessoaService.CAMINHO_FOTO_SERVIDORES + "foto.jpg"));
+					new FileInputStream(PessoaService.CAMINHO_FOTO_SERVIDORES + pessoaService.nomeLocalFotoServidor + ".jpg"));
 			byte[] bytes = new byte[imagemInputStream.available()];
 			imagemInputStream.read(bytes);
 			imagemInputStream.close();

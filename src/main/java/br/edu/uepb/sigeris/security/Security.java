@@ -1,5 +1,7 @@
 package br.edu.uepb.sigeris.security;
 
+import java.io.Serializable;
+
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 
@@ -7,12 +9,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 /**
  * Bean CDI que disponibiliza o usuário logado no sistema e pode ser usado em
- * qualquer lugar da camada de apresentação.
+ * qualquer parte do sistema, inclusive na camada de apresentação.
  *
  * @author cassio
  */
 @Model
-public class Security {
+public class Security implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Captura o nome 'amigável' do usuário logado.

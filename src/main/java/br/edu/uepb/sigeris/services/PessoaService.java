@@ -7,6 +7,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import br.edu.uepb.sigeris.model.Pessoa;
 import br.edu.uepb.sigeris.repository.Pessoas;
 import br.edu.uepb.sigeris.util.jsf.FacesUtil;
@@ -21,7 +24,12 @@ public class PessoaService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
+	public static String CAMINHO_FOTO_SERVIDORES = System.getProperty("java.io.tmpdir"+"/");
+//	public static String CAMINHO_FOTO_SERVIDORES = "/home/cassio/servers/uploads/";
+
+	public Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();//Pega o Objeto que contém o usuário logado.
+	
+	public String nomeLocalFotoServidor = ((UserDetails) principal).getUsername();
 
 	@Inject
 	private Pessoas pessoas;
@@ -146,7 +154,7 @@ public class PessoaService implements Serializable {
 	}
 
 	public void apagarFotoLocal() {
-		File file = new File(CAMINHO_FOTO_SERVIDORES + "foto.jpg");
+		File file = new File(CAMINHO_FOTO_SERVIDORES + nomeLocalFotoServidor + ".jpg");
 		file.delete();
 	}
 

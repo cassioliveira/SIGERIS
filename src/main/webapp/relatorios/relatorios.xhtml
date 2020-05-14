@@ -79,7 +79,7 @@
 								action="#{reuniaoBean.executaRelatorio}" ajax="false"
 								icon="fa fa-file-pdf-o" value="Emitir"
 								onclick="this.form.target = '_blank'"
-								disabled="#{pessoaBean.servidores.size() == 0}" />
+								disabled="#{pessoaBean.servidores.size() == 0 and terceirizadoBean.terceirizados.size() == 0}" />
 
 							<!-- 							<p:commandButton id="teste" -->
 							<!-- 								action="#{reuniaoBean.chamaConsulta()}" value="Exibir" -->
