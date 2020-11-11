@@ -17,48 +17,49 @@ import br.edu.uepb.sigeris.security.Security;
  */
 public class ProfessorService implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Inject
-    private Professores professores;
+	@Inject
+	private Professores professores;
 
-    @Inject
-    private PessoaService pessoaService;
-    
-    @Inject
+	@Inject
+	private PessoaService pessoaService;
+
+	@Inject
 	private Security security;
 
-    @Transactional
-    public void salvar(Professor professor) {
-        if (novoCadastro(professor)) {
-            professor.setCategoria("PROFESSOR");
+	@Transactional
+	public void salvar(Professor professor) {
+		if (novoCadastro(professor)) {
+			professor.setCategoria("PROFESSOR");
 			professor.setDataCadastro(new Date());
-        }
-        professor.setUsuario(security.usuarioLogado());
-        this.professores.salvar(professor);
-    }
+		}
+		professor.setUsuario(security.usuarioLogado());
+		professor.setDataUltimaAtualizacao(new Date());
+		this.professores.salvar(professor);
+	}
 
-    @Transactional
-    public void deletar(Professor professor) {
-        professores.excluir(findById(professor.getId()));
-    }
+	@Transactional
+	public void deletar(Professor professor) {
+		professores.excluir(findById(professor.getId()));
+	}
 
-    public Professor findById(Long id) {
-        return professores.porId(id);
-    }
+	public Professor findById(Long id) {
+		return professores.porId(id);
+	}
 
-    public List<Professor> findAll() {
-        return professores.todos();
-    }
+	public List<Professor> findAll() {
+		return professores.todos();
+	}
 
-    /**
-     * Verifica se o ID do servidor já existe, indicando se é um novo cadastro.
-     *
-     * @param professor
-     * @return
-     */
-    public boolean novoCadastro(Professor professor) {
-        return pessoaService.novoCadastro(professor);
-    }
+	/**
+	 * Verifica se o ID do servidor já existe, indicando se é um novo cadastro.
+	 *
+	 * @param professor
+	 * @return
+	 */
+	public boolean novoCadastro(Professor professor) {
+		return pessoaService.novoCadastro(professor);
+	}
 
 }

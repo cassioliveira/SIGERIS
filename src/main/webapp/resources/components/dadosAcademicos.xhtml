@@ -45,15 +45,23 @@
 			<f:selectItem itemLabel="Professor Pós-doutor" itemValue="POSDOUTOR" />
 		</p:selectOneMenu>
 
-		<p:outputLabel for="cursos" value="Curso(s): " />
-		<p:selectCheckboxMenu id="cursos"
-			value="#{professorBean.professor.cursos}"
-			converter="professorCursosConverter" style="width: 280px"
-			updateLabel="true">
-			<f:attribute name="collectionType" value="java.util.ArrayList" />
+		<p:outputLabel for="cursos" value="Curso: " />
+		<p:selectOneMenu id="cursos"
+			value="#{professorBean.professor.curso}" style="width: 250px">
+			<f:selectItem noSelectionOption="true" />
 			<f:selectItems var="curso" itemLabel="#{curso.description}"
 				itemValue="#{curso}" value="#{professorBean.todosCursos}" />
-		</p:selectCheckboxMenu>
+		</p:selectOneMenu>
+		
+<!-- 		<p:outputLabel for="cursos" value="Curso(s): " /> -->
+<!-- 		<p:selectCheckboxMenu id="cursos" -->
+<!-- 			value="#{professorBean.professor.cursos}" -->
+<!-- 			converter="professorCursosConverter" style="width: 280px" -->
+<!-- 			updateLabel="true"> -->
+<!-- 			<f:attribute name="collectionType" value="java.util.ArrayList" /> -->
+<!-- 			<f:selectItems var="curso" itemLabel="#{curso.description}" -->
+<!-- 				itemValue="#{curso}" value="#{professorBean.todosCursos}" /> -->
+<!-- 		</p:selectCheckboxMenu> -->
 
 		<!--            <p:outputLabel for="titulacao" value="Títulação: "/>
             <p:inputText id="titulacao" value="#{cc.attrs.titulacao}" size="37" maxlength="20"/>-->

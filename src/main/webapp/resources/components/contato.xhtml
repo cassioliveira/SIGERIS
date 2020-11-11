@@ -10,6 +10,7 @@
 	<composite:attribute name="celular" />
 	<composite:attribute name="telefone" />
 	<composite:attribute name="email" />
+	<composite:attribute name="gsuiteExclusivo" />
 	<composite:attribute name="email2" />
 	<composite:attribute name="contatoEmergenciaTipo" />
 	<composite:attribute name="contatoEmergenciaNome" />
@@ -31,7 +32,19 @@
 
 			<p:outputLabel for="email" value="E-mail: " />
 			<p:inputText id="email" value="#{cc.attrs.email}" size="35"
-				maxlength="100" />
+				maxlength="100" placeholder="Se tiver, DEVE ser o e-mail GSuite." />
+
+			<p:outputLabel for="gsuiteExclusivo" value="Gsuite exclusivo?: " />
+			<h:panelGroup>
+				<p:selectOneRadio id="gsuiteExclusivo"
+					value="#{cc.attrs.gsuiteExclusivo}">
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio>
+				<p:tooltip for="gsuiteExclusivo"
+					value="Marque esta opção se o servidor desejar receber as comunicações do campus APENAS pelo e-mail Gsuite" />
+			</h:panelGroup>
+
 
 			<p:outputLabel for="email2" value="E-mail 2: " />
 			<p:inputText id="email2" value="#{cc.attrs.email2}" size="35"
@@ -49,6 +62,7 @@
 				<f:selectItem itemLabel="Pai" itemValue="PAI" />
 				<f:selectItem itemLabel="Mãe" itemValue="MAE" />
 				<f:selectItem itemLabel="Filho(a)" itemValue="FILHOA" />
+				<f:selectItem itemLabel="Companheiro(a)" itemValue="COMPANHEIROA" />
 				<f:selectItem itemLabel="Sogro(a)" itemValue="SOGROA" />
 				<f:selectItem itemLabel="Tio(a)" itemValue="TIOA" />
 				<f:selectItem itemLabel="Primo(a)" itemValue="PRIMOA" />

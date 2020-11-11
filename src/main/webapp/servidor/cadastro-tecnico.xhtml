@@ -20,12 +20,38 @@
 				<p:autoUpdate />
 			</p:growl>
 
-			<h:form id="formPesquisaTecnico" enctype="multipart/form-data" prependId="false">
+			<h:form id="formPesquisaTecnico" enctype="multipart/form-data"
+				prependId="false">
+
+				<div class="texto-data-cadastro">
+					<h:panelGrid columns="4">
+						<p:outputLabel for="dataCadastro" value="Data do cadastro: "
+							rendered="#{tecnicoBean.tecnico.dataCadastro ne null}"
+							style="font-weight: bold" />
+						<p:outputLabel id="dataCadastro"
+							value="#{tecnicoBean.tecnico.dataCadastro}"
+							rendered="#{tecnicoBean.tecnico.dataCadastro ne null}">
+							<f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"
+								locale="pt_BR" timeZone="#{initParam.timezone}" />
+						</p:outputLabel>
+						<p:outputLabel for="atualizacaoCadastro"
+							value=" - Última atualização: " style="font-weight: bold"
+							rendered="#{tecnicoBean.tecnico.dataCadastro ne null}" />
+						<p:outputLabel id="atualizacaoCadastro"
+							value="#{tecnicoBean.tecnico.dataUltimaAtualizacao}"
+							rendered="#{tecnicoBean.tecnico.dataCadastro ne null}">
+							<f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"
+								locale="pt_BR" timeZone="#{initParam.timezone}" />
+						</p:outputLabel>
+					</h:panelGrid>
+				</div>
 
 				<p:tabView id="tabContainer">
 
 					<p:tab id="pessoais" title="Dados pessoais">
-						<component:dadosPessoais id="dadosPessoaisComponent" nome="#{tecnicoBean.tecnico.nome}"
+						<component:dadosPessoais id="dadosPessoaisComponent"
+							nome="#{tecnicoBean.tecnico.nome}"
+							nomeSocial="#{tecnicoBean.tecnico.nomeSocial}"
 							matricula="#{tecnicoBean.tecnico.matricula}"
 							sexo="#{tecnicoBean.tecnico.sexo}"
 							estadoCivil="#{tecnicoBean.tecnico.estadoCivil}"
@@ -33,14 +59,15 @@
 							naturalidade="#{tecnicoBean.tecnico.naturalidade}"
 							nacionalidade="#{tecnicoBean.tecnico.nacionalidade}"
 							deficiencia="#{tecnicoBean.tecnico.deficiencia}"
-							foto="#{tecnicoBean.tecnico.foto}"/>
-						
+							foto="#{tecnicoBean.tecnico.foto}" />
+
 					</p:tab>
 
 					<p:tab id="contato" title="Contato">
 						<component:contato celular="#{tecnicoBean.tecnico.celular}"
 							telefone="#{tecnicoBean.tecnico.telefone}"
 							email="#{tecnicoBean.tecnico.email}"
+							gsuiteExclusivo="#{tecnicoBean.tecnico.gsuiteExclusivo}"
 							email2="#{tecnicoBean.tecnico.email2}"
 							contatoEmergenciaTipo="#{tecnicoBean.tecnico.contatoEmergenciaTipo}"
 							contatoEmergenciaNome="#{tecnicoBean.tecnico.contatoEmergenciaNome}"
@@ -72,11 +99,12 @@
 					</p:tab>
 
 					<p:tab id="profissional" title="Dados Profissionais">
+						<!-- 							escolaridade="#{tecnicoBean.tecnico.profissionalEscolaridade}" -->
 						<component:dadosProfissionais
+							situacao="#{tecnicoBean.tecnico.situacao}"
 							vinculo="#{tecnicoBean.tecnico.vinculo}"
 							setorTecnico="#{tecnicoBean.tecnico.profissionalSetor}"
 							regimeTrabalho="#{tecnicoBean.tecnico.regimeTrabalho}"
-							escolaridade="#{tecnicoBean.tecnico.profissionalEscolaridade}"
 							formacao="#{tecnicoBean.tecnico.profissionalFormacao}"
 							funcao="#{tecnicoBean.tecnico.profissionalFuncao}"
 							cargo="#{tecnicoBean.tecnico.profissionalCargo}"
@@ -98,8 +126,9 @@
 			<p:toolbar>
 				<f:facet name="left">
 					<p:commandButton style="font-size: 13px" value="Salvar"
-						action="#{tecnicoBean.salvar}" icon="fa fa-save" id="botaoSalvar" ajax="false">
-<!-- 						<f:ajax execute="@form" render="@form" /> -->
+						action="#{tecnicoBean.salvar}" icon="fa fa-save" id="botaoSalvar"
+						ajax="false">
+						<!-- 						<f:ajax execute="@form" render="@form" /> -->
 					</p:commandButton>
 
 					<p:button style="font-size: 13px;" value="Cancelar"

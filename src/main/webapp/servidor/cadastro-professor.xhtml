@@ -21,10 +21,35 @@
 			</p:messages>
 
 			<h:form id="formPesquisaProfessor" enctype="multipart/form-data">
+
+				<div class="texto-data-cadastro">
+					<h:panelGrid columns="4">
+						<p:outputLabel for="dataCadastro" value="Data do cadastro: "
+							style="font-weight: bold"
+							rendered="#{professorBean.professor.dataCadastro ne null}" />
+						<p:outputLabel id="dataCadastro"
+							value="#{professorBean.professor.dataCadastro}"
+							rendered="#{professorBean.professor.dataCadastro ne null}">
+							<f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"
+								locale="pt_BR" timeZone="#{initParam.timezone}" />
+						</p:outputLabel>
+						<p:outputLabel for="atualizacaoCadastro"
+							value=" - Última atualização: " style="font-weight: bold"
+							rendered="#{professorBean.professor.dataCadastro ne null}" />
+						<p:outputLabel id="atualizacaoCadastro"
+							value="#{professorBean.professor.dataUltimaAtualizacao}"
+							rendered="#{professorBean.professor.dataCadastro ne null}">
+							<f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm"
+								locale="pt_BR" timeZone="#{initParam.timezone}" />
+						</p:outputLabel>
+					</h:panelGrid>
+				</div>
+
 				<p:tabView id="tabContainer">
 
 					<p:tab id="pessoais" title="Dados pessoais">
 						<component:dadosPessoais nome="#{professorBean.professor.nome}"
+							nomeSocial="#{professorBean.professor.nomeSocial}"
 							matricula="#{professorBean.professor.matricula}"
 							sexo="#{professorBean.professor.sexo}"
 							estadoCivil="#{professorBean.professor.estadoCivil}"
@@ -38,6 +63,7 @@
 						<component:contato celular="#{professorBean.professor.celular}"
 							telefone="#{professorBean.professor.telefone}"
 							email="#{professorBean.professor.email}"
+							gsuiteExclusivo="#{professorBean.professor.gsuiteExclusivo}"
 							email2="#{professorBean.professor.email2}"
 							contatoEmergenciaTipo="#{professorBean.professor.contatoEmergenciaTipo}"
 							contatoEmergenciaNome="#{professorBean.professor.contatoEmergenciaNome}"
@@ -69,10 +95,11 @@
 					</p:tab>
 
 					<p:tab id="profissional" title="Dados Profissionais">
+						<!-- 							escolaridade="#{professorBean.professor.profissionalEscolaridade}" -->
 						<component:dadosProfissionais
+							situacao="#{professorBean.professor.situacao}"
 							vinculo="#{professorBean.professor.vinculo}"
 							regimeTrabalho="#{professorBean.professor.regimeTrabalho}"
-							escolaridade="#{professorBean.professor.profissionalEscolaridade}"
 							formacao="#{professorBean.professor.profissionalFormacao}"
 							cargo="#{professorBean.professor.profissionalCargo}"
 							funcao="#{professorBean.professor.profissionalFuncao}"

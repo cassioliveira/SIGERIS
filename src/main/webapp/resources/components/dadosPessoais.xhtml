@@ -10,6 +10,7 @@
 <composite:interface>
 	<composite:attribute name="foto" />
 	<composite:attribute name="nome" />
+	<composite:attribute name="nomeSocial" />
 	<composite:attribute name="matricula" />
 	<composite:attribute name="sexo" />
 	<composite:attribute name="estadoCivil" />
@@ -40,13 +41,13 @@
 
 
 				<!-- 				<img src="data:image/jpg;base64,#{tecnicoBean.fotoDoBanco}" id="foto" /> -->
-				<p:graphicImage id="foto" value="#{tecnicoBean.fotoSalva}" cache="false"
-					width="150" height="200">
+				<p:graphicImage id="foto" value="#{tecnicoBean.fotoSalva}"
+					cache="false" width="150" height="200">
 					<f:param name="id" value="#{tecnicoBean.tecnico.id}" />
 				</p:graphicImage>
-<!-- 				<p:graphicImage id="avatar" library="sigeris" -->
-<!-- 					name="imagens/avatar.png" cache="false" width="150" height="200" -->
-<!-- 					rendered="#{pessoaBean.editando eq false or cc.attrs.foto eq null}" /> -->
+				<!-- 				<p:graphicImage id="avatar" library="sigeris" -->
+				<!-- 					name="imagens/avatar.png" cache="false" width="150" height="200" -->
+				<!-- 					rendered="#{pessoaBean.editando eq false or cc.attrs.foto eq null}" /> -->
 				<p:commandButton value="Incluir/alterar foto"
 					oncomplete="PF('uploadFoto').show();" />
 			</h:panelGrid>
@@ -65,13 +66,17 @@
 					maxlength="200" required="true"
 					requiredMessage="Um nome deve ser informado" />
 
+				<p:outputLabel for="socialName" value="Nome social: " />
+				<p:inputText id="socialName" value="#{cc.attrs.nomeSocial}"
+					size="43" maxlength="200" />
+
 				<p:outputLabel for="registration" value="Matrícula: "
 					rendered="#{view.viewId ne '/servidor/cadastro-terceirizado.xhtml'}" />
 				<p:inputMask id="registration" value="#{cc.attrs.matricula}"
 					size="13" maxlength="10" mask="9.99999-9"
 					rendered="#{view.viewId ne '/servidor/cadastro-terceirizado.xhtml'}" />
 
-				<p:outputLabel for="sexo" value="Sexo: " />
+				<p:outputLabel for="sexo" value="Gênero: " />
 				<p:selectOneMenu id="sexo" value="#{cc.attrs.sexo}"
 					style="width: 93px">
 					<f:selectItem noSelectionOption="true" />
@@ -109,8 +114,11 @@
 
 				<p:outputLabel for="deficiencia" value="PCD: " />
 				<h:panelGroup>
-					<p:inputText id="deficiencia" value="#{cc.attrs.deficiencia}"
-						size="43" maxlength="200" />
+					<p:selectOneRadio id="deficiencia" value="#{cc.attrs.deficiencia}">
+						<f:selectItem itemLabel="Sim" itemValue="true" />
+						<f:selectItem itemLabel="Não" itemValue="false" />
+					</p:selectOneRadio>
+
 					<p:tooltip value="Pessoa Com Deficiência*" for="deficiencia" />
 				</h:panelGroup>
 			</h:panelGrid>

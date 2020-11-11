@@ -338,3 +338,9 @@
 	text-align: center;
 	margin-right: 10px
 }
+
+.texto-data-cadastro{
+	color: gray;
+	margin-left: 27%;
+	margin-right: auto;
+}

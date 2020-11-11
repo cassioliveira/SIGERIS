@@ -142,8 +142,7 @@
 			style="margin-right: 1px" />
 		<p:calendar id="final-contrato" navigator="true" pattern="dd/MM/yyyy"
 			yearRange="c-100:c+100" maxlength="10" mask="true" size="13"
-			locale="pt" value="#{cc.attrs.dataFinalContrato}"
-			maxdate="#{dateTimeUtilBean.dateToday}">
+			locale="pt" value="#{cc.attrs.dataFinalContrato}">
 			<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR"
 				timeZone="#{initParam.timezone}" />
 		</p:calendar>
@@ -152,8 +151,7 @@
 			style="margin-right: 1px" />
 		<p:calendar id="desligamento" navigator="true" pattern="dd/MM/yyyy"
 			yearRange="c-100:c+100" maxlength="10" mask="true" size="13"
-			locale="pt" value="#{cc.attrs.dataDesligamento}"
-			maxdate="#{dateTimeUtilBean.dateToday}">
+			locale="pt" value="#{cc.attrs.dataDesligamento}">
 			<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR"
 				timeZone="#{initParam.timezone}" />
 		</p:calendar>

@@ -43,7 +43,7 @@ public class TecnicoService implements Serializable {
 				tecnico.setDataCadastro(new Date());
 			}
 			tecnico.setUsuario(security.usuarioLogado());
-
+			tecnico.setDataUltimaAtualizacao(new Date());
 			retorno = (Tecnico) this.tecnicos.salvar(tecnico);
 			pessoaService.apagarFotoLocal();
 		} catch (Exception e) {

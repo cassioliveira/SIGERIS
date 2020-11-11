@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -73,6 +72,9 @@ public class Pessoa implements Serializable {
 	@Column(name = "email", length = 100)
 	private String email;
 
+	@Column(name = "gsuite_exclusivo")
+	private boolean gsuiteExclusivo;
+
 	@Email
 	@Column(name = "email2", length = 100)
 	private String email2;
@@ -88,9 +90,9 @@ public class Pessoa implements Serializable {
 	@Column(name = "orgao_expedidor", length = 20)
 	private String orgaoExpedidor;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "rg_data_expedicao")
-	private Date rgDataExpedicao;
+//	@Temporal(TemporalType.DATE)
+//	@Column(name = "rg_data_expedicao")
+//	private Date rgDataExpedicao;
 
 	@Column(name = "rg_uf", length = 10)
 	private String rgUF;
@@ -179,11 +181,11 @@ public class Pessoa implements Serializable {
 	@Column(name = "cidade_origem", length = 70)
 	private String cidadeOrigem;
 
-	@Column(name = "estado_residencia", length = 70)
-	private String estadoResidencia;
+//	@Column(name = "estado_residencia", length = 70)
+//	private String estadoResidencia;
 
-	@Column(name = "profissional_escolaridade", length = 50)
-	private String profissionalEscolaridade;
+//	@Column(name = "profissional_escolaridade", length = 50)
+//	private String profissionalEscolaridade;
 
 	@Column(name = "profissional_setor", length = 50)
 	private String profissionalSetor;
@@ -201,13 +203,13 @@ public class Pessoa implements Serializable {
 	private String profissionalCampusLotacao;
 
 	@Column(name = "deficiencia", length = 100)
-	private String deficiencia;
+	private boolean deficiencia;
 
 	@Column(name = "regime_trabalho")
 	private String regimeTrabalho;
 
-	@Column(name = "setor")
-	private String setor;
+//	@Column(name = "setor")
+//	private String setor;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "profissional_data_admissao")
@@ -231,4 +233,9 @@ public class Pessoa implements Serializable {
 
 	@Column(name = "usuario")
 	private String usuario;
+
+	public Pessoa() {
+		this.setGsuiteExclusivo(false);
+		this.setDeficiencia(false);
+	}
 }
