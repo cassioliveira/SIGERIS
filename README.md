@@ -1,3 +1,6 @@
+### ! AVISO !
+O sistema foi desenvolvido por mim para para facilitar algumas atividades do campus onde trabalho (e praticar minhas habilidades) e as informações nada tem a ver com o setor de desenvolvimento oficial da instituição.
+
 # SIGERIS - Sistema de Gerenciamento e Integração de Setores
 
 É um sistema que foi desenvolvido para suprir as necessidades de um campus universitários que possui muitas de suas tarefas do cotidiano executadas em papel. Além dessas tarefas, a comunicação e compartilhamento de informações de interesse dentre os vários setores da instituição é falha e suscetível a erros. Além de exigir certo esforço para manter as informações atualizadas de forma sincronizada e com um nível de flexibilidade que algumas ferramentas comuns não são capazes de oferecer com excelência.
@@ -26,9 +29,6 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 - Wildfly
 - Hibernate Validator
 - Jasper Reports
-
-### ! AVISO !
-O sistema foi desenvolvido por mim para suprir uma necessidade da instituição onde trabalhei (e praticar minhas habilidades) e as informações nada tem a ver com o setor de desenvolvimento da instituição.
 
 --------------------------------------------------------------------------------------
 
