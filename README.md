@@ -1,5 +1,5 @@
 ### ! AVISO !
-O sistema foi desenvolvido por mim para para facilitar algumas atividades do campus onde trabalho (e praticar minhas habilidades) e as informações nada tem a ver com o setor de desenvolvimento oficial da instituição.
+O sistema foi desenvolvido por mim para para facilitar algumas atividades do campus onde trabalhava(e praticar minhas habilidades) e as informações nada tem a ver com o setor de desenvolvimento oficial da instituição.
 
 # SIGERIS - Sistema de Gerenciamento e Integração de Setores
 
